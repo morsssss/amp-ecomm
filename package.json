@@ -1,0 +1,27 @@
+{
+  "name": "cAMP",
+  "version": "0.0.1",
+  "description": "an AMP E-commerce sample site that sells camping equipment",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ben Morss",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "del": "*",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-autoprefixer": "*",
+    "gulp-file-include": "*",
+    "gulp-plumber": "*",
+    "gulp-sass": "*",
+    "gulp-sourcemaps": "*",
+    "gulp-uglify": "*",
+    "uglify-es": "*",
+    "workbox-build": "*",
+    "workbox-sw": "*"
+  },
+  "devDependencies": {
+    "gulp": "github:gulpjs/gulp#4.0"
+  }
+}
