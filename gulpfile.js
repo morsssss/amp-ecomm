@@ -2,10 +2,9 @@ const DIST_MODE = process.argv[process.argv.length - 1] == 'dist';
 
 /* Dependencies */
 const gulp = require('gulp');
-const gutil = require('gulp-util');
 const plumber = require('gulp-plumber');
 const autoprefixer = require('gulp-autoprefixer');
-const gulp-file-include = require('gulp-file-include');
+const gulpfileinclude = require('gulp-file-include');
 const sass = require('gulp-sass');
 
 
@@ -40,3 +39,8 @@ function buildImages() {
   return gulp.src(paths.images.src)
     .pipe(gulp.dest(paths.images.dest));
 }
+
+gulp.task('default', function(done){
+    console.log("Building...");
+    done();
+});
