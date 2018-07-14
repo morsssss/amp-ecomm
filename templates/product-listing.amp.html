@@ -126,7 +126,7 @@ limitations under the License.
     <script type="application/json">
       {
         "category": "all",
-        "filter": "high-low"
+        "filter": "high"
       }
     </script>
   </amp-state>
@@ -188,14 +188,14 @@ limitations under the License.
 <div class="commerce-select-wrapper inline-block  ">
   <label for="price" class="bold caps h6 md-h7">Sort by:</label>
   <select name="price" id="price" class="commerce-select h6 md-h7" on="change: AMP.setState({products: {filter: event.value}})">
-      <option value="high-low">Price: High-Low</option>
-      <option value="low-high">Price: Low-High</option>
+      <option value="high">Price: High-Low</option>
+      <option value="low">Price: Low-High</option>
   </select>
 </div>
         </div>
       </div>
 
-      <amp-list class="mx1 md-mxn1" [src]="'api/' + products.filter + '-' + products.category + '-products.json'" src="api/high-low-all-products.json" height="1000" width="300" layout="responsive">
+      <amp-list class="mx1 md-mxn1" [src]="'/api/categories?categoryId=' + products.category + '&sort=' + products.filter" src="/api/categories?categoryId=all&sort=high" height="1000" width="300" layout="responsive">
         <template type="amp-mustache">
           <a href="product-details.amp.html" target="_self" class="commerce-listing-product text-decoration-none inline-block col-6 md-col-4 lg-col-3 px1 mb2 md-mb4 relative">
             <div class="flex flex-column justify-between">
