@@ -13,7 +13,6 @@ const bs = require('browser-sync').create();
 const amphtmlValidator = require('amphtml-validator');
 const through = require('through2');
 const jsdom = require('jsdom');
-const PluginError = require('plugin-error');
 const reload = bs.reload;
 
 const { JSDOM } = jsdom;
