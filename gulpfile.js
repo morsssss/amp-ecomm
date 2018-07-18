@@ -10,14 +10,16 @@ const minimist = require('minimist');
 const del = require('del');
 const gulpAmpValidator = require('gulp-amphtml-validator');
 const bs = require('browser-sync').create();
-const amphtmlValidator = require('amphtml-validator');
-const through = require('through2');
-const jsdom = require('jsdom');
 const reload = bs.reload;
+const jsdom = require('jsdom');
+const through = require('through2');
 
 const { JSDOM } = jsdom;
 const AMP_BASE_URL_ELEMENT = '<script async src="https://cdn.ampproject.org/v0.js"></script>';
 const AMP_PLACEHOLDER = '${ampjs}';
+
+const AMP_EXCLUDED_TAGS = new Set(['amp-img']);
+const AMP_REMAPPED_TAGS = {'amp-state': 'amp-bind'};
 
 // Build type is configurable such that some options can be changed e.g. whether
 // to minimise CSS. Usage 'gulp <task> --env development'.
@@ -43,8 +45,6 @@ const paths = {
   }  
 };
 
-const scriptUrlCache = {};
-
 /**
  * Builds the styles, bases on SASS files taken from src. The resulting CSS is
  * used as partials that are included in the final AMP HTML.
@@ -66,102 +66,27 @@ gulp.task('images', function buildImages() {
 });
 
 /**
- * Identifies missing AMP custom-elementscript tags in an AMP HTML file and
- * adds them.
+ * Adds necessary AMP script tags.
  *
- * This is achieved by:
- * 1. Running the AMP validator and filtering for errors for missing extensions.
- * 2. Retrieving the required <script/> tags from the spec page for each error
+ * Replaces the placeholder '${ampjs}' with the AMP base script and any
+ * necessary scripts to support custom elements.
  *
- * Whilst scraping the spec page for the <script/> tags may not be seen as ideal
- * it is simpler than parsing the validator proto files, and also ensures that
- * the elements included are exactly as per the documentation.
- *
- * @param {!Vinyl} file The file to add script tags to.
+ * @param {!Vinyl} file The file to scan and add tags to.
  * @return {!Vinyl} The modified file.
  */
-async function addIncludes(file) {
-  let instance = await amphtmlValidator.getInstance();
-  const inputString = file.contents.toString();
-  const result = instance.validateString(inputString);
-  if (result.status === 'FAIL') {
-    // Filter for only those errors indicating a missing script tag.
-    const tagErrors = result.errors
-        .filter(err => {
-            return err.category === 'MANDATORY_AMP_TAG_MISSING_OR_INCORRECT'
-                && err.code === 'MISSING_REQUIRED_EXTENSION'});
-
-    var missingScriptUrls = new Set();
-    for (let tagError of tagErrors) {
-      const tagName = tagError.params[0];
-      // For each missing tag, add the required script URLs to a cache, to avoid
-      // fetching them repeatedly.
-      if (!scriptUrlCache[tagName]) {
-        const dom = await JSDOM.fromURL(tagError.specUrl);
-        scriptUrlCache[tagName] = extractScriptUrlsFromDom(tagName, dom);
-      }
-      missingScriptUrls = new Set([...missingScriptUrls,
-        ...scriptUrlCache[tagName]]);
-    }
-  }
-  if (missingScriptUrls.size) {
-    return addScriptUrlsToFile(file, missingScriptUrls);
-  }
-  return file;
-}
-
-/**
- * Extracts script tag URLs from the DOM for a given spec page of a custom
- * element.
- *
- * Whilst scraping the spec page may not seem the most robust manner to approach
- * this problem, it is easy to implement, ensures that the script tags match
- * the documentation, allows for custom elements that require multiple script
- * tags, and makes no assumptions about versioning.
- *
- * @param {string} tagName The name of the custom element.
- * @param {JSDOM} dom The DOM for the spec page.
- * @return {Set} A set of script tag URLs, for inclusion on the AMP page.
- * @throws If no script tags are found on the spec page.
- */
-function extractScriptUrlsFromDom(tagName, dom) {
-  const scriptUrls = new Set();
-  const tagRe = /(<script async custom-element="[^"]+" src="[^"]+"><\/script>)/;
+function addScriptTags(file) {
+  const dom = new JSDOM(file.contents.toString());
   const doc = dom.window.document;
-  const codeTags = doc.getElementsByTagName('code');
-  for (codeTag of codeTags) {
-    const matches = tagRe.exec(codeTag.textContent);
-    if (matches) {
-      scriptUrls.add(matches[1]);
-    }
-  }
-  if (!scriptUrls.size) {
-    throw Error('No script sources found  for ' + tagName);
-  }
-  return scriptUrls;
-}
-
-/**
- * Adds the required script tags to the AMP HTML document.
- *
- * Searches for a ${ampjs} placeholder, and replaces it with:
- * 1. The base AMP JS script element.
- * 2. Any identified custom element script elements.
- *
- * @param {!Vinyl} file The AMP HTML file.
- * @param {!Set} scriptUrls The set of custom element <script> tags.
- * @return {!Vinyl} The modified AMP HTML file.
- * @throws If the placeholder cannot be found in the AMP HTML file.
- */
-function addScriptUrlsToFile(file, scriptUrls) {
-  const contents = file.contents.toString();
-  const [head, tail] = contents.split(AMP_PLACEHOLDER);
-  if (!tail) {
-    throw Error('Base AMP script element not found');
-  }
-  const newScriptUrls = [...scriptUrls].join('\n');
-  file.contents = Buffer.from([head, AMP_BASE_URL_ELEMENT,
-      newScriptUrls, tail].join('\n'));
+  const ampTags = new Set(Array.from(doc.getElementsByTagName('*'))
+      .map(e => e.tagName.toLowerCase())
+      .filter(t => t.startsWith('amp'))
+      .filter(t => !AMP_EXCLUDED_TAGS.has(t))
+      .map(t => AMP_REMAPPED_TAGS[t] || t));
+  const urls = [AMP_BASE_URL_ELEMENT, ...Array.from(ampTags, t => {
+    return `<script async custom-element="${t}" src="https://cdn.ampproject.org/v0/${t}-latest.js"></script>`;
+  })];
+  file.contents = new Buffer(file.contents.toString().replace(AMP_PLACEHOLDER,
+      urls.join('\n')));
   return file;
 }
 
@@ -174,12 +99,9 @@ function includeAmpCustomElements() {
   function runInclude(file, encoding, callback) {
     if (file.isNull()) {
       return callback(null, file);
-    }
-    if (file.isBuffer()) {
-      console.log(file.path);
-      addIncludes(file).then((modifiedFile) => {
-        return callback(null, modifiedFile);   
-      });
+    } else if (file.isBuffer()) {
+      const modifiedFile = addScriptTags(file);
+      return callback(null, modifiedFile);   
     }
   }
   return through.obj(runInclude);
