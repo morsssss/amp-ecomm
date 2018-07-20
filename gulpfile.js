@@ -10,19 +10,8 @@ const minimist = require('minimist');
 const del = require('del');
 const gulpAmpValidator = require('gulp-amphtml-validator');
 const bs = require('browser-sync').create();
+const ampTagImporter = require('./ampTagImport.js');
 const reload = bs.reload;
-const jsdom = require('jsdom');
-const through = require('through2');
-
-const { JSDOM } = jsdom;
-const AMP_BASE_URL_ELEMENT = '<script async src="https://cdn.ampproject.org/v0.js"></script>';
-const AMP_PLACEHOLDER = '${ampjs}';
-
-// Maintain a set of amp-* tags for which no custom script tag is required.
-const AMP_EXCLUDED_TAGS = new Set(['amp-img']);
-// Maintain a mapping of custom elements whose JS to include is not of the same
-// name. For example, using <amp-state> requires amp-bind JS to be included.
-const AMP_REMAPPED_TAGS = {'amp-state': 'amp-bind'};
 
 // Build type is configurable such that some options can be changed e.g. whether
 // to minimise CSS. Usage 'gulp <task> --env development'.
@@ -69,58 +58,6 @@ gulp.task('images', function buildImages() {
 });
 
 /**
- * Adds necessary AMP script tags.
- *
- * Replaces the placeholder '${ampjs}' with the AMP base script and any
- * necessary scripts to support custom elements.
- *
- * @param {!Vinyl} file The file to scan and add tags to.
- * @return {!Vinyl} The modified file.
- */
-function addAmpCustomElementTags(file) {
-  const dom = new JSDOM(file.contents.toString());
-  const doc = dom.window.document;
-  const ampTags = new Set(Array.from(doc.getElementsByTagName('*'))
-      .map(e => e.tagName.toLowerCase())
-      .filter(t => t.startsWith('amp'))
-      .filter(t => !AMP_EXCLUDED_TAGS.has(t))
-      .map(t => AMP_REMAPPED_TAGS[t] || t));
-  const urls = [AMP_BASE_URL_ELEMENT,
-      ...Array.from(ampTags, t => createAmpCustomElementTag(t))];
-  file.contents = new Buffer(file.contents.toString().replace(AMP_PLACEHOLDER,
-      urls.join('\n')));
-  return file;
-}
-
-/**
- * Builds a script tag for a custom element.
- * 
- * @param {string} tagName The custom element to include.
- * @return {string} The <script> tag.
- */
-function createAmpCustomElementTag(tagName) {
-  return `<script async custom-element="${tagName}" ` +
-      `src="https://cdn.ampproject.org/v0/${tagName}-latest.js"></script>`;
-}
-
-/**
- * Creates the include function for use in .pipe()
- *
- * @return {Function} The function for use in gulp.
- */
-function includeAmpCustomElements() {
-  function runInclude(file, encoding, callback) {
-    if (file.isNull()) {
-      return callback(null, file);
-    } else if (file.isBuffer()) {
-      const modifiedFile = addAmpCustomElementTags(file);
-      return callback(null, modifiedFile);   
-    }
-  }
-  return through.obj(runInclude);
-}
-
-/**
  * Builds the HTML files. Only files from 'pages' are built, such that partials
  * are ignored as targets.
  */
@@ -133,7 +70,7 @@ gulp.task('html', gulp.series('styles', function buildHtml() {
       prefix: '%%',
       basepath: '@file'
     }))
-    .pipe(includeAmpCustomElements())
+    .pipe(ampTagImporter.import())
     .pipe(gulp.dest(paths.html.dest));
 }));
 
