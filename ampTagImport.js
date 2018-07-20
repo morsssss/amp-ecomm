@@ -111,7 +111,7 @@ function containsAmpStateInAttribute(doc) {
  */
 function containsAmpAccessInAttribute(doc) {
   return doc.querySelector("[amp-access]")
-      || doc.querySelector("script[id='amp-access'");
+      || doc.querySelector("script[id='amp-access']");
 }
 
 /**
