@@ -2,47 +2,52 @@ const express = require('express');
 const request = require('request');
 const path = require('path');
 const fs = require('fs');
-const backend = require('./Backend.js');
+const productApiManager = require('./ApiManager.js');
 
 const app = express();
-const ecommBackend = new backend();
+const apiManager = new productApiManager();
 
 const port = process.env.PORT || 8080;
 const listener = app.listen(port, () => {
-  console.log('App listening on port ' + listener.address().port);
+    console.log('App listening on port ' + listener.address().port);
 });
 
 //serve static files
-app.use(express.static(path.join(__dirname,'../..')));
+app.use(express.static(path.join(__dirname, '../..')));
 
 //API
-app.get('/api/categories', function (req, res) {
+app.get('/api/categories', function(req, res) {
 
-  var categoryId = req.query.categoryId;
-  var sort = req.query.sort;
-  var categoryUrl = ecommBackend.getCategoryUrl(categoryId, sort);
+    let categoryId = req.query.categoryId;
+    let sort = req.query.sort;
 
-  var categoryListing = getCategory(categoryUrl);
+    let categoryUrl = apiManager.getCategoryUrl(categoryId, sort);
 
-  res.send(categoryListing);
+    const options = {
+        url: categoryUrl
+    };
 
-});
-
-app.get('/api/product', function (req, res) {
-
-  var productId = req.query.productId;
-  var productUrl = ecommBackend.getProductUrl(productId);
-
-  var product = getProduct(productUrl);
-
-  res.send(product);
+    request(options, (error, response, body) => {
+        if (!error) {
+            res.send(apiManager.parseCategory(body));
+        } else {
+            res.json({ error: 'An error occurred in /api/categories' });
+        }
+    });
 
 });
 
-function getCategory(categoryUrl) {
-  return JSON.parse(fs.readFileSync(path.join(__dirname, categoryUrl), 'utf8'));
-}
+app.get('/api/product', function(req, res) {
 
-function getProduct(productId) {
-  //use case not yet available on the bike shop API
+    let productId = req.query.productId;
+    let productUrl = apiManager.getProductUrl(productId);
+
+    let product = getProduct(productUrl);
+
+    res.send(product);
+
+});
+
+function getProduct(productUrl) {
+    //use case not yet available on the bike shop API
 }
