@@ -70,9 +70,10 @@ class ApiManager {
             items: []
         };
 
-        for (var prod in prodListing) {
-            let originalProd = prodListing[prod].Value;
+        for (var prod of prodListing) {
+            let originalProd = prod.Value;
             let parsedProd = new Object();
+            parsedProd.productId = originalProd.Main_Id;
             parsedProd.name = originalProd.Product_Title;
             parsedProd.description = originalProd.Product_Title; /* Missing field on Campmor API */
             parsedProd.price = originalProd.Price;
@@ -85,8 +86,9 @@ class ApiManager {
         return parsedCategory;
     }
 
+    //Example url: https://campmoramp.ampify.wompmobile.com/campmor/fetchProduct/31893
     getProductUrl(productId) {
-
+        return this.apiProductEndpoint + '/' + productId;
     }
 
 }

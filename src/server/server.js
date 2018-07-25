@@ -34,7 +34,6 @@ app.get('/api/categories', function(req, res) {
             res.json({ error: 'An error occurred in /api/categories' });
         }
     });
-
 });
 
 app.get('/api/product', function(req, res) {
@@ -42,12 +41,15 @@ app.get('/api/product', function(req, res) {
     let productId = req.query.productId;
     let productUrl = apiManager.getProductUrl(productId);
 
-    let product = getProduct(productUrl);
+    const options = {
+        url: productUrl
+    };
 
-    res.send(product);
-
+    request(options, (error, response, body) => {
+        if (!error) {
+            res.send(body);
+        } else {
+            res.json({ error: 'An error occurred in /api/product' });
+        }
+    });
 });
-
-function getProduct(productUrl) {
-    //use case not yet available on the bike shop API
-}
