@@ -8,12 +8,14 @@ const sass = require('gulp-sass');
 const filter = require('gulp-filter')
 const minimist = require('minimist');
 const del = require('del');
+const gulpAmpValidator = require('gulp-amphtml-validator');
 const bs = require('browser-sync').create();
+const ampTagImporter = require('./ampTagImport.js');
 const reload = bs.reload;
 
 // Build type is configurable such that some options can be changed e.g. whether
 // to minimise CSS. Usage 'gulp <task> --env development'.
-var knownOptions = {
+const knownOptions = {
   string: 'env',
   default: { env: process.env.NODE_ENV || 'dist' }
 };
@@ -68,8 +70,19 @@ gulp.task('html', gulp.series('styles', function buildHtml() {
       prefix: '%%',
       basepath: '@file'
     }))
+    .pipe(ampTagImporter.import())
     .pipe(gulp.dest(paths.html.dest));
 }));
+
+/**
+ * Checks resulting output AMP HTML for validity.
+ */
+gulp.task('validate', function validate() {
+  return gulp.src(paths.html.dest + '/**/*.html')
+    .pipe(gulpAmpValidator.validate())
+    .pipe(gulpAmpValidator.format())
+    .pipe(gulpAmpValidator.failAfterError());
+});
 
 /**
  * Removes all files from the distribution directory, and also the CSS build
@@ -85,7 +98,7 @@ gulp.task('clean', function clean() {
 /**
  * Builds the output from sources.
  */
-gulp.task('build', gulp.series('images', 'html'));
+gulp.task('build', gulp.series('images', 'html', 'validate'));
 
 /**
  * First rebuilds the output then triggers a reload of the browser.
