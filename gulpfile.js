@@ -10,7 +10,7 @@ const minimist = require('minimist');
 const del = require('del');
 const gulpAmpValidator = require('gulp-amphtml-validator');
 const bs = require('browser-sync').create();
-const importTags = require('amphtml-import-tags').create();
+const autoScript = require('amphtml-autoscript').create();
 const reload = bs.reload;
 
 // Build type is configurable such that some options can be changed e.g. whether
@@ -70,7 +70,7 @@ gulp.task('html', gulp.series('styles', function buildHtml() {
       prefix: '%%',
       basepath: '@file'
     }))
-    .pipe(importTags)
+    .pipe(autoScript)
     .pipe(gulp.dest(paths.html.dest));
 }));
 
