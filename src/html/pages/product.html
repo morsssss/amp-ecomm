@@ -1,0 +1,359 @@
+<!doctype html>
+<html ⚡ lang="en">
+
+<head>
+%%include('../partials/head.html')
+</head>
+
+<body>
+%%include('../partials/header.html')
+%%include('../partials/menu.html');
+
+<main role="main" >
+<div>
+  <h1>Your Basket</h1>
+    <div>
+      <div>
+        <amp-img src="../../img/e-commerce/product/product-8.jpg" width="1" height="1" layout="responsive" alt="Caliper Brakes" noloading="">
+<div placeholder=""></div>        </amp-img>
+      </div>
+      <div>
+        <div>Caliper Brakes</div>
+        <div>Fits most wheel sizes and designed to last long.</div>
+      </div>
+      <div>
+        <span>£349</span>
+        <span>1</span>
+        <div role="button" tabindex="0">✕</div>
+      </div>
+    </div>
+    <div>
+      <div>
+        <amp-img src="../../img/e-commerce/product/product-1.jpg" width="1" height="1" layout="responsive" alt="Sprocket Set" noloading="">
+<div placeholder=""></div>        </amp-img>
+      </div>
+      <div>
+        <div>Sprocket Set</div>
+        <div>Steel, designed for long lasting stability.</div>
+      </div>
+      <div>
+        <span>£470</span>
+        <span>1</span>
+        <div role="button" tabindex="0">✕</div>
+      </div>
+    </div>
+      <div>
+        <a href="#">send</a>
+        <a href="checkout.amp.html">checkout</a>
+      </div>
+    </div>
+
+    <amp-state id="product">
+      <script type="application/json">
+        {
+        "price": "£470",
+        "selectedColor": "black",
+          "black": {
+            "thumb": {
+              "image1": "../img/e-commerce/product/dark-small-1.jpg",
+              "image2": "../img/e-commerce/product/dark-small-2.jpg",
+              "image3": "../img/e-commerce/product/dark-small-3.jpg"
+            },
+            "large": {
+              "image1": "../img/e-commerce/product/dark-large-1.jpg",
+              "image2": "../img/e-commerce/product/dark-large-2.jpg",
+              "image3": "../img/e-commerce/product/dark-large-3.jpg"
+            }
+          },
+          "blue": {
+            "thumb": {
+              "image1": "../img/e-commerce/product/light-small-1.jpg",
+              "image2": "../img/e-commerce/product/light-small-2.jpg",
+              "image3": "../img/e-commerce/product/light-small-3.jpg"
+            },
+            "large": {
+              "image1": "../img/e-commerce/product/light-large-1.jpg",
+              "image2": "../img/e-commerce/product/light-large-2.jpg",
+              "image3": "../img/e-commerce/product/light-large-3.jpg"
+            }
+          },
+        "selectedSlide": 0
+      }
+      </script>
+    </amp-state>
+
+    <section>
+      <div>
+        <amp-carousel width="1280" height="720" layout="responsive" type="slides" [slide]="product.selectedSlide" on="slideChange: AMP.setState({product: {selectedSlide: event.index}})">
+          <amp-img [src]="product[product.selectedColor].large.image1" src="../img/e-commerce/product/dark-large-1.jpg" width="1280" height="720" layout="responsive" role="button" tabindex="0" alt="product image" noloading="">
+<div placeholder=""></div>          </amp-img>
+          <amp-img [src]="product[product.selectedColor].large.image2" src="../img/e-commerce/product/dark-large-2.jpg" width="1280" height="720" layout="responsive" role="button" tabindex="0" alt="product image" noloading="">
+<div placeholder=""></div>          </amp-img>
+          <amp-img [src]="product[product.selectedColor].large.image3" src="../img/e-commerce/product/dark-large-3.jpg" width="1280" height="720" layout="responsive" role="button" tabindex="0" alt="product image" noloading="">
+<div placeholder=""></div>          </amp-img>
+        </amp-carousel>
+
+        <amp-selector [selected]="product.selectedSlide" on="select:AMP.setState({product: {selectedSlide: event.targetOption}})">
+          <ul>
+            <li>
+              <amp-img option="0" layout="responsive" selected="selected" [src]="product[product.selectedColor].thumb.image1" src="../img/e-commerce/product/dark-small-1.jpg" width="320" height="180" alt="thumbnail"></amp-img>
+            </li>
+            <li>
+              <amp-img option="1" layout="responsive" [src]="product[product.selectedColor].thumb.image2" src="../img/e-commerce/product/dark-small-2.jpg" width="320" height="180" alt="thumbnail"></amp-img>
+            </li>
+            <li>
+              <amp-img option="2" layout="responsive" [src]="product[product.selectedColor].thumb.image3" src="../img/e-commerce/product/dark-small-3.jpg" width="320" height="180" alt="thumbnail"></amp-img>
+            </li>
+          </ul>
+        </amp-selector>
+      </div>
+      <div>
+        <div>
+          <h1>Road Bike</h1>
+          <div>£470</div>
+        </div>
+        <div>
+          <h2>Reviews</h2>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star"><path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star"><path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star"><path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star"><path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="26" height="24" viewbox="0 0 26 24" class="icon-star-empty"><path fill="currentColor" d="M26 9.15789474L16.911475 8.4 13.377049 0 9.842623 8.4l-9.088525.75789474 6.879509 5.99999996L5.55082 24l7.826229-4.7368421L21.203279 24l-2.082787-8.9052632L26 9.15789474zM13.377049 16.9263158l-4.733606 2.8421053 1.262295-5.431579-4.228689-3.6 5.554099-.5052632 2.145901-5.11578943 2.145902 5.11578943 5.554098.5052632L16.911475 14.4l1.262295 5.4315789-4.796721-2.9052631z"></path></svg>
+        </div>
+        <div>Built with lightweight aluminum for speed.</div>
+        <hr>
+        <div>
+          <span>colour:</span>
+          <amp-selector name="color" layout="container" [selected]="product.selectedColor" on="select:AMP.setState({
+                              product: {
+                                selectedColor: event.targetOption
+                              }
+                            })">
+            <ul>
+              <li>
+                <div option="black" selected="selected"></div>
+              </li>
+              <li>
+                <div option="blue"></div>
+              </li>
+            </ul>
+          </amp-selector>
+        </div>
+        <div>
+<div>
+  <label for="sizes">Select a size: </label>
+  <select name="sizes">
+      <option value="61cm">62cm</option>
+      <option value="63cm">63cm</option>
+      <option value="64cm">64cm</option>
+      <option value="65cm">65cm</option>
+  </select>
+</div>
+        </div>
+        <hr>
+        <div>
+          <button on="tap:AMP.setState({cart: {added: true}})">Add to cart</button>
+        </div>
+        <hr>
+      </div>
+      <div>
+        <hr>
+        <div>
+          <section>
+            <h2>Overview</h2>
+            <p>Id lacus amet. Aliquam eos nunc ut scelerisque lacinia, eu rutrum id, vestibulum aliqua vivamus luctus eu rhoncus
+              ut, sodales id. Velit lacus, fermentum neque et sagittis, ac venenatis volutpat, dolore neque feugiat proin
+              fermentum odio, odio arcu in eu wisi. </p>
+              <hr>
+              <div>
+                <h2>Reviews</h2>
+  <section>
+    <h3>Tom - UK</h3>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star"><path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star"><path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star"><path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star"><path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="26" height="24" viewbox="0 0 26 24" class="icon-star-empty"><path fill="currentColor" d="M26 9.15789474L16.911475 8.4 13.377049 0 9.842623 8.4l-9.088525.75789474 6.879509 5.99999996L5.55082 24l7.826229-4.7368421L21.203279 24l-2.082787-8.9052632L26 9.15789474zM13.377049 16.9263158l-4.733606 2.8421053 1.262295-5.431579-4.228689-3.6 5.554099-.5052632 2.145901-5.11578943 2.145902 5.11578943 5.554098.5052632L16.911475 14.4l1.262295 5.4315789-4.796721-2.9052631z"></path></svg>
+    <p>Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla vitae elit libero, a pharetra augue. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+  </section>
+  <section>
+    <h3>Jerry - UK</h3>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star"><path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star"><path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star"><path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star"><path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="26" height="24" viewbox="0 0 26 24" class="icon-star-empty"><path fill="currentColor" d="M26 9.15789474L16.911475 8.4 13.377049 0 9.842623 8.4l-9.088525.75789474 6.879509 5.99999996L5.55082 24l7.826229-4.7368421L21.203279 24l-2.082787-8.9052632L26 9.15789474zM13.377049 16.9263158l-4.733606 2.8421053 1.262295-5.431579-4.228689-3.6 5.554099-.5052632 2.145901-5.11578943 2.145902 5.11578943 5.554098.5052632L16.911475 14.4l1.262295 5.4315789-4.796721-2.9052631z"></path></svg>
+    <p>Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla vitae elit libero, a pharetra augue. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+  </section>
+  <section>
+    <h3>Arthur - UK</h3>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star"><path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star"><path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star"><path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star"><path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="26" height="24" viewbox="0 0 26 24" class="icon-star-empty"><path fill="currentColor" d="M26 9.15789474L16.911475 8.4 13.377049 0 9.842623 8.4l-9.088525.75789474 6.879509 5.99999996L5.55082 24l7.826229-4.7368421L21.203279 24l-2.082787-8.9052632L26 9.15789474zM13.377049 16.9263158l-4.733606 2.8421053 1.262295-5.431579-4.228689-3.6 5.554099-.5052632 2.145901-5.11578943 2.145902 5.11578943 5.554098.5052632L16.911475 14.4l1.262295 5.4315789-4.796721-2.9052631z"></path></svg>
+    <p>Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla vitae elit libero, a pharetra augue. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+  </section>
+              </div>
+          </section>
+        </div>
+        <div>
+          <section>
+            <h2>Size Guide</h2>
+            <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Rider Height</th>
+                    <th colspan="2">Suggested Size</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>160cm-168cm</td>
+                    <td>47-48cm</td>
+                    <td>xx-small</td>
+                  </tr>
+                  <tr>
+                    <td>152cm-160cm</td>
+                    <td>49-50cm</td>
+                    <td>x-small</td>
+                  </tr>
+                  <tr>
+                    <td>148cm-152cm</td>
+                    <td>49-50cm</td>
+                    <td>x-small</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <section>
+            <h2>Full spec</h2>
+            <div>
+              <dl>
+                <dt>frame</dt>
+                <dd>Hi-Ten steel</dd>
+                <dt>handlebars</dt>
+                <dd>Chrome plated</dd>
+                <dt>stem</dt>
+                <dd>Alloy quill stem</dd>
+                <dt>grips</dt>
+                <dd>Rubber</dd>
+                <dt>gear shifter</dt>
+                <dd>Rapidfire</dd>
+                <dt>gears</dt>
+                <dd>7 speed</dd>
+                <dt>chainset</dt>
+                <dd>Steel</dd>
+                <dt>crank</dt>
+                <dd>Alloy</dd>
+                <dt>pedals</dt>
+                <dd>Alloy rat trap</dd>
+                <dt>brakes</dt>
+                <dd>Side pull caliper brakes</dd>
+                <dt>rims</dt>
+                <dd>Double wall alloy 20&quot;</dd>
+                <dt>tyres</dt>
+                <dd>700x19-28</dd>
+                <dt>saddle</dt>
+                <dd>Vinyl saddle</dd>
+                <dt>seatpost</dt>
+                <dd>Alloy micro adjust 600mm</dd>
+                <dt>kickstand</dt>
+                <dd>Alloy</dd>
+                <dt>mudguards</dt>
+                <dd>Hammered alloy</dd>
+                <dt>carrier</dt>
+                <dd>Chrome steel front</dd>
+              </dl>
+            </div>
+          </section>
+        </div>
+<section>
+  <div>
+    <h2>You may also like</h2>
+    <amp-carousel height="170" layout="fixed-height" type="carousel">
+      <ul>
+          <li>
+            <a href="product-details.amp.html">
+              <amp-img src="../img/e-commerce/product/product-1.jpg" width="1" height="1" layout="responsive" alt="Sprocket Set" noloading="">
+<div placeholder=""></div>              </amp-img>
+              <h2>Sprocket Set</h2>
+            </a>
+          </li>
+          <li>
+            <a href="product-details.amp.html">
+              <amp-img src="../img/e-commerce/product/product-2.jpg" width="1" height="1" layout="responsive" alt="Fixie Blue" noloading="">
+<div placeholder=""></div>              </amp-img>
+              <h2>Fixie Blue</h2>
+            </a>
+          </li>
+          <li>
+            <a href="product-details.amp.html">
+              <amp-img src="../img/e-commerce/product/product-3.jpg" width="1" height="1" layout="responsive" alt="Chain set" noloading="">
+<div placeholder=""></div>              </amp-img>
+              <h2>Chain set</h2>
+            </a>
+          </li>
+          <li>
+            <a href="product-details.amp.html">
+              <amp-img src="../img/e-commerce/product/product-4.jpg" width="1" height="1" layout="responsive" alt="Leather Saddle" noloading="">
+<div placeholder=""></div>              </amp-img>
+              <h2>Leather Saddle</h2>
+            </a>
+          </li>
+          <li>
+            <a href="product-details.amp.html">
+              <amp-img src="../img/e-commerce/product/product-5.jpg" width="1" height="1" layout="responsive" alt="16-Speed" noloading="">
+<div placeholder=""></div>              </amp-img>
+              <h2>16-Speed</h2>
+            </a>
+          </li>
+          <li>
+            <a href="product-details.amp.html">
+              <amp-img src="../img/e-commerce/product/product-6.jpg" width="1" height="1" layout="responsive" alt="Red Cruiser" noloading="">
+<div placeholder=""></div>              </amp-img>
+              <h2>Red Cruiser</h2>
+            </a>
+          </li>
+          <li>
+            <a href="product-details.amp.html">
+              <amp-img src="../img/e-commerce/product/product-7.jpg" width="1" height="1" layout="responsive" alt="Horn Handles" noloading="">
+<div placeholder=""></div>              </amp-img>
+              <h2>Horn Handles</h2>
+            </a>
+          </li>
+          <li>
+            <a href="product-details.amp.html">
+              <amp-img src="../img/e-commerce/product/product-8.jpg" width="1" height="1" layout="responsive" alt="Caliper Brakes" noloading="">
+<div placeholder=""></div>              </amp-img>
+              <h2>Caliper Brakes</h2>
+            </a>
+          </li>
+          <li>
+            <a href="product-details.amp.html">
+              <amp-img src="../img/e-commerce/product/product-9.jpg" width="1" height="1" layout="responsive" alt="Road Bike" noloading="">
+<div placeholder=""></div>              </amp-img>
+              <h2>Road Bike</h2>
+            </a>
+          </li>
+          <li>
+            <a href="product-details.amp.html">
+              <amp-img src="../img/e-commerce/product/product-10.jpg" width="1" height="1" layout="responsive" alt="Wheel Set" noloading="">
+<div placeholder=""></div>              </amp-img>
+              <h2>Wheel Set</h2>
+            </a>
+          </li>
+      </ul>
+    </amp-carousel>
+  </div>
+</section>
+      </div>
+    </section>
+  </main>
+
+%%include('../partials/footer.html')
+
+</body>
+</html>
