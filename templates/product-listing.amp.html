@@ -125,7 +125,7 @@ limitations under the License.
   <amp-state id="products">
     <script type="application/json">
       {
-        "category": "all",
+        "category": "men-shirts",
         "filter": "high-low"
       }
     </script>
@@ -146,27 +146,27 @@ limitations under the License.
 
 
 <!-- Start Radio -->
-<div class="ampstart-input ampstart-input-radio inline-block relative m0 p0 mb3 " on="change: AMP.setState({products: {category: &#39;all&#39;}})">
-    <input type="radio" value="" name="category" id="all" class="relative" checked="">
-    <label for="all" class="" aria-hidden="true">All</label>
+<div class="ampstart-input ampstart-input-radio inline-block relative m0 p0 mb3 " on="change: AMP.setState({products: {category: &#39;men-shirts&#39;}})">
+    <input type="radio" value="" name="category" id="men-shirts" class="relative" checked="">
+    <label for="men-shirts" class="" aria-hidden="true">Men's Shirts</label>
 </div>
 <!-- End Radio -->
 <!-- Start Radio -->
-<div class="ampstart-input ampstart-input-radio inline-block relative m0 p0 mb3 " on="change: AMP.setState({products: {category: &#39;bikes&#39;}})">
-    <input type="radio" value="" name="category" id="bikes" class="relative">
-    <label for="bikes" class="" aria-hidden="true">Bikes</label>
+<div class="ampstart-input ampstart-input-radio inline-block relative m0 p0 mb3 " on="change: AMP.setState({products: {category: &#39;men-shorts&#39;}})">
+    <input type="radio" value="" name="category" id="men-shorts" class="relative">
+    <label for="men-shorts" class="" aria-hidden="true">Men's Shorts</label>
 </div>
 <!-- End Radio -->
 <!-- Start Radio -->
-<div class="ampstart-input ampstart-input-radio inline-block relative m0 p0 mb3 " on="change: AMP.setState({products: {category: &#39;accessories&#39;}})">
-    <input type="radio" value="" name="category" id="accessories" class="relative">
-    <label for="accessories" class="" aria-hidden="true">Accessories</label>
+<div class="ampstart-input ampstart-input-radio inline-block relative m0 p0 mb3 " on="change: AMP.setState({products: {category: &#39;women-shirts&#39;}})">
+    <input type="radio" value="" name="category" id="women-shirts" class="relative">
+    <label for="women-shirts" class="" aria-hidden="true">Women's Shirts</label>
 </div>
 <!-- End Radio -->
 <!-- Start Radio -->
-<div class="ampstart-input ampstart-input-radio inline-block relative m0 p0 mb3 " on="change: AMP.setState({products: {category: &#39;components&#39;}})">
-    <input type="radio" value="" name="category" id="components" class="relative">
-    <label for="components" class="" aria-hidden="true">Components</label>
+<div class="ampstart-input ampstart-input-radio inline-block relative m0 p0 mb3 " on="change: AMP.setState({products: {category: &#39;women-shorts&#39;}})">
+    <input type="radio" value="" name="category" id="women-shorts" class="relative">
+    <label for="women-shorts" class="" aria-hidden="true">Women's Shorts</label>
 </div>
 <!-- End Radio -->
       </div>
@@ -179,10 +179,10 @@ limitations under the License.
 <div class="commerce-select-wrapper inline-block md-mr1 pl2 md-hide lg-hide">
   <label for="categories" class="bold caps h6 md-h7">Show:</label>
   <select name="categories" id="categories" class="commerce-select h6 md-h7" on="change: AMP.setState({products: {category: event.value}})">
-      <option value="all">all</option>
-      <option value="bikes">bikes</option>
-      <option value="accessories">accessories</option>
-      <option value="components">components</option>
+      <option value="men-shirts">Men's Shirts</option>
+      <option value="men-shorts">Men's Shorts</option>
+      <option value="women-shirts">Women's Shirts</option>
+      <option value="women-shorts">Women's Shorts</option>
   </select>
 </div>
 <div class="commerce-select-wrapper inline-block  ">
@@ -195,9 +195,9 @@ limitations under the License.
         </div>
       </div>
 
-      <amp-list class="mx1 md-mxn1" [src]="'api/' + products.filter + '-' + products.category + '-products.json'" src="api/high-low-all-products.json" height="1000" width="300" layout="responsive">
+      <amp-list class="mx1 md-mxn1" [src]="'/api/categories?categoryId=' + products.category + '&sort=' + products.filter" src="/api/categories?categoryId=men-shirts&sort=high-low" height="1000" width="300" layout="responsive">
         <template type="amp-mustache">
-          <a href="product-details.amp.html" target="_self" class="commerce-listing-product text-decoration-none inline-block col-6 md-col-4 lg-col-3 px1 mb2 md-mb4 relative">
+          <a href="product-details.amp.html?productId={{productId}}" target="_self" class="commerce-listing-product text-decoration-none inline-block col-6 md-col-4 lg-col-3 px1 mb2 md-mb4 relative">
             <div class="flex flex-column justify-between">
               <div>
                 <amp-img class="commerce-listing-product-image mb2" src="{{image}}" width="340" height="340" layout="responsive" alt="{{ name }}" noloading=""><div placeholder="" class="commerce-loader"></div></amp-img>
