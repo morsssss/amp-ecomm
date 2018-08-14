@@ -2621,11 +2621,11 @@ a,a:active,a:visited {
   opacity: 1
 }
 
-.ampstart-navbar-trigger:focus {
+.menu-button:focus {
   outline: none
 }
 
-.ampstart-nav a,.ampstart-navbar-trigger,.ampstart-sidebar-faq a {
+.ampstart-nav a,.menu-button,.ampstart-sidebar-faq a {
   cursor: pointer;
   text-decoration: none
 }
@@ -2634,9 +2634,12 @@ a,a:active,a:visited {
   color: inherit
 }
 
-.ampstart-navbar-trigger {
+.menu-button {
+  position: absolute;
+  top: 0;
+  margin: 1rem 1rem 0 0;
   line-height: 3.5rem;
-  font-size: 2.2rem
+  font-size: 2.2rem;
 }
 
 .ampstart-headerbar-nav {
@@ -2707,11 +2710,11 @@ a,a:active,a:visited {
   margin: 0
 }
 
-.ampstart-sidebar .ampstart-navbar-trigger {
+.ampstart-sidebar .menu-button {
   line-height: inherit
 }
 
-.ampstart-navbar-trigger svg {
+.menu-button svg {
   pointer-events: none
 }
 
@@ -3309,13 +3312,13 @@ amp-selector [option][selected] {
 }
 
 
-.header .ampstart-navbar-trigger {
+.header .menu-button {
   color: #222;
   font-size: 1.38rem;
   padding-right: 0
 }
 
-.ampstart-navbar-trigger:focus {
+.menu-button:focus {
   outline: 5px auto -webkit-focus-ring-color
 }
 
@@ -3325,7 +3328,7 @@ amp-selector [option][selected] {
     border-bottom-color: #f3f3f3
   }
 
-  .header .ampstart-navbar-trigger {
+  .header .menu-button {
     margin-left: .5rem;
     top: .5rem
   }
@@ -3401,7 +3404,7 @@ amp-selector [option][selected] {
   }
 }
 
-.ampstart-sidebar .ampstart-navbar-trigger {
+.ampstart-sidebar .menu-button {
   margin-top: 1rem;
   font-size: 1.5rem;
   line-height: normal;
@@ -3409,7 +3412,7 @@ amp-selector [option][selected] {
 }
 
 @media (min-width:52.06rem) {
-  .ampstart-sidebar .ampstart-navbar-trigger {
+  .ampstart-sidebar .menu-button {
     margin-top: .5rem;
     padding-top: 0
   }
