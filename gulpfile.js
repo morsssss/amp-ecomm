@@ -63,14 +63,13 @@ gulp.task('images', function buildImages() {
  */
 gulp.task('html', gulp.series('styles', function buildHtml() {
   const pageFilter = filter(['**/pages/*.html']);
-
   return gulp.src(paths.html.src)
     .pipe(pageFilter)
     .pipe(fileinclude({
       prefix: '%%',
       basepath: '@file'
     }))
-    .pipe(autoScript)
+    .pipe(autoScript())
     .pipe(gulp.dest(paths.html.dest));
 }));
 
@@ -124,10 +123,11 @@ gulp.task('serve', function sync(done) {
  * Sets up live-reloading: Changes to HTML or CSS trigger a rebuild, changes to
  * images only result in images being copied again to dist.
  */
-gulp.task('watch', function watch() {
+gulp.task('watch', function watch(done) {
   gulp.watch(paths.images.src, gulp.series('images'));
   gulp.watch('src/html/**/*.html', gulp.series('rebuild'));
   gulp.watch(paths.css.src, gulp.series('rebuild'));
+  done();
 });
 
 /**
@@ -139,5 +139,4 @@ gulp.task('prepare', gulp.series('clean', 'build'));
  * Default task is to perform a clean build then set up browser sync for live
  * reloading.
  */
-gulp.task('default', gulp.series('clean', 'build',
-  gulp.parallel('serve', 'watch')));
+gulp.task('default', gulp.series('clean', 'build','serve', 'watch'));
