@@ -9,7 +9,7 @@
   "author": "Ben Morss",
   "license": "Apache-2.0",
   "dependencies": {
-    "amphtml-autoscript": "^1.1.2",
+    "amphtml-autoscript": "^1.2.0",
     "amphtml-validator": "^1.0.23",
     "browser-sync": "^2.24.5",
     "del": "^3.0.0",
@@ -23,7 +23,7 @@
     "gulp-sass": "*",
     "gulp-sourcemaps": "*",
     "gulp-uglify": "*",
-    "jsdom": "^11.11.0",
+    "jsdom": "^11.12.0",
     "through2": "^2.0.3",
     "uglify-es": "^3.3.10",
     "workbox-build": "*",
