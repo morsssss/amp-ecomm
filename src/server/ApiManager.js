@@ -6,15 +6,9 @@ class ApiManager {
         this.apiCategoriesEndpoint = this.apiUrlEndpoint + '/fetchCategories';
         this.apiProductEndpoint = this.apiUrlEndpoint + '/fetchProduct';
 
-        this.apiUrlMap = new Map();
-
-        this.apiUrlMap.set('men-shirts', '200368502');
-        this.apiUrlMap.set('men-shorts', '200368503');
-        this.apiUrlMap.set('women-shirts', '200368507');
-        this.apiUrlMap.set('women-shorts', '200368509');
-
-        this.apiUrlMap.set('high-low', 'priceHtoL');
-        this.apiUrlMap.set('low-high', 'priceLtoH');
+        
+        var apiUrlValues = [['men-shirts', '200368502'], ['men-shorts', '200368503'], ['women-shirts', '200368507'], ['high-low', 'priceHtoL'], ['low-high', 'priceLtoH']];
+        this.apiUrlMap = new Map(apiUrlValues);
 
     }
 
