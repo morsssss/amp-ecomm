@@ -6,8 +6,14 @@ class ApiManager {
         this.apiCategoriesEndpoint = this.apiUrlEndpoint + '/fetchCategories';
         this.apiProductEndpoint = this.apiUrlEndpoint + '/fetchProduct';
 
-        
-        var apiUrlValues = [['men-shirts', '200368502'], ['men-shorts', '200368503'], ['women-shirts', '200368507'], ['high-low', 'priceHtoL'], ['low-high', 'priceLtoH']];
+
+        var apiUrlValues = [
+            ['men-shirts', '200368502'],
+            ['men-shorts', '200368503'],
+            ['women-shirts', '200368507'],
+            ['high-low', 'priceHtoL'],
+            ['low-high', 'priceLtoH']
+        ];
         this.apiUrlMap = new Map(apiUrlValues);
 
     }
@@ -15,7 +21,7 @@ class ApiManager {
     //Example url: https://campmor.ampify.wompmobile.com/campmor/fetchCategories?categoryId=200368507&sortBy=priceLtoH
     getCategoryUrl(categoryId, sort) {
 
-        var apiUrlParams = 'categoryId='  + this.apiUrlMap.get(categoryId) + '&sortBy=' + this.apiUrlMap.get(sort);
+        var apiUrlParams = 'categoryId=' + this.apiUrlMap.get(categoryId) + '&sortBy=' + this.apiUrlMap.get(sort);
         return this.apiCategoriesEndpoint + '?' + apiUrlParams;
 
     }
@@ -48,6 +54,26 @@ class ApiManager {
     //Example url: https://campmoramp.ampify.wompmobile.com/campmor/fetchProduct/31893
     getProductUrl(productId) {
         return this.apiProductEndpoint + '/' + productId;
+    }
+
+    parseProduct(apiProductResponse) {
+
+        var productObj = JSON.parse(apiProductResponse);
+
+        //transform reviews into arrays of stars to be rendered on the template with mustache.
+        var roundedRating = parseInt(productObj.RoundedRating);
+        var reviewFullStars = new Array();
+        var reviewEmptyStars = new Array();
+        for (var i = 0; i < 5; i++) {
+            if (i < roundedRating) {
+                reviewFullStars.push(1);
+            } else {
+                reviewEmptyStars.push(1);
+            }
+        }
+        productObj.ReviewFullStars = reviewFullStars;
+        productObj.ReviewEmptyStars = reviewEmptyStars;
+        return productObj;
     }
 
 }

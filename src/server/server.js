@@ -3,8 +3,20 @@ const request = require('request');
 const path = require('path');
 const fs = require('fs');
 const productApiManager = require('./ApiManager.js');
+const mustache = require("mustache");
 
 const app = express();
+app.engine('html', function(filePath, options, callback) {
+    fs.readFile(filePath, function(err, content) {
+        if (err)
+            return callback(err)
+        var rendered = mustache.to_html(content.toString(), options);
+        return callback(null, rendered)
+    });
+});
+app.set('view engine', 'html');
+app.set('views', __dirname + '/../../templates');
+
 const apiManager = new productApiManager();
 
 const port = process.env.PORT || 8080;
@@ -13,9 +25,27 @@ const listener = app.listen(port, () => {
 });
 
 //serve static files
-app.use(express.static(path.join(__dirname, '../..')));
+app.use(express.static(path.join(__dirname, '../../src')));
 
+//Product Page
+app.get('/product-details', function(req, res) {
 
+    let productId = req.query.productId;
+    let productUrl = apiManager.getProductUrl(productId);
+
+    const options = {
+        url: productUrl
+    };
+
+    request(options, (error, response, body) => {
+        if (!error) {
+            var productObj = apiManager.parseProduct(body);
+            res.render('product-details', productObj);
+        } else {
+            res.json({ error: 'An error occurred in /api/product' });
+        }
+    });
+});
 
 //API
 app.get('/api/categories', function(req, res) {
@@ -32,6 +62,7 @@ app.get('/api/categories', function(req, res) {
 
     request(options, (error, response, body) => {
         if (!error) {
+            ApiManager.parseProduct(body);
             res.send(apiManager.parseCategory(body));
         } else {
             res.json({ error: 'An error occurred in /api/categories' });
