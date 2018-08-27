@@ -25,6 +25,7 @@
     "gulp-sourcemaps": "*",
     "gulp-uglify": "*",
     "jsdom": "^11.12.0",
+    "mustache-express": "^1.2.7",
     "request": "^2.87.0",
     "through2": "^2.0.3",
     "uglify-es": "^3.3.10",
