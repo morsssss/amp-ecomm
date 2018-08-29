@@ -196,29 +196,6 @@ canvas {
   display: inline-block
 }
 
-.header {
-  display: flex;
-  position: fixed;
-  background-color: #fff;
-  color: #000;
-  height: 3.5rem;
-  z-index: 999;
-  padding: 1rem 1rem 0 1rem;
-  left: 0;
-  right: 0;
-  align-items: center;
-  box-shadow: 0 0 5px 2px rgba(0,0,0,.1);
-  border-bottom: 1px solid #f3f3f3;
-}
-
-.header+:not(amp-sidebar),.header+amp-sidebar+* {
-  margin-top: 3.5rem
-}
-
-.header .ampstart-nav-search:active,.header .ampstart-nav-search:focus,.header .ampstart-nav-search:hover {
-  box-shadow: none
-}
-
 [hidden],template {
   display: none
 }
@@ -2603,10 +2580,6 @@ a,a:active,a:visited {
   }
 }
 
-.header+:not(amp-sidebar),.header+amp-sidebar+* {
-  margin-top: 3.5rem
-}
-
 .ampstart-headerbar-nav .ampstart-nav-item {
   padding: 0 1rem;
   background: transparent;
@@ -2621,25 +2594,8 @@ a,a:active,a:visited {
   opacity: 1
 }
 
-.menu-button:focus {
-  outline: none
-}
-
-.ampstart-nav a,.menu-button,.ampstart-sidebar-faq a {
-  cursor: pointer;
-  text-decoration: none
-}
-
 .ampstart-nav .ampstart-label {
   color: inherit
-}
-
-.menu-button {
-  position: absolute;
-  top: 0;
-  margin: 1rem 1rem 0 0;
-  line-height: 3.5rem;
-  font-size: 2.2rem;
 }
 
 .ampstart-headerbar-nav {
@@ -2652,10 +2608,6 @@ a,a:active,a:visited {
   -webkit-box-flex: 0.5;
   -ms-flex-positive: 0.5;
   flex-grow: 0.5
-}
-
-.header .ampstart-nav-search:active,.header .ampstart-nav-search:focus,.header .ampstart-nav-search:hover {
-  box-shadow: none
 }
 
 .ampstart-nav-search>input {
@@ -2708,14 +2660,6 @@ a,a:active,a:visited {
 
 .ampstart-sidebar .ampstart-nav-dropdown {
   margin: 0
-}
-
-.ampstart-sidebar .menu-button {
-  line-height: inherit
-}
-
-.menu-button svg {
-  pointer-events: none
 }
 
 .ampstart-input {
@@ -3301,39 +3245,6 @@ amp-selector [option][selected] {
   margin-top: 3.5rem
 }
 
-@media (min-width:52.06rem) {
-  .main {
-    min-height: calc(100vh - 181px - 5rem)
-  }
-
-  .header+:not(amp-sidebar),.header+amp-sidebar+*,.main {
-    margin-top: 5rem
-  }
-}
-
-
-.header .menu-button {
-  color: #222;
-  font-size: 1.38rem;
-  padding-right: 0
-}
-
-.menu-button:focus {
-  outline: 5px auto -webkit-focus-ring-color
-}
-
-@media (min-width:52.06rem) {
-  .header {
-    height: 5rem;
-    border-bottom-color: #f3f3f3
-  }
-
-  .header .menu-button {
-    margin-left: .5rem;
-    top: .5rem
-  }
-}
-
 .ampstart-headerbar-title {
   font-size: 1.38rem;
   font-weight: 700;
@@ -3401,20 +3312,6 @@ amp-selector [option][selected] {
     position: absolute;
     top: 1rem;
     left: 2rem
-  }
-}
-
-.ampstart-sidebar .menu-button {
-  margin-top: 1rem;
-  font-size: 1.5rem;
-  line-height: normal;
-  top: 0
-}
-
-@media (min-width:52.06rem) {
-  .ampstart-sidebar .menu-button {
-    margin-top: .5rem;
-    padding-top: 0
   }
 }
 
