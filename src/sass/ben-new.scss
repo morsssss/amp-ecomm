@@ -44,7 +44,7 @@ a {
 }
 
 .header amp-img {
-  margin: 0 auto 0 auto;
+  margin: 0 auto;
 }
 
 .cart-container {
@@ -57,6 +57,7 @@ a {
 
 .cart-container div {
   width: 25px;
+  margin-right: 1rem;
 }
 
 /* menu-button */
@@ -79,29 +80,88 @@ a {
   outline: 5px auto -webkit-focus-ring-color
 }
 
-.ampstart-sidebar .menu-button {
-  margin-top: 1rem;
-  font-size: 1.5rem;
-  line-height: normal;
-  top: 0
-}
-
 .menu-button:focus {
   outline: none
-}
-
-.ampstart-sidebar .menu-button {
-  line-height: inherit
 }
 
 .menu-button svg {
   pointer-events: none
 }
 
-.ampstart-nav a,.menu-button,.ampstart-sidebar-faq a {
+.ampstart-nav a,.menu-button,amp-sidebar-faq a {
   cursor: pointer;
   text-decoration: none
 }
+
+
+/* Sidebar */
+
+amp-sidebar {
+  background-color: #fff;
+  color: #000;
+  min-width: 300px;
+  width: 350px;
+  padding: 0 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+amp-sidebar .menu-button {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  line-height: normal;
+  top: 0
+}
+
+amp-sidebar .menu-button {
+  line-height: inherit
+}
+
+amp-sidebar.ampstart-icon {
+  fill: #f88
+}
+
+/* TODO: consider removing "amp-sidebar" from all of the following */
+
+amp-sidebar.ampstart-nav-dropdown {
+  margin: 0
+}
+
+amp-sidebar.ampstart-nav-item {
+  margin-bottom: 1rem
+}
+
+/* TODO: this has to supercede the margin: 0 0 2 rem rule */
+amp-sidebar .ampstart-faq-item {
+  margin: 0
+}
+
+amp-sidebar.ampstart-social-follow {
+  margin: .5rem 0 1rem
+}
+
+amp-sidebar .ampstart-navbar-trigger {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    line-height: normal;
+    top: 0
+}
+/*
+amp-sidebar .ampstart-dropdown-item, amp-sidebar .ampstart-dropdown header, amp-sidebar .ampstart-faq-item, amp-sidebar .ampstart-nav-item, amp-sidebar .ampstart-social-follow {
+  margin: 0 0 2rem
+}
+*/
+amp-sidebar .ampstart-nav-item {
+  margin-bottom: 1rem;
+}
+
+/* removed seemingly redundant .ampstart-sidebar .ampstart-icon class here. But you never know. */
+.ampstart-icon {
+  fill: #222
+}
+
+
+/* Media queries */
 
 @media (min-width:52.06rem) {
   .main {
@@ -122,9 +182,12 @@ a {
     top: .5rem
   }
 
-  .ampstart-sidebar .menu-button {
+  amp-sidebar.menu-button {
     margin-top: .5rem;
     padding-top: 0
   }
-}
 
+    amp-sidebar{
+    width: 25%
+  }
+}
