@@ -34,6 +34,10 @@ const paths = {
   images: {
     src: 'src/img/**/*.{gif,jpg,png,svg}',
     dest: 'dist/img'
+  },
+  server: {
+    src: 'src/server/**/*',
+    dest: 'dist/server'
   }  
 };
 
@@ -55,6 +59,14 @@ gulp.task('styles', function buildStyles() {
 gulp.task('images', function buildImages() {
   return gulp.src(paths.images.src)
     .pipe(gulp.dest(paths.images.dest));
+});
+
+/**
+ * Copies the server and helper classes to the distribution.
+ */
+gulp.task('server', function buildImages() {
+  return gulp.src(paths.server.src)
+    .pipe(gulp.dest(paths.server.dest));
 });
 
 /**
@@ -97,7 +109,7 @@ gulp.task('clean', function clean() {
 /**
  * Builds the output from sources.
  */
-gulp.task('build', gulp.series('images', 'html', 'validate'));
+gulp.task('build', gulp.series('images', 'html', 'server', 'validate'));
 
 /**
  * First rebuilds the output then triggers a reload of the browser.
@@ -121,10 +133,11 @@ gulp.task('serve', function sync(done) {
 
 /**
  * Sets up live-reloading: Changes to HTML or CSS trigger a rebuild, changes to
- * images only result in images being copied again to dist.
+ * images and server only result in images, server and helper classes being copied again to dist.
  */
 gulp.task('watch', function watch(done) {
   gulp.watch(paths.images.src, gulp.series('images'));
+  gulp.watch(paths.server.src, gulp.series('server'));
   gulp.watch('src/html/**/*.html', gulp.series('rebuild'));
   gulp.watch(paths.css.src, gulp.series('rebuild'));
   done();
