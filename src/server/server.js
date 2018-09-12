@@ -15,7 +15,7 @@ app.engine('html', function(filePath, options, callback) {
     });
 });
 app.set('view engine', 'html');
-app.set('views', __dirname + '/../../templates');
+app.set('views', __dirname + '/../');
 
 const apiManager = new productApiManager();
 
@@ -25,7 +25,7 @@ const listener = app.listen(port, () => {
 });
 
 //serve static files
-app.use(express.static(path.join(__dirname, '../../src')));
+app.use(express.static(path.join(__dirname, '/../')));
 
 //Product Page
 app.get('/product-details', function(req, res) {
