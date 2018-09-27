@@ -2580,88 +2580,6 @@ a,a:active,a:visited {
   }
 }
 
-.ampstart-headerbar-nav .ampstart-nav-item {
-  padding: 0 1rem;
-  background: transparent;
-  opacity: .8
-}
-
-.ampstart-headerbar-nav {
-  line-height: 3.5rem
-}
-
-.ampstart-nav-item:active,.ampstart-nav-item:focus,.ampstart-nav-item:hover {
-  opacity: 1
-}
-
-.ampstart-nav .ampstart-label {
-  color: inherit
-}
-
-.ampstart-headerbar-nav {
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1
-}
-
-.ampstart-nav-search {
-  -webkit-box-flex: 0.5;
-  -ms-flex-positive: 0.5;
-  flex-grow: 0.5
-}
-
-.ampstart-nav-search>input {
-  border: none;
-  border-radius: 3px;
-  line-height: normal
-}
-
-.ampstart-nav-dropdown {
-  min-width: 200px
-}
-
-.ampstart-nav-dropdown amp-accordion header {
-  background-color: #fff;
-  border: none
-}
-
-.ampstart-nav-dropdown amp-accordion ul {
-  background-color: #fff
-}
-
-.ampstart-nav-dropdown .ampstart-dropdown-item,.ampstart-nav-dropdown .ampstart-dropdown>section>header {
-  background-color: #fff;
-  color: #000
-}
-
-.ampstart-nav-dropdown .ampstart-dropdown-item {
-  color: #f88
-}
-
-.ampstart-sidebar {
-  background-color: #fff;
-  color: #000;
-  min-width: 300px;
-  width: 300px
-}
-
-.ampstart-sidebar .ampstart-icon {
-  fill: #f88
-}
-
-.ampstart-sidebar-header {
-  line-height: 3.5rem;
-  min-height: 3.5rem
-}
-
-.ampstart-sidebar .ampstart-dropdown-item,.ampstart-sidebar .ampstart-dropdown header,.ampstart-sidebar .ampstart-faq-item,.ampstart-sidebar .ampstart-nav-item,.ampstart-sidebar .ampstart-social-follow {
-  margin: 0 0 2rem
-}
-
-.ampstart-sidebar .ampstart-nav-dropdown {
-  margin: 0
-}
-
 .ampstart-input {
   max-width: 100%;
   width: 300px;
@@ -2877,11 +2795,11 @@ a,a:active,a:visited {
 .ampstart-input>select::-ms-expand {
   display: none
 }
-
+/*
 .ampstart-icon {
   fill: #f88
 }
-
+*/
 body {
   font-size: .94rem;
   line-height: normal
@@ -3273,127 +3191,6 @@ amp-selector [option][selected] {
 }
 
 .ampstart-headerbar-fixed-link {
-  margin-right: 0
-}
-
-.ampstart-sidebar {
-  background-color: #fff;
-  width: 350px;
-  margin-bottom: 1.5rem;
-  text-align: center
-}
-
-@media (min-width:52.06rem) {
-  .ampstart-sidebar {
-    width: 25%
-  }
-
-  .ampstart-sidebar-nav {
-    display: inline-block;
-    text-align: center
-  }
-}
-
-.ampstart-sidebar-nav-image {
-  width: 120px
-}
-
-.ampstart-icon,.ampstart-sidebar .ampstart-icon {
-  fill: #222
-}
-
-.ampstart-sidebar-header {
-  position: relative;
-  z-index: 1
-}
-
-@media (min-width:52.06rem) {
-  .ampstart-sidebar-header {
-    position: absolute;
-    top: 1rem;
-    left: 2rem
-  }
-}
-
-.ampstart-nav {
-  margin-bottom: 2rem
-}
-
-.ampstart-nav-item {
-  color: #222
-}
-
-.ampstart-sidebar .ampstart-nav-item {
-  margin-bottom: 1rem
-}
-
-.ampstart-nav-link {
-  font-family: Open Sans Condensed,sans-serif;
-  font-size: 1.75rem;
-  font-weight: 700;
-  line-height: normal;
-  display: inline-block;
-  margin-bottom: 1rem;
-  position: relative
-}
-
-.amp-mode-mouse .ampstart-nav-link:after {
-  background-color: #222;
-  left: 0;
-  position: absolute;
-  -webkit-transform: scaleX(0);
-  transform: scaleX(0);
-  -webkit-transform-origin: left center;
-  transform-origin: left center;
-  -webkit-transition: -webkit-transform .3s cubic-bezier(.19,1,.22,1);
-  transition: -webkit-transform .3s cubic-bezier(.19,1,.22,1);
-  transition: transform .3s cubic-bezier(.19,1,.22,1);
-  transition: transform .3s cubic-bezier(.19,1,.22,1),-webkit-transform .3s cubic-bezier(.19,1,.22,1);
-  width: 100%;
-  bottom: 0;
-  height: 2px;
-  content: "";
-  display: block
-}
-
-.amp-mode-mouse .ampstart-nav-link:hover:after {
-  -webkit-transform: scaleX(1);
-  transform: scaleX(1)
-}
-
-.ampstart-sidebar .ampstart-faq-item {
-  margin: 0
-}
-
-.ampstart-sidebar-faq {
-  width: 100%;
-  color: #222;
-  font-family: Cardo,serif;
-  padding-top: 1rem
-}
-
-.ampstart-faq-item {
-  line-height: normal;
-  padding: 0 0 .5rem
-}
-
-.amp-mode-mouse .ampstart-faq-item:hover {
-  text-decoration: underline
-}
-
-.ampstart-sidebar .ampstart-social-follow {
-  margin: .5rem 0 1rem
-}
-
-.ampstart-social-follow {
-  -webkit-box-pack: initial;
-  -ms-flex-pack: initial;
-  justify-content: initial;
-  display: inline-block
-}
-
-.ampstart-social-follow li {
-  display: inline-block;
   margin-right: 0
 }
 

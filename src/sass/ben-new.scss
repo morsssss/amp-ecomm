@@ -88,7 +88,7 @@ a {
   pointer-events: none
 }
 
-.ampstart-nav a,.menu-button,amp-sidebar-faq a {
+nav a,.menu-button, amp-sidebar-faq a {
   cursor: pointer;
   text-decoration: none
 }
@@ -104,6 +104,7 @@ amp-sidebar {
   padding: 0 1.5rem;
   margin-bottom: 1.5rem;
   text-align: center;
+  height: 100%;
 }
 
 amp-sidebar .menu-button {
@@ -121,23 +122,23 @@ amp-sidebar.ampstart-icon {
   fill: #f88
 }
 
+amp-sidebar .social {
+    margin-top: 1rem;
+}
+
+amp-sidebar .social li {
+  display: inline-block;
+}
+
 /* TODO: consider removing "amp-sidebar" from all of the following */
 
 amp-sidebar.ampstart-nav-dropdown {
   margin: 0
 }
 
-amp-sidebar.ampstart-nav-item {
-  margin-bottom: 1rem
-}
-
 /* TODO: this has to supercede the margin: 0 0 2 rem rule */
 amp-sidebar .ampstart-faq-item {
   margin: 0
-}
-
-amp-sidebar.ampstart-social-follow {
-  margin: .5rem 0 1rem
 }
 
 amp-sidebar .ampstart-navbar-trigger {
@@ -151,14 +152,176 @@ amp-sidebar .ampstart-dropdown-item, amp-sidebar .ampstart-dropdown header, amp-
   margin: 0 0 2rem
 }
 */
-amp-sidebar .ampstart-nav-item {
+
+amp-sidebar .social {
+  margin:.5rem 0 1rem;
+}
+
+nav .label {
+  color: inherit;
+}
+
+nav {
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+amp-sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+nav li {
+  color: #222;
   margin-bottom: 1rem;
 }
+
+nav li:active, nav li:focus, nav li:hover {
+  opacity: 1
+}
+
+nav li.logo, nav li.logo a {
+  margin-bottom: 0;
+}
+
+/* does .ampstart-headerbar-nav this ever get used? */
+.ampstart-headerbar-nav .ampstart-nav-item {
+  padding: 0 1rem;
+  background: transparent;
+  opacity: .8
+}
+
+.ampstart-headerbar-nav {
+  line-height: 3.5rem
+}
+
+.ampstart-headerbar-nav {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1
+}
+
+.ampstart-nav-search {
+  -webkit-box-flex: 0.5;
+  -ms-flex-positive: 0.5;
+  flex-grow: 0.5
+}
+
+.ampstart-nav-search>input {
+  border: none;
+  border-radius: 3px;
+  line-height: normal
+}
+
+.ampstart-nav-dropdown {
+  min-width: 200px
+}
+
+.ampstart-nav-dropdown amp-accordion header {
+  background-color: #fff;
+  border: none
+}
+
+.ampstart-nav-dropdown amp-accordion ul {
+  background-color: #fff
+}
+
+.ampstart-nav-dropdown .ampstart-dropdown-item,.ampstart-nav-dropdown .ampstart-dropdown>section>header {
+  background-color: #fff;
+  color: #000
+}
+
+.ampstart-nav-dropdown .ampstart-dropdown-item {
+  color: #f88
+}
+
+.ampstart-sidebar-header {
+  line-height: 3.5rem;
+  min-height: 3.5rem
+}
+
+nav a {
+  font-family: Open Sans Condensed,sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: normal;
+  display: inline-block;
+  margin-bottom: 1rem;
+  position: relative
+}
+
+.amp-mode-mouse nav li:after {
+  background-color: #222;
+  left: 0;
+  position: absolute;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: left center;
+  transform-origin: left center;
+  -webkit-transition: -webkit-transform .3s cubic-bezier(.19,1,.22,1);
+  transition: -webkit-transform .3s cubic-bezier(.19,1,.22,1);
+  transition: transform .3s cubic-bezier(.19,1,.22,1);
+  transition: transform .3s cubic-bezier(.19,1,.22,1),-webkit-transform .3s cubic-bezier(.19,1,.22,1);
+  width: 100%;
+  bottom: 0;
+  height: 2px;
+  content: "";
+  display: block
+}
+
+.amp-mode-mouse nav li:hover:after {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1)
+}
+
+
 
 /* removed seemingly redundant .ampstart-sidebar .ampstart-icon class here. But you never know. */
 .ampstart-icon {
   fill: #222
 }
+
+nav li amp-img {
+  display: inline-block;
+  width: 120px;
+  margin-bottom: 2rem;
+}
+
+.ampstart-sidebar-header {
+  position: relative;
+  z-index: 1
+}
+
+amp-sidebar .faq {
+  width: 100%;
+  color: #222;
+  font-family: Cardo,serif;
+  padding-top: 1rem
+}
+
+amp-sidebar .faq li {
+  line-height: normal;
+  padding: 0 0 .5rem
+}
+
+.amp-mode-mouse amp-sidebar .faq li:hover {
+  text-decoration: underline;
+}
+
+
+
+.ampstart-byline,.ampstart-caption,.ampstart-hint,.label {
+  font-size: 1.125rem;
+  color: #4f4f4f;
+  line-height: 1.125rem;
+  letter-spacing: .06rem
+}
+
+.label {
+  text-transform: uppercase;
+}
+
 
 
 /* Media queries */
@@ -184,10 +347,22 @@ amp-sidebar .ampstart-nav-item {
 
   amp-sidebar.menu-button {
     margin-top: .5rem;
-    padding-top: 0
+    padding-top: 0;
   }
 
-    amp-sidebar{
-    width: 25%
+  amp-sidebar {
+    width: 25%;
   }
+
+  .ampstart-sidebar-header {
+    position: absolute;
+    top: 1rem;
+    left: 2rem
+  }  
+
+  .ampstart-sidebar-nav {
+    display: inline-block;
+    text-align: center
+  }
+
 }
