@@ -62,33 +62,30 @@ a {
 
 /* menu-button */
 
-.menu-button {
+.menu-open-button {
   position: absolute;
   top: 0;
   margin: 1rem 1rem 0 0;
   line-height: 3.5rem;
   font-size: 2.2rem;
-}
-
-.header .menu-button {
   color: #222;
   font-size: 1.38rem;
   padding-right: 0
 }
 
-.menu-button:focus {
+.menu-open-button:focus {
   outline: 5px auto -webkit-focus-ring-color
 }
 
-.menu-button:focus {
-  outline: none
+.menu-open-button:focus {
+  outline: none;
 }
 
-.menu-button svg {
-  pointer-events: none
+.menu-open-button svg {
+  pointer-events: none;
 }
 
-nav a,.menu-button, amp-sidebar-faq a {
+nav a,.menu-open-button, amp-sidebar-faq a {
   cursor: pointer;
   text-decoration: none
 }
@@ -107,14 +104,14 @@ amp-sidebar {
   height: 100%;
 }
 
-amp-sidebar .menu-button {
+.menu-close-button {
   margin-top: 1rem;
   font-size: 1.5rem;
   line-height: normal;
   top: 0
 }
 
-amp-sidebar .menu-button {
+.menu-close-button {
   line-height: inherit
 }
 
@@ -130,6 +127,11 @@ amp-sidebar .social li {
   display: inline-block;
 }
 
+amp-sidebar .social li a {
+  display: inline-block;
+  padding: .5rem;
+}
+
 /* TODO: consider removing "amp-sidebar" from all of the following */
 
 amp-sidebar.ampstart-nav-dropdown {
@@ -141,12 +143,6 @@ amp-sidebar .ampstart-faq-item {
   margin: 0
 }
 
-amp-sidebar .ampstart-navbar-trigger {
-    margin-top: 1rem;
-    font-size: 1.5rem;
-    line-height: normal;
-    top: 0
-}
 /*
 amp-sidebar .ampstart-dropdown-item, amp-sidebar .ampstart-dropdown header, amp-sidebar .ampstart-faq-item, amp-sidebar .ampstart-nav-item, amp-sidebar .ampstart-social-follow {
   margin: 0 0 2rem
@@ -155,6 +151,11 @@ amp-sidebar .ampstart-dropdown-item, amp-sidebar .ampstart-dropdown header, amp-
 
 amp-sidebar .social {
   margin:.5rem 0 1rem;
+}
+
+amp-sidebar h3 {
+  font-size: .94rem;
+  padding-top: 1.5rem;
 }
 
 nav .label {
@@ -236,7 +237,8 @@ nav li.logo, nav li.logo a {
   color: #f88
 }
 
-.ampstart-sidebar-header {
+.menu-header {
+  display: flex;
   line-height: 3.5rem;
   min-height: 3.5rem
 }
@@ -340,7 +342,7 @@ amp-sidebar .faq li {
     border-bottom-color: #f3f3f3
   }
 
-  .header .menu-button {
+  .header .menu-open-button {
     margin-left: .5rem;
     top: .5rem
   }
