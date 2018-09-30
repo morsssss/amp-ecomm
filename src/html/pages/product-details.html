@@ -39,7 +39,7 @@ limitations under the License.
             {
                 "price": "${{Price}}",
                 "selectedColor": "{{All_Colors.0.ColorName}}",
-                { {# All_Colors } }
+                {{#All_Colors}}
                 "{{ColorName}}": {
                     "thumb": {
                         "image1": "{{& Photo}}",
@@ -52,11 +52,9 @@ limitations under the License.
                         "image3": "{{& Photo}}"
                     }
                 },
-                {
-                    {
-                        /All_Colors}}  
-                        "selectedSlide": 0
-                    }
+                {{/All_Colors}}
+                "selectedSlide": 0
+            }
             </script>
         </amp-state>
         <section class="flex flex-wrap pb4 md-pb7">
