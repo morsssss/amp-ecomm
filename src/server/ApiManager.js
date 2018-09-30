@@ -74,7 +74,10 @@ class ApiManager {
         productObj.ReviewFullStars = reviewFullStars;
         productObj.ReviewEmptyStars = reviewEmptyStars;
         productObj.ReviewCount = productObj.ReviewCount || 0;
-        
+
+        //mark first color as 'selected', so mustache can render selector appropriately in product-details template.
+        productObj.All_Colors[0].defaultColour = true;
+
         return productObj;
     }
 

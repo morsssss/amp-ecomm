@@ -118,9 +118,16 @@ limitations under the License.
                         <ul class="m0 list-reset inline-block">
                             {{#All_Colors}}
                             <li class="inline-block mr1">
-                                <div option="black" selected="selected">
-                                    <amp-img src="{{& Swatch}}" height="16" width="27"></amp-img>
-                                </div>
+                                {{#defaultColour}}
+                                    <div option="black" selected="selected">
+                                        <amp-img src="{{& Swatch}}" height="16" width="27"></amp-img>
+                                    </div>
+                                {{/defaultColour}}
+                                {{^defaultColour}}
+                                    <div option="{{ColorName}}">
+                                        <amp-img src="{{& Swatch}}" height="16" width="27"></amp-img>
+                                    </div>
+                                {{/defaultColour}}
                             </li>
                             {{/All_Colors}}
                         </ul>
