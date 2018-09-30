@@ -62,7 +62,6 @@ app.get('/api/categories', function(req, res) {
 
     request(options, (error, response, body) => {
         if (!error) {
-            apiManager.parseProduct(body);
             res.send(apiManager.parseCategory(body));
         } else {
             res.json({ error: 'An error occurred in /api/categories' });
