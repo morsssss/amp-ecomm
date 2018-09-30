@@ -59,7 +59,7 @@ limitations under the License.
         </amp-state>
         <section class="flex flex-wrap pb4 md-pb7">
             <div class="col-12 md-col-6 px2 pt2 md-pl7 md-pt4">
-                <amp-carousel width="1280" height="720" layout="responsive" type="slides" [slide]="product.selectedSlide" on="slideChange: AMP.setState({product: {selectedSlide: event.index}})">
+                <amp-carousel width="1280" height="720" layout="responsive" type="slides" [slide]="product.selectedSlide" on="slideChange: AMP.setState({product: {selectedSlide: event.index}})">                    
                     <amp-img [src]="product[product.selectedColor].large.image1" src="{{& All_Colors.0.Photo}}" width="1280" height="720" layout="responsive" role="button" tabindex="0" alt="product image" noloading="">
                         <div placeholder="" class="commerce-loader"></div>
                     </amp-img>
@@ -119,7 +119,7 @@ limitations under the License.
                             {{#All_Colors}}
                             <li class="inline-block mr1">
                                 {{#defaultColour}}
-                                    <div option="black" selected="selected">
+                                    <div option="{{ColorName}}" selected="selected">
                                         <amp-img src="{{& Swatch}}" height="16" width="27"></amp-img>
                                     </div>
                                 {{/defaultColour}}
