@@ -39,7 +39,7 @@ limitations under the License.
             {
                 "price": "${{Price}}",
                 "selectedColor": "{{All_Colors.0.ColorName}}",
-                { {# All_Colors } }
+                {{#All_Colors}}
                 "{{ColorName}}": {
                     "thumb": {
                         "image1": "{{& Photo}}",
@@ -52,26 +52,27 @@ limitations under the License.
                         "image3": "{{& Photo}}"
                     }
                 },
-                {
-                    {
-                        /All_Colors}}  
-                        "selectedSlide": 0
-                    }
+                {{/All_Colors}}
+                "selectedSlide": 0
+            }
             </script>
         </amp-state>
         <section class="flex flex-wrap pb4 md-pb7">
             <div class="col-12 md-col-6 px2 pt2 md-pl7 md-pt4">
-                <amp-carousel width="1280" height="720" layout="responsive" type="slides" [slide]="product.selectedSlide" on="slideChange: AMP.setState({product: {selectedSlide: event.index}})">
+                <amp-carousel width="1280" height="720" layout="responsive" type="slides" [slide]="product.selectedSlide" on="slideChange: AMP.setState({product: {selectedSlide: event.index}})">                    
                     <amp-img [src]="product[product.selectedColor].large.image1" src="{{& All_Colors.0.Photo}}" width="1280" height="720" layout="responsive" role="button" tabindex="0" alt="product image" noloading="">
                         <div placeholder="" class="commerce-loader"></div>
                     </amp-img>
+                    <!--
                     <amp-img [src]="product[product.selectedColor].large.image2" src="{{& All_Colors.0.Photo}}" width="1280" height="720" layout="responsive" role="button" tabindex="0" alt="product image" noloading="">
                         <div placeholder="" class="commerce-loader"></div>
                     </amp-img>
                     <amp-img [src]="product[product.selectedColor].large.image3" src="{{& All_Colors.0.Photo}}" width="1280" height="720" layout="responsive" role="button" tabindex="0" alt="product image" noloading="">
                         <div placeholder="" class="commerce-loader"></div>
                     </amp-img>
+                -->
                 </amp-carousel>
+                <!--
                 <amp-selector class="center" [selected]="product.selectedSlide" on="select:AMP.setState({product: {selectedSlide: event.targetOption}})">
                     <ul class="list-reset inline-block">
                         <li class="inline-block commerce-product-thumb">
@@ -85,6 +86,7 @@ limitations under the License.
                         </li>
                     </ul>
                 </amp-selector>
+            -->
             </div>
             <div class="col-12 md-col-6 flex flex-wrap content-start px2 md-pl5 md-pr7 md-pt4">
                 <div class="col-6 self-start pb2">
@@ -116,9 +118,16 @@ limitations under the License.
                         <ul class="m0 list-reset inline-block">
                             {{#All_Colors}}
                             <li class="inline-block mr1">
-                                <div option="black" selected="selected">
-                                    <amp-img src="{{& Swatch}}" height="16" width="27"></amp-img>
-                                </div>
+                                {{#defaultColour}}
+                                    <div option="{{ColorName}}" selected="selected">
+                                        <amp-img src="{{& Swatch}}" height="16" width="27"></amp-img>
+                                    </div>
+                                {{/defaultColour}}
+                                {{^defaultColour}}
+                                    <div option="{{ColorName}}">
+                                        <amp-img src="{{& Swatch}}" height="16" width="27"></amp-img>
+                                    </div>
+                                {{/defaultColour}}
                             </li>
                             {{/All_Colors}}
                         </ul>
