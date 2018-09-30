@@ -44,7 +44,6 @@ class ApiManager {
             parsedProd.price = originalProd.Price;
             parsedProd.image = originalProd.Photo;
             parsedProd.category = originalProd.Main_Id; /* Missing field on Campmor API */
-            productObj.ReviewCount = productObj.ReviewCount || 0;
 
             parsedCategory.items.push(parsedProd);
         }
@@ -74,6 +73,8 @@ class ApiManager {
         }
         productObj.ReviewFullStars = reviewFullStars;
         productObj.ReviewEmptyStars = reviewEmptyStars;
+        productObj.ReviewCount = productObj.ReviewCount || 0;
+        
         return productObj;
     }
 
