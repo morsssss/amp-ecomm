@@ -78,6 +78,13 @@ class ApiManager {
         //mark first color as 'selected', so mustache can render selector appropriately in product-details template.
         productObj.All_Colors[0].defaultColour = true;
 
+        //mark last size of each color as 'last', so mustache can print amp-state without a comma on the last one
+        let all_Colors_Array = productObj.All_Colors;
+        for(var i = 0; i < all_Colors_Array.length; i++){
+            let avaliable_Sizes_Array = all_Colors_Array[i].Avaliable_Sizes;
+            avaliable_Sizes_Array[avaliable_Sizes_Array.length-1].Last = true;
+        }
+
         return productObj;
     }
 

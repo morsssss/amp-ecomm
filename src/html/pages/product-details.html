@@ -41,6 +41,18 @@ limitations under the License.
                 "selectedColor": "{{All_Colors.0.ColorName}}",
                 {{#All_Colors}}
                 "{{ColorName}}": {
+                    "sizes" : {
+                        {{#Avaliable_Sizes}}
+                            {{#available}}
+                                {{#Last}}
+                                    "{{SizeName}}":"{{Discount_Price}}"
+                                {{/Last}}
+                                {{^Last}}
+                                    "{{SizeName}}":"{{Discount_Price}}",
+                                {{/Last}}
+                            {{/available}}
+                        {{/Avaliable_Sizes}}
+                    },
                     "thumb": {
                         "image1": "{{& Photo}}",
                         "image2": "{{& Photo}}",
