@@ -40,31 +40,31 @@ limitations under the License.
                 "selectedColor": "{{All_Colors.0.ColorName}}",
                 "selectedSize": "{{All_Colors.0.Avaliable_Sizes.0.SizeName}}",
                 {{#All_Colors}}
-                "{{ColorName}}": {
-                    "sizes" : {
-                        {{#Avaliable_Sizes}}
-                            {{#available}}
-                                {{#Last}}
-                                    "{{SizeName}}":"{{Discount_Price}}"
-                                {{/Last}}
-                                {{^Last}}
-                                    "{{SizeName}}":"{{Discount_Price}}",
-                                {{/Last}}
-                            {{/available}}
-                        {{/Avaliable_Sizes}}
+                    "{{ColorName}}": {
+                        "sizes" : {
+                            {{#Avaliable_Sizes}}
+                                {{#available}}
+                                    {{#Last}}
+                                        "{{SizeName}}":"{{Discount_Price}}"
+                                    {{/Last}}
+                                    {{^Last}}
+                                        "{{SizeName}}":"{{Discount_Price}}",
+                                    {{/Last}}
+                                {{/available}}
+                            {{/Avaliable_Sizes}}
+                        },
+                        "defaultSize": "{{Avaliable_Sizes.0.SizeName}}",
+                        "thumb": {
+                            "image1": "{{& Photo}}",
+                            "image2": "{{& Photo}}",
+                            "image3": "{{& Photo}}"
+                        },
+                        "large": {
+                            "image1": "{{& Photo}}",
+                            "image2": "{{& Photo}}",
+                            "image3": "{{& Photo}}"
+                        }
                     },
-                    "defaultSize": "{{Avaliable_Sizes.0.SizeName}}",
-                    "thumb": {
-                        "image1": "{{& Photo}}",
-                        "image2": "{{& Photo}}",
-                        "image3": "{{& Photo}}"
-                    },
-                    "large": {
-                        "image1": "{{& Photo}}",
-                        "image2": "{{& Photo}}",
-                        "image3": "{{& Photo}}"
-                    }
-                },
                 {{/All_Colors}}
                 "selectedSlide": 0
             }
@@ -152,7 +152,7 @@ limitations under the License.
                         <label for="sizes" class="bold caps h6 md-h7">Select a size: </label>
                         <select name="sizes" id="sizes" class="commerce-select h6 md-h7">
                             {{#All_Colors.0.Avaliable_Sizes}}
-                            <option value="{{SizeName}}">{{SizeName}}</option>
+                                <option [disabled]="(product[selectedColor].sizes[{{SizeName}}] == 'undefined')" value="{{SizeName}}">{{SizeName}}</option>
                             {{/All_Colors.0.Avaliable_Sizes}}
                         </select>
                     </div>

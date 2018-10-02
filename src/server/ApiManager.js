@@ -79,10 +79,18 @@ class ApiManager {
         productObj.All_Colors[0].defaultColour = true;
 
         //mark last size of each color as 'last', so mustache can print amp-state without a comma on the last one
-        let all_Colors_Array = productObj.All_Colors;
+        var all_Colors_Array = productObj.All_Colors;
         for(var i = 0; i < all_Colors_Array.length; i++){
             let avaliable_Sizes_Array = all_Colors_Array[i].Avaliable_Sizes;
-            avaliable_Sizes_Array[avaliable_Sizes_Array.length-1].Last = true;
+            let lastAvailable;
+
+            for(var j = 0; j < avaliable_Sizes_Array.length; j++) {
+                if(avaliable_Sizes_Array[j].available) {
+                    lastAvailable = avaliable_Sizes_Array[j];
+                }
+            }
+
+            lastAvailable.Last = true;
         }
 
         return productObj;
