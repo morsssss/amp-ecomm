@@ -95,13 +95,15 @@ class ApiManager {
         for(var i = 0; i < all_Colors_Array.length; i++){
             let avaliable_Sizes_Array = all_Colors_Array[i].Avaliable_Sizes;
 
-            //Default size (color level).
-            all_Colors_Array[i].DefaultSize = avaliable_Sizes_Array[0].SizeName;
-
             let lastAvailable;
 
             for(var j = 0; j < avaliable_Sizes_Array.length; j++) {
                 if(avaliable_Sizes_Array[j].available) {
+
+                    //Default size (color level).
+                    if(!all_Colors_Array[i].DefaultSize) {
+                        all_Colors_Array[i].DefaultSize = avaliable_Sizes_Array[j].SizeName;
+                    }
 
                     //Default size (product level): we take the first 'available' size of the first color, which is the one shown when page loads.
                     if(i == 0 && !productObj.DefaultSize) {
