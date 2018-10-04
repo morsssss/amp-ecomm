@@ -53,6 +53,7 @@ limitations under the License.
                                 {{/available}}
                             {{/Avaliable_Sizes}}
                         },
+                        "defaultSize" : "{{DefaultSize}}",
                         "thumb": {
                             "image1": "{{& Photo}}",
                             "image2": "{{& Photo}}",
@@ -124,7 +125,8 @@ limitations under the License.
                     <span class="h6 md-h7 align-top pr2">colour:</span>
                     <amp-selector class="inline-block" name="color" layout="container" [selected]="product.selectedColor" on="select:AMP.setState({
                               product: {
-                                selectedColor: event.targetOption
+                                selectedColor: event.targetOption,
+                                selectedSize: product[event.targetOption].defaultSize
                               }
                             })">
                         <ul class="m0 list-reset inline-block">
@@ -150,7 +152,12 @@ limitations under the License.
                         <label for="sizes" class="bold caps h6 md-h7">Select a size: </label>
                         <select name="sizes" id="sizes" class="commerce-select h6 md-h7">
                             {{#All_Colors.0.Avaliable_Sizes}}
-                                <option [disabled]="(product[selectedColor].sizes[{{SizeName}}] == 'undefined')" value="{{SizeName}}">{{SizeName}}</option>
+                                {{#available}}
+                                    <option [selected]="(product[product.selectedColor].sizes['{{SizeName}}'] == '{{SizeName}}')" [disabled]="(product[product.selectedColor].sizes['{{SizeName}}'] == null)" value="{{SizeName}}">{{SizeName}}</option>
+                                {{/available}}
+                                {{^available}}
+                                    <option disabled [selected]="(product[product.selectedColor].sizes['{{SizeName}}'] == '{{SizeName}}')" [disabled]="(product[product.selectedColor].sizes['{{SizeName}}'] == null)" value="{{SizeName}}">{{SizeName}}</option>
+                                {{/available}}    
                             {{/All_Colors.0.Avaliable_Sizes}}
                         </select>
                     </div>
