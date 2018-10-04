@@ -60,7 +60,15 @@ class ApiManager {
 
         var productObj = JSON.parse(apiProductResponse);
 
-        //transform reviews into arrays of stars to be rendered on the template with mustache.
+        this.enhanceProductRatings(productObj);
+        this.enhanceProductColors(productObj);
+        this.enhanceProductSizes(productObj);
+
+        return productObj;
+    }
+
+    /* Transforms product ratings into an array of stars to be rendered on the template with mustache.*/
+    enhanceProductRatings(productObj) {
         var roundedRating = parseInt(productObj.RoundedRating);
         var reviewFullStars = new Array();
         var reviewEmptyStars = new Array();
@@ -74,28 +82,40 @@ class ApiManager {
         productObj.ReviewFullStars = reviewFullStars;
         productObj.ReviewEmptyStars = reviewEmptyStars;
         productObj.ReviewCount = productObj.ReviewCount || 0;
+    }
 
-        //mark first color as 'selected', so mustache can render selector appropriately in product-details template.
+    enhanceProductColors(productObj) {
+        productObj.DefaultColor = productObj.All_Colors[0].ColorName;
         productObj.All_Colors[0].defaultColour = true;
+    }
 
-        //mark last size of each color as 'last', so mustache can print amp-state without a comma on the last one
+    enhanceProductSizes(productObj) {
         var all_Colors_Array = productObj.All_Colors;
+
         for(var i = 0; i < all_Colors_Array.length; i++){
             let avaliable_Sizes_Array = all_Colors_Array[i].Avaliable_Sizes;
+
             let lastAvailable;
 
             for(var j = 0; j < avaliable_Sizes_Array.length; j++) {
                 if(avaliable_Sizes_Array[j].available) {
+
+                    //Default size: the first available size of the first color (counted as default color).
+                    if(i == 0 && !productObj.DefaultSize) {
+                        let defaultSize = avaliable_Sizes_Array[j];
+                        
+                        productObj.DefaultSize = defaultSize.SizeName;
+                        productObj.DefaultPrice = defaultSize.Discount_Price;
+                    }
+
+                    //The last available size of each color.
                     lastAvailable = avaliable_Sizes_Array[j];
                 }
             }
 
             lastAvailable.Last = true;
         }
-
-        return productObj;
     }
-
 }
 
 module.exports = ApiManager;

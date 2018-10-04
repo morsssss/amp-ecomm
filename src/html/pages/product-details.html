@@ -37,8 +37,8 @@ limitations under the License.
         <amp-state id="product">
             <script type="application/json">
             {
-                "selectedColor": "{{All_Colors.0.ColorName}}",
-                "selectedSize": "{{All_Colors.0.Avaliable_Sizes.0.SizeName}}",
+                "selectedColor": "{{DefaultColor}}",
+                "selectedSize": "{{DefaultSize}}",
                 {{#All_Colors}}
                     "{{ColorName}}": {
                         "sizes" : {
@@ -53,7 +53,6 @@ limitations under the License.
                                 {{/available}}
                             {{/Avaliable_Sizes}}
                         },
-                        "defaultSize": "{{Avaliable_Sizes.0.SizeName}}",
                         "thumb": {
                             "image1": "{{& Photo}}",
                             "image2": "{{& Photo}}",
@@ -104,7 +103,7 @@ limitations under the License.
             <div class="col-12 md-col-6 flex flex-wrap content-start px2 md-pl5 md-pr7 md-pt4">
                 <div class="col-6 self-start pb2">
                     <h1 class="h3 md-h2">{{Product_Title}}</h1>
-                    <div class="h4 md-h3" [text]="'$' + product[product.selectedColor].sizes[product.selectedSize]">${{All_Colors.0.Avaliable_Sizes.0.Discount_Price}}</div>
+                    <div class="h4 md-h3" [text]="'$' + product[product.selectedColor].sizes[product.selectedSize]">${{DefaultPrice}}</div>
                 </div>
                 <div class="col-6 self-start right-align">
                     <h2 class="h7 block pb1">Reviews ({{ReviewCount}})</h2> {{#ReviewFullStars }}
@@ -125,8 +124,7 @@ limitations under the License.
                     <span class="h6 md-h7 align-top pr2">colour:</span>
                     <amp-selector class="inline-block" name="color" layout="container" [selected]="product.selectedColor" on="select:AMP.setState({
                               product: {
-                                selectedColor: event.targetOption,
-                                selectedSize: product[event.targetOption].defaultSize
+                                selectedColor: event.targetOption
                               }
                             })">
                         <ul class="m0 list-reset inline-block">
