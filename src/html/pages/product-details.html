@@ -153,10 +153,10 @@ limitations under the License.
                         <select name="sizes" id="sizes" class="commerce-select h6 md-h7">
                             {{#All_Colors.0.Avaliable_Sizes}}
                                 {{#available}}
-                                    <option [selected]="(product[product.selectedColor].sizes['{{SizeName}}'] == '{{SizeName}}')" [disabled]="(product[product.selectedColor].sizes['{{SizeName}}'] == null)" value="{{SizeName}}">{{SizeName}}</option>
+                                    <option [selected]="(product.selectedColor != null && product[product.selectedColor].defaultSize == '{{SizeName}}')" [disabled]="(product[product.selectedColor].sizes['{{SizeName}}'] == null)" value="{{SizeName}}">{{SizeName}}</option>
                                 {{/available}}
                                 {{^available}}
-                                    <option disabled [selected]="(product[product.selectedColor].sizes['{{SizeName}}'] == '{{SizeName}}')" [disabled]="(product[product.selectedColor].sizes['{{SizeName}}'] == null)" value="{{SizeName}}">{{SizeName}}</option>
+                                    <option disabled [selected]="(product[product.selectedColor].defaultSize == '{{SizeName}}')" [disabled]="(product[product.selectedColor].sizes['{{SizeName}}'] == null)" value="{{SizeName}}">{{SizeName}}</option>
                                 {{/available}}    
                             {{/All_Colors.0.Avaliable_Sizes}}
                         </select>
