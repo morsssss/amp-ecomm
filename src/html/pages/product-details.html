@@ -37,21 +37,34 @@ limitations under the License.
         <amp-state id="product">
             <script type="application/json">
             {
-                "price": "${{Price}}",
-                "selectedColor": "{{All_Colors.0.ColorName}}",
+                "selectedColor": "{{DefaultColor}}",
+                "selectedSize": "{{DefaultSize}}",
                 {{#All_Colors}}
-                "{{ColorName}}": {
-                    "thumb": {
-                        "image1": "{{& Photo}}",
-                        "image2": "{{& Photo}}",
-                        "image3": "{{& Photo}}"
+                    "{{ColorName}}": {
+                        "sizes" : {
+                            {{#Avaliable_Sizes}}
+                                {{#available}}
+                                    {{#Last}}
+                                        "{{SizeName}}":"{{Discount_Price}}"
+                                    {{/Last}}
+                                    {{^Last}}
+                                        "{{SizeName}}":"{{Discount_Price}}",
+                                    {{/Last}}
+                                {{/available}}
+                            {{/Avaliable_Sizes}}
+                        },
+                        "defaultSize" : "{{DefaultSize}}",
+                        "thumb": {
+                            "image1": "{{& Photo}}",
+                            "image2": "{{& Photo}}",
+                            "image3": "{{& Photo}}"
+                        },
+                        "large": {
+                            "image1": "{{& Photo}}",
+                            "image2": "{{& Photo}}",
+                            "image3": "{{& Photo}}"
+                        }
                     },
-                    "large": {
-                        "image1": "{{& Photo}}",
-                        "image2": "{{& Photo}}",
-                        "image3": "{{& Photo}}"
-                    }
-                },
                 {{/All_Colors}}
                 "selectedSlide": 0
             }
@@ -91,7 +104,7 @@ limitations under the License.
             <div class="col-12 md-col-6 flex flex-wrap content-start px2 md-pl5 md-pr7 md-pt4">
                 <div class="col-6 self-start pb2">
                     <h1 class="h3 md-h2">{{Product_Title}}</h1>
-                    <div class="h4 md-h3">${{Price}}</div>
+                    <div class="h4 md-h3" [text]="'$' + product[product.selectedColor].sizes[product.selectedSize]">${{DefaultPrice}}</div>
                 </div>
                 <div class="col-6 self-start right-align">
                     <h2 class="h7 block pb1">Reviews ({{ReviewCount}})</h2> {{#ReviewFullStars }}
@@ -112,7 +125,8 @@ limitations under the License.
                     <span class="h6 md-h7 align-top pr2">colour:</span>
                     <amp-selector class="inline-block" name="color" layout="container" [selected]="product.selectedColor" on="select:AMP.setState({
                               product: {
-                                selectedColor: event.targetOption
+                                selectedColor: event.targetOption,
+                                selectedSize: product[event.targetOption].defaultSize
                               }
                             })">
                         <ul class="m0 list-reset inline-block">
@@ -138,7 +152,12 @@ limitations under the License.
                         <label for="sizes" class="bold caps h6 md-h7">Select a size: </label>
                         <select name="sizes" id="sizes" class="commerce-select h6 md-h7">
                             {{#All_Colors.0.Avaliable_Sizes}}
-                            <option value="{{SizeName}}">{{SizeName}}</option>
+                                {{#available}}
+                                    <option [selected]="(product.selectedColor != null && product[product.selectedColor].defaultSize == '{{SizeName}}')" [disabled]="(product[product.selectedColor].sizes['{{SizeName}}'] == null)" value="{{SizeName}}">{{SizeName}}</option>
+                                {{/available}}
+                                {{^available}}
+                                    <option disabled [selected]="(product[product.selectedColor].defaultSize == '{{SizeName}}')" [disabled]="(product[product.selectedColor].sizes['{{SizeName}}'] == null)" value="{{SizeName}}">{{SizeName}}</option>
+                                {{/available}}    
                             {{/All_Colors.0.Avaliable_Sizes}}
                         </select>
                     </div>
