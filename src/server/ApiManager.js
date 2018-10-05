@@ -11,6 +11,7 @@ class ApiManager {
             ['men-shirts', '200368502'],
             ['men-shorts', '200368503'],
             ['women-shirts', '200368507'],
+            ['women-shorts', '200368509'],
             ['high-low', 'priceHtoL'],
             ['low-high', 'priceLtoH']
         ];
