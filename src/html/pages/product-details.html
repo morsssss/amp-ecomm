@@ -126,7 +126,7 @@ limitations under the License.
                     <amp-selector class="inline-block" name="color" layout="container" [selected]="product.selectedColor" on="select:AMP.setState({
                               product: {
                                 selectedColor: event.targetOption,
-                                selectedSize: product[event.targetOption].defaultSize
+                                selectedSize: product[event.targetOption].sizes[product.selectedSize] != null ? product.selectedSize : product[event.targetOption].defaultSize
                               }
                             })">
                         <ul class="m0 list-reset inline-block">
@@ -150,6 +150,28 @@ limitations under the License.
                 <div class="col-6 self-start pb4">
                     <div class="commerce-select-wrapper inline-block  ">
                         <label for="sizes" class="bold caps h6 md-h7">Select a size: </label>
+                            <amp-selector name="size" layout="container" on="select:AMP.setState({ product: {selectedSize:event.targetOption}})" [selected]="(product[product.selectedColor].sizes[product.selectedSize] != null) ? product.selectedSize : product[product.selectedColor].defaultSize" >
+                                {{#All_Colors.0.Avaliable_Sizes}}
+                                    {{#available}}
+                                        {{#default}}
+                                            <ul class="p0 m1">
+                                                <li option="{{SizeName}}" class="" [class]="(product[product.selectedColor].sizes['{{SizeName}}'] != null)? '' : 'unavailable'" selected>{{SizeName}}</li>
+                                            </ul>
+                                        {{/default}}
+                                        {{^default}}
+                                            <ul class="p0 m1">
+                                                <li option="{{SizeName}}" class="" [class]="(product[product.selectedColor].sizes['{{SizeName}}'] != null)? '' : 'unavailable'">{{SizeName}}</li>
+                                            </ul>
+                                        {{/default}}
+                                    {{/available}}
+                                    {{^available}}
+                                        <ul class="p0 m1">
+                                            <li option="{{SizeName}}" class="unavailable" [class]="(product[product.selectedColor].sizes['{{SizeName}}'] != null)? '' : 'unavailable'" >{{SizeName}}</li>
+                                        </ul>
+                                    {{/available}}    
+                                {{/All_Colors.0.Avaliable_Sizes}}
+                            </amp-selector>    
+                        <!--
                         <select name="sizes" id="sizes" class="commerce-select h6 md-h7">
                             {{#All_Colors.0.Avaliable_Sizes}}
                                 {{#available}}
@@ -160,6 +182,7 @@ limitations under the License.
                                 {{/available}}    
                             {{/All_Colors.0.Avaliable_Sizes}}
                         </select>
+                        -->
                     </div>
                 </div>
                 <hr class="mb4" />

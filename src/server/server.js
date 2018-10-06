@@ -38,11 +38,11 @@ app.get('/product-details', function(req, res) {
     };
 
     request(options, (error, response, body) => {
-        if (!error) {
+        if (!error && body != 'Product not found' && !body.includes('An error has occurred')) {
             var productObj = apiManager.parseProduct(body);
             res.render('product-details', productObj);
         } else {
-            res.json({ error: 'An error occurred in /api/product' });
+            res.render('product-not-found');
         }
     });
 });
@@ -79,10 +79,11 @@ app.get('/api/product', function(req, res) {
     };
 
     request(options, (error, response, body) => {
-        if (!error) {
-            res.send(body);
+        if (!error && body != 'Product not found' && !body.includes('An error has occurred')) {
+            var productObj = apiManager.parseProduct(body);
+            res.send(productObj);
         } else {
-            res.json({ error: 'An error occurred in /api/product' });
+            res.json({ error: 'An error occurred in /api/product: ' + body});
         }
     });
 });

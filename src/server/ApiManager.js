@@ -11,6 +11,7 @@ class ApiManager {
             ['men-shirts', '200368502'],
             ['men-shorts', '200368503'],
             ['women-shirts', '200368507'],
+            ['women-shorts', '200368509'],
             ['high-low', 'priceHtoL'],
             ['low-high', 'priceLtoH']
         ];
@@ -100,20 +101,22 @@ class ApiManager {
             for(var j = 0; j < avaliable_Sizes_Array.length; j++) {
                 if(avaliable_Sizes_Array[j].available) {
 
-                    //Default size (color level).
+                    //Default size (color level): The first available size for a given color.
                     if(!all_Colors_Array[i].DefaultSize) {
                         all_Colors_Array[i].DefaultSize = avaliable_Sizes_Array[j].SizeName;
                     }
 
-                    //Default size (product level): we take the first 'available' size of the first color, which is the one shown when page loads.
+                    //Default size (product level): The first 'available' size of the first color.
                     if(i == 0 && !productObj.DefaultSize) {
                         let defaultSize = avaliable_Sizes_Array[j];
                         
                         productObj.DefaultSize = defaultSize.SizeName;
                         productObj.DefaultPrice = defaultSize.Discount_Price;
+
+                        avaliable_Sizes_Array[j].default = true;
                     }
 
-                    //The last available size of each color.
+                    //The last available size of each color (used to avoid adding a comma when rendering amp-state).
                     lastAvailable = avaliable_Sizes_Array[j];
                 }
             }
