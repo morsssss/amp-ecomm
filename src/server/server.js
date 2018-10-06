@@ -80,7 +80,8 @@ app.get('/api/product', function(req, res) {
 
     request(options, (error, response, body) => {
         if (!error && body != 'Product not found' && !body.includes('An error has occurred')) {
-            res.send(body);
+            var productObj = apiManager.parseProduct(body);
+            res.send(productObj);
         } else {
             res.json({ error: 'An error occurred in /api/product: ' + body});
         }
