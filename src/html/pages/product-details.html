@@ -76,30 +76,7 @@ limitations under the License.
                     <amp-img [src]="product[product.selectedColor].large.image1" src="{{& All_Colors.0.Photo}}" width="1280" height="720" layout="responsive" role="button" tabindex="0" alt="product image" noloading="">
                         <div placeholder="" class="commerce-loader"></div>
                     </amp-img>
-                    <!--
-                    <amp-img [src]="product[product.selectedColor].large.image2" src="{{& All_Colors.0.Photo}}" width="1280" height="720" layout="responsive" role="button" tabindex="0" alt="product image" noloading="">
-                        <div placeholder="" class="commerce-loader"></div>
-                    </amp-img>
-                    <amp-img [src]="product[product.selectedColor].large.image3" src="{{& All_Colors.0.Photo}}" width="1280" height="720" layout="responsive" role="button" tabindex="0" alt="product image" noloading="">
-                        <div placeholder="" class="commerce-loader"></div>
-                    </amp-img>
-                -->
                 </amp-carousel>
-                <!--
-                <amp-selector class="center" [selected]="product.selectedSlide" on="select:AMP.setState({product: {selectedSlide: event.targetOption}})">
-                    <ul class="list-reset inline-block">
-                        <li class="inline-block commerce-product-thumb">
-                            <amp-img option="0" layout="responsive" selected="selected" [src]="product[product.selectedColor].thumb.image1" src="{{colours.0.thumb.image1}}" width="320" height="180" alt="thumbnail"></amp-img>
-                        </li>
-                        <li class="inline-block commerce-product-thumb">
-                            <amp-img option="1" layout="responsive" [src]="product[product.selectedColor].thumb.image2" src="{{colours.0.thumb.image2}}" width="320" height="180" alt="thumbnail"></amp-img>
-                        </li>
-                        <li class="inline-block commerce-product-thumb">
-                            <amp-img option="2" layout="responsive" [src]="product[product.selectedColor].thumb.image3" src="{{colours.0.thumb.image3}}" width="320" height="180" alt="thumbnail"></amp-img>
-                        </li>
-                    </ul>
-                </amp-selector>
-            -->
             </div>
             <div class="col-12 md-col-6 flex flex-wrap content-start px2 md-pl5 md-pr7 md-pt4">
                 <div class="col-6 self-start pb2">
@@ -117,9 +94,6 @@ limitations under the License.
                     </svg>
                     {{/ReviewEmptyStars }}
                 </div>
-                <!--
-                <div class="col-12 self-start pb4"></div>
-                -->
                 <hr class="mb4" />
                 <div class="col-6 self-start pb4">
                     <span class="h6 md-h7 align-top pr2">colour:</span>
@@ -171,18 +145,6 @@ limitations under the License.
                                     {{/available}}    
                                 {{/All_Colors.0.Avaliable_Sizes}}
                             </amp-selector>    
-                        <!--
-                        <select name="sizes" id="sizes" class="commerce-select h6 md-h7">
-                            {{#All_Colors.0.Avaliable_Sizes}}
-                                {{#available}}
-                                    <option [selected]="(product.selectedColor != null && product[product.selectedColor].defaultSize == '{{SizeName}}')" [disabled]="(product[product.selectedColor].sizes['{{SizeName}}'] == null)" value="{{SizeName}}">{{SizeName}}</option>
-                                {{/available}}
-                                {{^available}}
-                                    <option disabled [selected]="(product[product.selectedColor].defaultSize == '{{SizeName}}')" [disabled]="(product[product.selectedColor].sizes['{{SizeName}}'] == null)" value="{{SizeName}}">{{SizeName}}</option>
-                                {{/available}}    
-                            {{/All_Colors.0.Avaliable_Sizes}}
-                        </select>
-                        -->
                     </div>
                 </div>
                 <hr class="mb4" />
@@ -198,69 +160,10 @@ limitations under the License.
                         <h2 class="h5 md-h4">Overview</h2>
                         <p class="mt2 mb3">{{Description}}</p>
                         <hr/>
-                        <div class="pt3 md-pt4 md-pb4">
-                            <h2 class="h5 md-h4 mb2">Reviews</h2>
-                            <section class="mb3">
-                                <h3 class="h7 mb1">Tom - UK</h3>
-                                <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star">
-                                    <path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path>
-                                </svg>
-                                <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star">
-                                    <path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path>
-                                </svg>
-                                <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star">
-                                    <path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path>
-                                </svg>
-                                <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star">
-                                    <path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-star-empty" width="26" height="24" viewBox="0 0 26 24">
-                                    <path fill="currentColor" d="M26 9.15789474L16.911475 8.4 13.377049 0 9.842623 8.4l-9.088525.75789474 6.879509 5.99999996L5.55082 24l7.826229-4.7368421L21.203279 24l-2.082787-8.9052632L26 9.15789474zM13.377049 16.9263158l-4.733606 2.8421053 1.262295-5.431579-4.228689-3.6 5.554099-.5052632 2.145901-5.11578943 2.145902 5.11578943 5.554098.5052632L16.911475 14.4l1.262295 5.4315789-4.796721-2.9052631z"></path>
-                                </svg>
-                                <p class="mt1">Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla vitae elit libero, a pharetra augue. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-                            </section>
-                            <section class="mb3">
-                                <h3 class="h7 mb1">Jerry - UK</h3>
-                                <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star">
-                                    <path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path>
-                                </svg>
-                                <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star">
-                                    <path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path>
-                                </svg>
-                                <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star">
-                                    <path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path>
-                                </svg>
-                                <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star">
-                                    <path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-star-empty" width="26" height="24" viewBox="0 0 26 24">
-                                    <path fill="currentColor" d="M26 9.15789474L16.911475 8.4 13.377049 0 9.842623 8.4l-9.088525.75789474 6.879509 5.99999996L5.55082 24l7.826229-4.7368421L21.203279 24l-2.082787-8.9052632L26 9.15789474zM13.377049 16.9263158l-4.733606 2.8421053 1.262295-5.431579-4.228689-3.6 5.554099-.5052632 2.145901-5.11578943 2.145902 5.11578943 5.554098.5052632L16.911475 14.4l1.262295 5.4315789-4.796721-2.9052631z"></path>
-                                </svg>
-                                <p class="mt1">Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla vitae elit libero, a pharetra augue. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-                            </section>
-                            <section class="mb3">
-                                <h3 class="h7 mb1">Arthur - UK</h3>
-                                <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star">
-                                    <path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path>
-                                </svg>
-                                <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star">
-                                    <path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path>
-                                </svg>
-                                <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star">
-                                    <path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path>
-                                </svg>
-                                <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star">
-                                    <path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-star-empty" width="26" height="24" viewBox="0 0 26 24">
-                                    <path fill="currentColor" d="M26 9.15789474L16.911475 8.4 13.377049 0 9.842623 8.4l-9.088525.75789474 6.879509 5.99999996L5.55082 24l7.826229-4.7368421L21.203279 24l-2.082787-8.9052632L26 9.15789474zM13.377049 16.9263158l-4.733606 2.8421053 1.262295-5.431579-4.228689-3.6 5.554099-.5052632 2.145901-5.11578943 2.145902 5.11578943 5.554098.5052632L16.911475 14.4l1.262295 5.4315789-4.796721-2.9052631z"></path>
-                                </svg>
-                                <p class="mt1">Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla vitae elit libero, a pharetra augue. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-                            </section>
-                        </div>
                     </section>
                 </div>
                 <div class="col-12 md-col-5 md-pr7 md-pl5">
+                    <!--
                     <section class="pt3 pb3 md-pb4 px2 md-pt6">
                         <h2 class="h5 md-h4">Size Guide</h2>
                         <div class="mt2">
@@ -291,17 +194,11 @@ limitations under the License.
                             </table>
                         </div>
                     </section>
-                    <section class="pt3 pb3 md-pt4 md-pb4 px2">
-                        <h2 class="h5 md-h4">Full spec</h2>
-                        <div class="mt2">
-                            <dl class="flex flex-wrap">
-                                <dt class="h7 col-4 sm-col-3 md-col-5 lg-col-4 pb1">{{header}}</dt>
-                                <dd class="m0 col-8 sm-col-9 md-col-7 lg-col-8 pb1">{{body}}</dd>
-                            </dl>
-                        </div>
-                    </section>
+                    -->
                 </div>
+                <!--
                 %%include('../partials_new/related-products.html')
+                -->
             </div>
         </section>
     </main>
