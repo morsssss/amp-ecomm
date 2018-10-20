@@ -33,6 +33,7 @@
     "workbox-sw": "*"
   },
   "devDependencies": {
-    "gulp": "github:gulpjs/gulp#4.0"
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-nodemon": "^2.2.1"
   }
 }

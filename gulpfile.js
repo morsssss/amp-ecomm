@@ -1,4 +1,3 @@
-
 /* Dependencies */
 const gulp = require('gulp');
 const plumber = require('gulp-plumber');
@@ -12,33 +11,34 @@ const gulpAmpValidator = require('gulp-amphtml-validator');
 const bs = require('browser-sync').create();
 const autoScript = require('amphtml-autoscript').create();
 const reload = bs.reload;
+const nodemon = require('gulp-nodemon');
 
 // Build type is configurable such that some options can be changed e.g. whether
 // to minimise CSS. Usage 'gulp <task> --env development'.
 const knownOptions = {
-  string: 'env',
-  default: { env: process.env.NODE_ENV || 'dist' }
+    string: 'env',
+    default: { env: process.env.NODE_ENV || 'dist' }
 };
 
 const options = minimist(process.argv.slice(2), knownOptions);
 
 const paths = {
-  css: {
-    src: 'src/sass/**/*.scss',
-    dest: 'src/css/'
-  },
-  html: {
-    src: 'src/html/pages/*.html',
-    dest: 'dist/'
-  },
-  images: {
-    src: 'src/img/**/*.{gif,jpg,png,svg}',
-    dest: 'dist/img'
-  },
-  server: {
-    src: 'src/server/**/*',
-    dest: 'dist/server'
-  }  
+    css: {
+        src: 'src/sass/**/*.scss',
+        dest: 'src/css/'
+    },
+    html: {
+        src: 'src/html/pages/*.html',
+        dest: 'dist/'
+    },
+    images: {
+        src: 'src/img/**/*.{gif,jpg,png,svg}',
+        dest: 'dist/img'
+    },
+    server: {
+        src: 'src/server/**/*',
+        dest: 'dist/server'
+    }
 };
 
 /**
@@ -46,27 +46,27 @@ const paths = {
  * used as partials that are included in the final AMP HTML.
  */
 gulp.task('styles', function buildStyles() {
-  return gulp.src(paths.css.src)
-    .pipe(plumber())
-    .pipe(sass(options.env === 'dist' ? { outputStyle: 'compressed' } : {}))
-    .pipe(autoprefixer({ browsers: ['> 10%'] }))
-    .pipe(gulp.dest(paths.css.dest));
+    return gulp.src(paths.css.src)
+        .pipe(plumber())
+        .pipe(sass(options.env === 'dist' ? { outputStyle: 'compressed' } : {}))
+        .pipe(autoprefixer({ browsers: ['> 10%'] }))
+        .pipe(gulp.dest(paths.css.dest));
 });
 
 /**
  * Copies the images to the distribution.
  */
 gulp.task('images', function buildImages() {
-  return gulp.src(paths.images.src)
-    .pipe(gulp.dest(paths.images.dest));
+    return gulp.src(paths.images.src)
+        .pipe(gulp.dest(paths.images.dest));
 });
 
 /**
  * Copies the server and helper classes to the distribution.
  */
 gulp.task('server', function buildImages() {
-  return gulp.src(paths.server.src)
-    .pipe(gulp.dest(paths.server.dest));
+    return gulp.src(paths.server.src)
+        .pipe(gulp.dest(paths.server.dest));
 });
 
 /**
@@ -74,25 +74,25 @@ gulp.task('server', function buildImages() {
  * are ignored as targets.
  */
 gulp.task('html', gulp.series('styles', function buildHtml() {
-  const pageFilter = filter(['**/pages/*.html']);
-  return gulp.src(paths.html.src)
-    .pipe(pageFilter)
-    .pipe(fileinclude({
-      prefix: '%%',
-      basepath: '@file'
-    }))
-    .pipe(autoScript())
-    .pipe(gulp.dest(paths.html.dest));
+    const pageFilter = filter(['**/pages/*.html']);
+    return gulp.src(paths.html.src)
+        .pipe(pageFilter)
+        .pipe(fileinclude({
+            prefix: '%%',
+            basepath: '@file'
+        }))
+        .pipe(autoScript())
+        .pipe(gulp.dest(paths.html.dest));
 }));
 
 /**
  * Checks resulting output AMP HTML for validity.
  */
 gulp.task('validate', function validate() {
-  return gulp.src(paths.html.dest + '/**/*.html')
-    .pipe(gulpAmpValidator.validate())
-    .pipe(gulpAmpValidator.format())
-    .pipe(gulpAmpValidator.failAfterError());
+    return gulp.src(paths.html.dest + '/**/*.html')
+        .pipe(gulpAmpValidator.validate())
+        .pipe(gulpAmpValidator.format())
+        .pipe(gulpAmpValidator.failAfterError());
 });
 
 /**
@@ -100,10 +100,10 @@ gulp.task('validate', function validate() {
  * directory.
  */
 gulp.task('clean', function clean() {
-  return del([
-    paths.html.dest + '/**/*',
-    paths.css.dest + '/**/*'
-  ]);
+    return del([
+        paths.html.dest + '/**/*',
+        paths.css.dest + '/**/*'
+    ]);
 });
 
 /**
@@ -115,13 +115,14 @@ gulp.task('build', gulp.series('images', 'html', 'server', 'validate'));
  * First rebuilds the output then triggers a reload of the browser.
  */
 gulp.task('rebuild', gulp.series('build', function rebuild(done) {
-  bs.reload();
-  done();
+    bs.reload();
+    done();
 }));
 
 /**
  * Sets up the live browser sync.
  */
+/* 
 gulp.task('serve', function sync(done) {
     bs.init({
         server: {
@@ -130,17 +131,34 @@ gulp.task('serve', function sync(done) {
     });
     done();
 });
+*/
+gulp.task('browser-sync', function sync(done) {
+    bs.init(null, {
+        proxy: "http://localhost:8080", // port of node server
+    });
+    done();
+});
+
+gulp.task('nodemon', function (cb) {
+    var callbackCalled = false;
+    return nodemon({script: './dist/server/server.js'}).on('start', function () {
+        if (!callbackCalled) {
+            callbackCalled = true;
+            cb();
+        }
+    });
+});
 
 /**
  * Sets up live-reloading: Changes to HTML or CSS trigger a rebuild, changes to
  * images and server only result in images, server and helper classes being copied again to dist.
  */
 gulp.task('watch', function watch(done) {
-  gulp.watch(paths.images.src, gulp.series('images'));
-  gulp.watch(paths.server.src, gulp.series('server'));
-  gulp.watch('src/html/**/*.html', gulp.series('rebuild'));
-  gulp.watch(paths.css.src, gulp.series('rebuild'));
-  done();
+    gulp.watch(paths.images.src, gulp.series('images'));
+    gulp.watch(paths.server.src, gulp.series('server'));
+    gulp.watch('src/html/**/*.html', gulp.series('rebuild'));
+    gulp.watch(paths.css.src, gulp.series('rebuild'));
+    done();
 });
 
 /**
@@ -152,4 +170,4 @@ gulp.task('prepare', gulp.series('clean', 'build'));
  * Default task is to perform a clean build then set up browser sync for live
  * reloading.
  */
-gulp.task('default', gulp.series('clean', 'build','serve', 'watch'));
+gulp.task('default', gulp.series('clean', 'build', 'nodemon', 'browser-sync', 'watch'));
