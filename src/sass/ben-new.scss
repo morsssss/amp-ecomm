@@ -57,7 +57,6 @@ a {
 
 .cart-container div {
   width: 25px;
-  margin-right: 1rem;
 }
 
 /* menu-button */
@@ -331,41 +330,47 @@ amp-sidebar .faq li {
 }
 
 
-/* Main landing page */
+/* Main landing page. Used in index.html */
 
 .hero-wrapper {
   overflow: hidden;
   text-align: center;
 }
 
-.commerce-hero-content {
-  padding: 3rem 1.5rem
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 1.5rem;
 }
 
-.amp-mode-mouse .commerce-hero-image {
+.hero-content h2 {
+  font-size: 1.38rem;
+}
+
+.amp-mode-mouse .hero-wrapper amp-img {
   -webkit-transition: -webkit-transform 1s;
   transition: -webkit-transform 1s;
   transition: transform 1s;
   transition: transform 1s,-webkit-transform 1s
 }
 
-.amp-mode-mouse .hero-wrapper:hover .commerce-hero-image {
+.hero-wrapper amp-img .commerce-loader {
+  margin-top: 200px;
+}
+
+.amp-mode-mouse .hero-wrapper:hover .hero-wrapper amp-img {
   -webkit-transform: scale(1.05);
   transform: scale(1.05)
 }
 
-.commerce-hero-content-body {
+.hero-content p {
   padding: 1rem 1rem 1.5rem;
   font-family: Cardo,serif;
   width: 100%;
   max-width: 500px;
-  margin: 0 auto
+  margin: 0 auto;
 }
-
-.commerce-hero-content-title {
-  font-weight: 700
-}
-
 
 
 /* Media queries */
@@ -414,33 +419,34 @@ amp-sidebar .faq li {
     color: #fff;
   }
 
-  .commerce-hero-content-title {
+  .hero-content h2 {
     font-size: 3.5rem;
-    color: #fff;
-    font-weight: 700;
-    line-height: 1;
-    max-width: 500px
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+    max-width: 500px;
   }
 
-  .commerce-hero-content-body {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-    margin-left: 0;
-    padding-left: 2rem
-  }
-
-  .commerce-hero-align {
+  .hero-align {
+    margin: 0 auto;
     width: 100%;
-    max-width: 1280px
+    max-width: 1280px;
   }
 
-  .commerce-hero-content {
+  .hero-content {
     position: absolute;
+    margin: 0 auto;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    padding: 0
+    padding: 0;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    margin-left: 0;
+    padding-left: 2rem;
   }
 
   .hero-wrapper .ampstart-btn {
@@ -450,16 +456,16 @@ amp-sidebar .faq li {
     font-size: .94rem
   }
 
-  .commerce-hero-content-theme-secondary,.commerce-hero-content-theme-secondary .commerce-hero-content-title {
+  .hero-content-theme-secondary,.hero-content-theme-secondary .hero-content-title {
     color: #222
   }
 
-  .commerce-hero-content-theme-secondary .ampstart-btn {
+  .hero-content-theme-secondary .ampstart-btn {
     color: #fff;
     background-color: #222
   }
 
-  .amp-mode-mouse .commerce-hero-content-theme-secondary .ampstart-btn:hover {
+  .amp-mode-mouse .hero-content-theme-secondary .ampstart-btn:hover {
     background-color: #fff;
     color: #222
   }
