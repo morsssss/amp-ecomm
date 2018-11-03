@@ -23,7 +23,7 @@ limitations under the License.
         <amp-state id="products">
             <script type="application/json">
             {
-                "category": "men-shirts",
+                "category": "women-shirts",
                 "filter": "high-low"
             }
             </script>
@@ -35,18 +35,6 @@ limitations under the License.
             <div class="col-3 xs-hide sm-hide flex flex-column">
                 <div class="commerce-side-panel pt4 pr4 self-center">
                     <h2 class="h5 mb2">Categories</h2>
-                    <!-- Start Radio -->
-                    <div class="ampstart-input ampstart-input-radio inline-block relative m0 p0 mb3 " on="change: AMP.setState({products: {category: &#39;men-shirts&#39;}})">
-                        <input type="radio" value="" name="category" id="men-shirts" class="relative" checked="">
-                        <label for="men-shirts" class="" aria-hidden="true">Men's Shirts</label>
-                    </div>
-                    <!-- End Radio -->
-                    <!-- Start Radio -->
-                    <div class="ampstart-input ampstart-input-radio inline-block relative m0 p0 mb3 " on="change: AMP.setState({products: {category: &#39;men-shorts&#39;}})">
-                        <input type="radio" value="" name="category" id="men-shorts" class="relative">
-                        <label for="men-shorts" class="" aria-hidden="true">Men's Shorts</label>
-                    </div>
-                    <!-- End Radio -->
                     <!-- Start Radio -->
                     <div class="ampstart-input ampstart-input-radio inline-block relative m0 p0 mb3 " on="change: AMP.setState({products: {category: &#39;women-shirts&#39;}})">
                         <input type="radio" value="" name="category" id="women-shirts" class="relative">
@@ -63,13 +51,11 @@ limitations under the License.
             </div>
             <div class="col-12 md-col-7 pt2 pb3 md-px4 md-pt1 md-pb7">
                 <div class="md-commerce-header relative md-flex flex-wrap items-center md-mx0 md-mb2">
-                    <h1 class="h3 mb2 md-mt2 md-mb2 md-ml0 flex-auto px2">Products</h1>
+                    <h1 class="h3 mb2 md-mt2 md-mb2 md-ml0 flex-auto px2">Women's Clothing</h1>
                     <div class="commerce-listing-filters pt2 pb2 mb3 md-mb0">
                         <div class="commerce-select-wrapper inline-block md-mr1 pl2 md-hide lg-hide">
                             <label for="categories" class="bold caps h6 md-h7">Show:</label>
                             <select name="categories" id="categories" class="commerce-select h6 md-h7" on="change: AMP.setState({products: {category: event.value}})">
-                                <option value="men-shirts">Men's Shirts</option>
-                                <option value="men-shorts">Men's Shorts</option>
                                 <option value="women-shirts">Women's Shirts</option>
                                 <option value="women-shorts">Women's Shorts</option>
                             </select>
@@ -83,7 +69,7 @@ limitations under the License.
                         </div>
                     </div>
                 </div>
-                <amp-list class="mx1 md-mxn1" [src]="'/api/categories?categoryId=' + products.category + '&sort=' + products.filter" src="/api/categories?categoryId=men-shirts&sort=high-low" height="1000" width="300" layout="responsive">
+                <amp-list class="mx1 md-mxn1" [src]="'/api/categories?categoryId=' + products.category + '&sort=' + products.filter" src="/api/categories?categoryId=women-shirts&sort=high-low" height="1000" width="300" layout="responsive">
                     <template type="amp-mustache">
                         <a href="product-details?productId={{productId}}" target="_self" class="commerce-listing-product text-decoration-none inline-block col-6 md-col-4 lg-col-3 px1 mb2 md-mb4 relative">
                             <div class="flex flex-column justify-between">
