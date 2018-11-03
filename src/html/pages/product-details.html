@@ -96,7 +96,7 @@ limitations under the License.
                 </div>
                 <hr class="mb4" />
                 <div class="col-6 self-start pb4">
-                    <span class="h6 md-h7 align-top pr2">colour:</span>
+                    <span class="h6 md-h7 align-top pr2">color:</span>
                     <amp-selector class="inline-block" name="color" layout="container" [selected]="product.selectedColor" on="select:AMP.setState({
                               product: {
                                 selectedColor: event.targetOption,
@@ -107,14 +107,10 @@ limitations under the License.
                             {{#All_Colors}}
                             <li class="inline-block mr1">
                                 {{#defaultColour}}
-                                    <div option="{{ColorName}}" selected="selected">
-                                        <amp-img src="{{& Swatch}}" height="16" width="27"></amp-img>
-                                    </div>
+                                    <amp-img option="{{ColorName}}" selected="selected" src="{{& Swatch}}" height="16" width="27"></amp-img>
                                 {{/defaultColour}}
                                 {{^defaultColour}}
-                                    <div option="{{ColorName}}">
-                                        <amp-img src="{{& Swatch}}" height="16" width="27"></amp-img>
-                                    </div>
+                                    <amp-img option="{{ColorName}}" src="{{& Swatch}}" height="16" width="27"></amp-img>
                                 {{/defaultColour}}
                             </li>
                             {{/All_Colors}}
@@ -123,25 +119,19 @@ limitations under the License.
                 </div>
                 <div class="col-6 self-start pb4">
                     <div class="commerce-select-wrapper inline-block  ">
-                        <label for="sizes" class="bold caps h6 md-h7">Select a size: </label>
+                        <label for="sizes" class="bold caps h6 md-h7">Select a size: </label><br/><br/>
                             <amp-selector name="size" layout="container" on="select:AMP.setState({ product: {selectedSize:event.targetOption}})" [selected]="(product[product.selectedColor].sizes[product.selectedSize] != null) ? product.selectedSize : product[product.selectedColor].defaultSize" >
                                 {{#All_Colors.0.Avaliable_Sizes}}
                                     {{#available}}
                                         {{#default}}
-                                            <ul class="p0 m1">
-                                                <li option="{{SizeName}}" class="" [class]="(product[product.selectedColor].sizes['{{SizeName}}'] != null)? '' : 'unavailable'" selected>{{SizeName}}</li>
-                                            </ul>
+                                            <button style="border: 0;background: none;box-shadow: none;border-radius: 0px;" option="{{SizeName}}" class="" [class]="(product[product.selectedColor].sizes['{{SizeName}}'] != null)? '' : 'unavailable'" selected>{{SizeName}}</button>
                                         {{/default}}
                                         {{^default}}
-                                            <ul class="p0 m1">
-                                                <li option="{{SizeName}}" class="" [class]="(product[product.selectedColor].sizes['{{SizeName}}'] != null)? '' : 'unavailable'">{{SizeName}}</li>
-                                            </ul>
+                                            <button style="border: 0;background: none;box-shadow: none;border-radius: 0px;" option="{{SizeName}}" option="{{SizeName}}" class="" [class]="(product[product.selectedColor].sizes['{{SizeName}}'] != null)? '' : 'unavailable'">{{SizeName}}</button>
                                         {{/default}}
                                     {{/available}}
                                     {{^available}}
-                                        <ul class="p0 m1">
-                                            <li option="{{SizeName}}" class="unavailable" [class]="(product[product.selectedColor].sizes['{{SizeName}}'] != null)? '' : 'unavailable'" >{{SizeName}}</li>
-                                        </ul>
+                                            <button style="border: 0;background: none;box-shadow: none;border-radius: 0px;" option="{{SizeName}}" option="{{SizeName}}" class="unavailable" [class]="(product[product.selectedColor].sizes['{{SizeName}}'] != null)? '' : 'unavailable'" >{{SizeName}}</button>   
                                     {{/available}}    
                                 {{/All_Colors.0.Avaliable_Sizes}}
                             </amp-selector>    
