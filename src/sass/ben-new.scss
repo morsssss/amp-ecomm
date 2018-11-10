@@ -3,6 +3,75 @@ a {
   background-color: none;
 }
 
+ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+.h1,.h2,.h3,.h4,.h5,.h6,.h7,h1,h2,h3,h4,h5,h6,h7 {
+  line-height: normal;
+  letter-spacing: normal;
+  font-family: Open Sans Condensed,sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #000;
+}
+
+/* Buttons */
+
+
+.button {
+  display: inline-block;
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #fff;
+  font-size: .8rem;
+  font-family: Open Sans Condensed,sans-serif;
+  font-weight: 700;
+  padding: .5rem 2rem;
+  line-height: 1.125rem;
+  text-transform: uppercase;
+  -webkit-transition: background-color .2s ease-in,color .2s ease-in;
+  transition: background-color .2s ease-in,color .2s ease-in;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.amp-mode-mouse .button:hover,.button-white {
+  background-color: #fff;
+  color: #222;
+}
+
+.amp-mode-mouse .button-white:hover {
+  background-color: #222;
+  color: #fff;
+}
+
+.button:visited {
+  color: #fff;
+}
+
+.button:active .button:focus {
+  opacity: .8
+}
+
+.button[disabled],.button[disabled]:active,.button[disabled]:focus,.button[disabled]:hover {
+  opacity: .5;
+  outline: 0;
+  cursor: default
+}
+
+.button-white {
+  border-color: #222;
+}
+
+.button-white:visited {
+  color: #222;
+}
+
+
 /* .header */
 
 .header {
@@ -24,7 +93,7 @@ a {
   margin-top: 3.5rem
 }
 
-.header .ampstart-nav-search:active,.header .ampstart-nav-search:focus,.header .ampstart-nav-search:hover {
+.header .ampstart-.menu-search:active,.header .ampstart-.menu-search:focus,.header .ampstart-.menu-search:hover {
   box-shadow: none
 }
 
@@ -32,7 +101,7 @@ a {
   margin-top: 3.5rem
 }
 
-.header .ampstart-nav-search:active,.header .ampstart-nav-search:focus,.header .ampstart-nav-search:hover {
+.header .ampstart-.menu-search:active,.header .ampstart-.menu-search:focus,.header .ampstart-.menu-search:hover {
   box-shadow: none
 }
 
@@ -84,7 +153,7 @@ a {
   pointer-events: none;
 }
 
-nav a,.menu-open-button, amp-sidebar-faq a {
+.menu a,.menu-open-button, amp-sidebar-faq a {
   cursor: pointer;
   text-decoration: none
 }
@@ -133,7 +202,7 @@ amp-sidebar .social li a {
 
 /* TODO: consider removing "amp-sidebar" from all of the following */
 
-amp-sidebar.ampstart-nav-dropdown {
+amp-sidebar.ampstart-.menu-dropdown {
   margin: 0
 }
 
@@ -143,7 +212,7 @@ amp-sidebar .ampstart-faq-item {
 }
 
 /*
-amp-sidebar .ampstart-dropdown-item, amp-sidebar .ampstart-dropdown header, amp-sidebar .ampstart-faq-item, amp-sidebar .ampstart-nav-item, amp-sidebar .ampstart-social-follow {
+amp-sidebar .ampstart-dropdown-item, amp-sidebar .ampstart-dropdown header, amp-sidebar .ampstart-faq-item, amp-sidebar .ampstart-.menu-item, amp-sidebar .ampstart-social-follow {
   margin: 0 0 2rem
 }
 */
@@ -157,82 +226,76 @@ amp-sidebar h3 {
   padding-top: 1.5rem;
 }
 
-nav .label {
+.menu .label {
   color: inherit;
 }
 
-nav {
+.menu {
   margin-bottom: 2rem;
   text-transform: uppercase;
 }
 
-amp-sidebar ul {
-  list-style: none;
-  margin: 0;
-  padding-left: 0;
-}
-
-nav li {
+.menu li {
   color: #222;
   margin-bottom: 1rem;
 }
 
-nav li:active, nav li:focus, nav li:hover {
+.menu li:active, .menu li:focus, .menu li:hover {
   opacity: 1
 }
 
-nav li.logo, nav li.logo a {
+.menu li.logo, .menu li.logo a {
   margin-bottom: 0;
 }
 
-/* does .ampstart-headerbar-nav this ever get used? */
-.ampstart-headerbar-nav .ampstart-nav-item {
+/* does .ampstart-headerbar-.menu this ever get used? */
+.ampstart-headerbar-.menu .ampstart-.menu-item {
   padding: 0 1rem;
   background: transparent;
   opacity: .8
 }
 
-.ampstart-headerbar-nav {
+.ampstart-headerbar-.menu {
   line-height: 3.5rem
 }
 
-.ampstart-headerbar-nav {
+.ampstart-headerbar-.menu {
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1
 }
 
-.ampstart-nav-search {
+.ampstart-.menu-search {
   -webkit-box-flex: 0.5;
   -ms-flex-positive: 0.5;
   flex-grow: 0.5
 }
 
-.ampstart-nav-search>input {
+.ampstart-.menu-search>input {
   border: none;
   border-radius: 3px;
   line-height: normal
 }
 
-.ampstart-nav-dropdown {
+.ampstart-.menu-dropdown {
   min-width: 200px
 }
 
-.ampstart-nav-dropdown amp-accordion header {
+.ampstart-.menu-dropdown amp-accordion header {
   background-color: #fff;
   border: none
 }
 
-.ampstart-nav-dropdown amp-accordion ul {
+.ampstart-.menu-dropdown amp-accordion ul {
   background-color: #fff
 }
 
-.ampstart-nav-dropdown .ampstart-dropdown-item,.ampstart-nav-dropdown .ampstart-dropdown>section>header {
+.ampstart-.menu-dropdown .ampstart-dropdown-item,.ampstart-.menu-dropdown .ampstart-dropdown>section>header {
   background-color: #fff;
   color: #000
 }
 
-.ampstart-nav-dropdown .ampstart-dropdown-item {
+.ampstart-.menu-dropdown .ampstart-dropdown-item {
   color: #f88
 }
 
@@ -242,7 +305,7 @@ nav li.logo, nav li.logo a {
   min-height: 3.5rem
 }
 
-nav a {
+.menu a {
   font-family: Open Sans Condensed,sans-serif;
   font-size: 1.75rem;
   font-weight: 700;
@@ -252,7 +315,7 @@ nav a {
   position: relative
 }
 
-.amp-mode-mouse nav li:after {
+.amp-mode-mouse .menu li:after {
   background-color: #222;
   left: 0;
   position: absolute;
@@ -271,7 +334,7 @@ nav a {
   display: block
 }
 
-.amp-mode-mouse nav li:hover:after {
+.amp-mode-mouse .menu li:hover:after {
   -webkit-transform: scaleX(1);
   transform: scaleX(1)
 }
@@ -283,7 +346,7 @@ nav a {
   fill: #222
 }
 
-nav li amp-img {
+.menu li amp-img {
   display: inline-block;
   width: 120px;
   margin-bottom: 2rem;
@@ -346,6 +409,7 @@ amp-sidebar .faq li {
 
 .hero-content h2 {
   font-size: 1.38rem;
+  font-weight: 700;
 }
 
 .amp-mode-mouse .hero-wrapper amp-img {
@@ -355,7 +419,7 @@ amp-sidebar .faq li {
   transition: transform 1s,-webkit-transform 1s
 }
 
-.hero-wrapper amp-img .commerce-loader {
+.hero-wrapper amp-img .loading {
   margin-top: 200px;
 }
 
@@ -372,6 +436,165 @@ amp-sidebar .faq li {
   margin: 0 auto;
 }
 
+/* Footer */
+
+footer {
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+}
+
+footer h3 {
+  padding-top: 0
+}
+
+.amp-mode-mouse footer a:hover {
+  text-decoration: underline
+}
+
+footer h3 {
+  color: #fff;
+}
+
+footer hr {
+  width: 100%;
+  background-color: #4a4a4a;
+}
+
+footer nav {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+footer nav h2 {
+  color: #fff;
+  font-size: .94rem;
+  padding-bottom: 1rem;
+}
+
+footer .ampstart-icon {
+  fill: #6a6a6a
+}
+
+footer .ampstart-social-follow {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+.footer-main {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  width: 100%;
+  padding-top: 1.5rem;
+}
+
+.footer-section.social-section {
+  padding: 2rem 0 1.5rem;
+}
+
+.footer-section h2 {
+  font-size: .94rem;
+  font-weight: 700;
+  padding-bottom: 1rem;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.footer-section ul {
+  padding-bottom: 1.5rem;
+}
+
+.footer-section.social-section h2 {
+  padding-bottom: 0;
+}
+
+.social-icons {
+  display: inline-block;
+  margin: 0;
+}
+
+.social-icons li {
+  display: inline-block;
+}
+
+.social-icons li a {
+  display: inline-block;
+  padding: .5rem;
+}
+
+.footer-logo {
+  flex: 1 1 auto;
+  text-align: right;
+  padding-right: 20px;
+}
+
+
+/* Placeholder, showing loading animation */
+
+
+.loading,.loading:after,.loading:before {
+  border-radius: 50%;
+  width: .5rem;
+  height: .5rem;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: a 1.44s infinite ease-in-out;
+  animation: a 1.44s infinite ease-in-out;
+  will-change: contents
+}
+
+.loading {
+  color: #666;
+  margin: 24% auto;
+  -webkit-animation-delay: .16s;
+  animation-delay: .16s
+}
+
+.loading:after,.loading:before {
+  content: "";
+  position: absolute;
+  top: 0
+}
+
+.loading:before {
+  left: -1rem;
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s
+}
+
+.loading:after {
+  left: 1rem;
+  -webkit-animation-delay: .32s;
+  animation-delay: .32s
+}
+
+.commerce-listing-banner .loading {
+  margin-top: 100px
+}
+
+
+
+/* Other stuff */
+
+.ampstart-social-follow li {
+  display: inline-block;
+  margin-right: 0;
+}
+
+.amp-mode-mouse .hero-wrapper amp-img { 
+  -webkit-transition:-webkit-transform 1s;
+  transition:-webkit-transform 1s;
+  transition:transform 1s;
+  transition:transform 1s,-webkit-transform 1s;
+}
+
+.amp-mode-mouse .hero-wrapper amp-img:hover {
+  -webkit-transform:scale(1.05);
+  transform:scale(1.05);
+}
 
 /* Media queries */
 
@@ -409,17 +632,27 @@ amp-sidebar .faq li {
     left: 2rem
   }  
 
-  .ampstart-sidebar-nav {
+  .ampstart-sidebar-.menu {
     display: inline-block;
     text-align: center;
   }
 
   .hero-wrapper {
     position: relative;
+    text-align: left;
     color: #fff;
   }
 
+  .hero-wrapper .button {
+    margin-left: 2rem;
+    background-color: #fff;
+    border: none;
+    color: #222;
+    font-size: .94rem
+  }
+
   .hero-content h2 {
+    color: #fff;
     font-size: 3.5rem;
     padding-left: 2rem;
     margin-bottom: 1rem;
@@ -449,25 +682,64 @@ amp-sidebar .faq li {
     padding-left: 2rem;
   }
 
-  .hero-wrapper .ampstart-btn {
-    background-color: #fff;
-    border: none;
-    color: #222;
-    font-size: .94rem
-  }
-
   .hero-content-theme-secondary,.hero-content-theme-secondary .hero-content-title {
     color: #222
   }
 
-  .hero-content-theme-secondary .ampstart-btn {
+  .button.button-lg-black {
     color: #fff;
-    background-color: #222
+    background-color: #222;
   }
 
-  .amp-mode-mouse .hero-content-theme-secondary .ampstart-btn:hover {
+  .amp-mode-mouse .hero-content-theme-secondary .button:hover {
     background-color: #fff;
     color: #222
   }
+
+  footer {
+    text-align: initial;
+  }
+
+  footer nav {
+    padding: 2.5rem 0;
+  }
+
+  .footer-section {
+    width: 25%;
+    padding: 0 2rem;
+  }
+
+  .footer-section.social-section {
+    padding: 0 0 1.5rem;
+  }
+
+  .footer-section.social-section li:first-child a {
+    padding-left: 0;
+  }
+
 }
 
+/* Hide! */
+@media (max-width:40rem) {
+  .xs-hide {
+    display: none;
+  }
+}
+
+@media (min-width:40.06rem) and (max-width:52rem) {
+  .sm-hide {
+    display: none;
+  }
+}
+
+@media (min-width:52.06rem) and (max-width:64rem) {
+  .md-hide {
+    display: none;
+  }
+}
+
+@media (min-width:64.06rem) {
+  .lg-hide {
+    display: none;
+  }
+}

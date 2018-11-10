@@ -1279,30 +1279,6 @@ canvas {
   clip: rect(1px,1px,1px,1px)
 }
 
-@media (max-width:40rem) {
-  .xs-hide {
-    display: none
-  }
-}
-
-@media (min-width:40.06rem) and (max-width:52rem) {
-  .sm-hide {
-    display: none
-  }
-}
-
-@media (min-width:52.06rem) and (max-width:64rem) {
-  .md-hide {
-    display: none
-  }
-}
-
-@media (min-width:64.06rem) {
-  .lg-hide {
-    display: none
-  }
-}
-
 .display-none {
   display: none
 }
@@ -1428,46 +1404,6 @@ h1,h2,h3,h4,h5,h6 {
 
 a,a:active,a:visited {
   color: inherit
-}
-
-.ampstart-btn {
-  font-family: inherit;
-  font-weight: inherit;
-  font-size: 1rem;
-  line-height: 1.125rem;
-  padding: .7em .8em;
-  text-decoration: none;
-  white-space: nowrap;
-  word-wrap: normal;
-  vertical-align: middle;
-  cursor: pointer;
-  background-color: #222;
-  color: #fff;
-  border: 1px solid #fff
-}
-
-.ampstart-btn:visited {
-  color: #fff
-}
-
-.ampstart-btn-secondary {
-  background-color: #666;
-  color: #f88;
-  border: 1px solid #f88
-}
-
-.ampstart-btn-secondary:visited {
-  color: #f88
-}
-
-.ampstart-btn:active .ampstart-btn:focus {
-  opacity: .8
-}
-
-.ampstart-btn[disabled],.ampstart-btn[disabled]:active,.ampstart-btn[disabled]:focus,.ampstart-btn[disabled]:hover {
-  opacity: .5;
-  outline: 0;
-  cursor: default
 }
 
 .ampstart-dropcap:first-letter {
@@ -2813,15 +2749,6 @@ body {
   font-size: .94rem
 }
 
-.h1,.h2,.h3,.h4,.h5,.h6,.h7,h1,h2,h3,h4,h5,h6,h7 {
-  line-height: normal;
-  letter-spacing: normal;
-  font-family: Open Sans Condensed,sans-serif;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: #000
-}
-
 .pr7 {
   padding-right: 5rem
 }
@@ -2903,46 +2830,6 @@ hr {
 dd:after {
   content: "";
   display: block
-}
-
-.commerce-loader,.commerce-loader:after,.commerce-loader:before {
-  border-radius: 50%;
-  width: .5rem;
-  height: .5rem;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-animation: a 1.44s infinite ease-in-out;
-  animation: a 1.44s infinite ease-in-out;
-  will-change: contents
-}
-
-.commerce-loader {
-  color: #666;
-  margin: 24% auto;
-  -webkit-animation-delay: .16s;
-  animation-delay: .16s
-}
-
-.commerce-loader:after,.commerce-loader:before {
-  content: "";
-  position: absolute;
-  top: 0
-}
-
-.commerce-loader:before {
-  left: -1rem;
-  -webkit-animation-delay: 0s;
-  animation-delay: 0s
-}
-
-.commerce-loader:after {
-  left: 1rem;
-  -webkit-animation-delay: .32s;
-  animation-delay: .32s
-}
-
-.commerce-listing-banner .commerce-loader {
-  margin-top: 100px
 }
 
 @-webkit-keyframes a {
@@ -3050,31 +2937,6 @@ dd:after {
 
 .amp-mode-mouse .ampstart-input-radio label:hover {
   text-decoration: underline
-}
-
-.ampstart-btn {
-  border-color: #222;
-  display: inline-block;
-  font-size: .8rem;
-  font-family: Open Sans Condensed,sans-serif;
-  font-weight: 700;
-  padding: .5rem 2rem;
-  -webkit-transition: background-color .2s ease-in,color .2s ease-in;
-  transition: background-color .2s ease-in,color .2s ease-in
-}
-
-.amp-mode-mouse .ampstart-btn:hover,.ampstart-btn-secondary {
-  background-color: #fff;
-  color: #222
-}
-
-.amp-mode-mouse .ampstart-btn-secondary:hover {
-  background-color: #222;
-  color: #fff
-}
-
-.ampstart-btn-secondary:visited {
-  color: #222
 }
 
 amp-selector [option] {
@@ -3349,48 +3211,6 @@ amp-selector [option][selected] {
 
 .amp-mode-mouse .commerce-listing-product:hover>.commerce-listing-product-name {
   text-decoration: underline
-}
-
-.commerce-footer {
-  background-color: #222
-}
-
-.commerce-footer h3 {
-  padding-top: 0
-}
-
-.amp-mode-mouse .commerce-footer a:hover {
-  text-decoration: underline
-}
-
-.commerce-footer,.commerce-footer-header,.commerce-footer h3 {
-  color: #fff
-}
-
-.commerce-footer hr {
-  background-color: #4a4a4a
-}
-
-.commerce-footer nav {
-  max-width: 1280px
-}
-
-.commerce-footer .ampstart-icon {
-  fill: #6a6a6a
-}
-
-.commerce-footer .ampstart-social-follow {
-  margin-bottom: 0
-}
-
-@media (min-width:52.06rem) {
-  .commerce-footer {
-    text-align: initial
-  }
-
-  .commerce-footer .ampstart-social-follow li:first-child a {
-    padding-left: 0
-  }
 }
 
 .commerce-checkout-steps {
