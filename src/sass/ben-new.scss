@@ -419,6 +419,11 @@ amp-sidebar .faq li {
   transition: transform 1s,-webkit-transform 1s
 }
 
+.amp-mode-mouse .hero-wrapper:hover amp-img {
+  -webkit-transform:scale(1.05);
+  transform:scale(1.05);
+}
+
 .hero-wrapper amp-img .loading {
   margin-top: 200px;
 }
@@ -582,18 +587,6 @@ footer .ampstart-social-follow {
 .ampstart-social-follow li {
   display: inline-block;
   margin-right: 0;
-}
-
-.amp-mode-mouse .hero-wrapper amp-img { 
-  -webkit-transition:-webkit-transform 1s;
-  transition:-webkit-transform 1s;
-  transition:transform 1s;
-  transition:transform 1s,-webkit-transform 1s;
-}
-
-.amp-mode-mouse .hero-wrapper amp-img:hover {
-  -webkit-transform:scale(1.05);
-  transform:scale(1.05);
 }
 
 /* Media queries */
