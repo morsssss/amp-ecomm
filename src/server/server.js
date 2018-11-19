@@ -4,8 +4,12 @@ const path = require('path');
 const fs = require('fs');
 const productApiManager = require('./ApiManager.js');
 const mustache = require("mustache");
+const formidableMiddleware = require('express-formidable');
 
 const app = express();
+
+app.use(formidableMiddleware());
+
 app.engine('html', function(filePath, options, callback) {
     fs.readFile(filePath, function(err, content) {
         if (err)
@@ -45,6 +49,38 @@ app.get('/product-details', function(req, res) {
             res.render('product-not-found');
         }
     });
+});
+
+//Add to Cart logic
+app.post('/add-to-cart', function(req, res) {
+
+    let clientId = req.fields.clientId;
+    let productId = req.fields.productId;
+    let name = req.fields.name;
+    let price = req.fields.price;
+    let color = req.fields.color;
+    let imgUrl = req.fields.imgUrl;
+    let origin = req.get('origin');
+    //let quantity = TBD
+
+    //Add product to cart
+
+    //set AMP headers to redirect to cart page
+    res.header("Access-Control-Expose-Headers", "AMP-Access-Control-Allow-Source-Origin,AMP-Redirect-To");
+    res.header("AMP-Access-Control-Allow-Source-Origin", origin);
+    res.header("AMP-Redirect-To", origin + "/cart-details?clientId=" + clientId);
+
+    //return empty response
+    res.json({});
+});
+
+//Cart Details page
+app.get('/cart-details', function(req, res) {
+
+    let clientId = req.query.clientId;
+    console.log("Client ID received on cart-details: " + clientId);
+
+    res.render('cart-details');
 });
 
 //API
