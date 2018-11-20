@@ -9,6 +9,18 @@ ul {
   padding-left: 0;
 }
 
+/* so we have this... plus also rules for .input-container>select. Redundant? */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  border-radius: 0;
+  background: none;
+  color: #666;
+}
+
+
 .h1,.h2,.h3,.h4,.h5,.h6,.h7,h1,h2,h3,h4,h5,h6,h7 {
   line-height: normal;
   letter-spacing: normal;
@@ -19,7 +31,6 @@ ul {
 }
 
 /* Buttons */
-
 
 .button {
   display: inline-block;
@@ -70,6 +81,296 @@ ul {
 .button-white:visited {
   color: #222;
 }
+
+/* Inputs */
+
+.input-container {
+  width: 100%;
+}
+
+.input-container input::-webkit-input-placeholder,.input-container input[type=email],.input-container input[type=text],.input-container label,textarea {
+  font-size: .94rem;
+  font-family: Open Sans Condensed,sans-serif;
+  color: #222;
+  font-weight: 700;
+  text-transform: uppercase
+}
+
+.input-container input::-moz-placeholder,.input-container input[type=email],.input-container input[type=text],.input-container label,textarea {
+  font-size: .94rem;
+  font-family: Open Sans Condensed,sans-serif;
+  color: #222;
+  font-weight: 700;
+  text-transform: uppercase
+}
+
+.input-container input:-ms-input-placeholder,.input-container input[type=email],.input-container input[type=text],.input-container label,textarea {
+  font-size: .94rem;
+  font-family: Open Sans Condensed,sans-serif;
+  color: #222;
+  font-weight: 700;
+  text-transform: uppercase
+}
+
+.input-container input::placeholder,.input-container input[type=email],.input-container input[type=text],.input-container label,textarea {
+  font-size: .94rem;
+  font-family: Open Sans Condensed,sans-serif;
+  color: #222;
+  font-weight: 700;
+  text-transform: uppercase
+}
+
+.input-container input[type=email],.input-container input[type=text] {
+  margin-top: 1.5rem
+}
+
+.input-container>label:after {
+  height: 1px;
+  background: #f3f3f3
+}
+
+.input-container>input,.input-container>textarea {
+  border-bottom: 1px dashed #f3f3f3;
+  color: #222
+}
+
+.input-container {
+  width: 100%;
+  min-width: 100px;
+  font-size: 1rem;
+  line-height: 1.5rem
+}
+
+.input-container [disabled],.input-container [disabled]+label {
+  opacity: .5
+}
+
+.input-container [disabled]:focus {
+  outline: 0
+}
+
+.input-container>input,.input-container>select,.input-container>textarea {
+  width: 100%;
+  margin-top: 1rem;
+  line-height: 1.5rem;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid #4a4a4a;
+  background: none;
+  color: #4a4a4a;
+  outline: 0
+}
+
+.input-container>label {
+  color: #222;
+  pointer-events: none;
+  text-align: left;
+  font-size: 1.125rem;
+  line-height: 1rem;
+  opacity: 0;
+  -webkit-animation: .2s;
+  animation: .2s;
+  -webkit-animation-timing-function: cubic-bezier(.4,0,.2,1);
+  animation-timing-function: cubic-bezier(.4,0,.2,1);
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards
+}
+
+.input-container>input:focus,.input-container>select:focus,.input-container>textarea:focus {
+  outline: 0
+}
+
+.input-container>input:focus::-webkit-input-placeholder,.input-container>select:focus::-webkit-input-placeholder,.input-container>textarea:focus::-webkit-input-placeholder {
+  color: transparent
+}
+
+.input-container>input:focus::-moz-placeholder,.input-container>select:focus::-moz-placeholder,.input-container>textarea:focus::-moz-placeholder {
+  color: transparent
+}
+
+.input-container>input:focus:-ms-input-placeholder,.input-container>select:focus:-ms-input-placeholder,.input-container>textarea:focus:-ms-input-placeholder {
+  color: transparent
+}
+
+.input-container>input:focus::placeholder,.input-container>select:focus::placeholder,.input-container>textarea:focus::placeholder {
+  color: transparent
+}
+
+.input-container>input:not(:placeholder-shown):not([disabled])+label,.input-container>select:not(:placeholder-shown):not([disabled])+label,.input-container>textarea:not(:placeholder-shown):not([disabled])+label {
+  opacity: 1
+}
+
+.input-container>input:focus+label,.input-container>select:focus+label,.input-container>textarea:focus+label {
+  -webkit-animation-name: c;
+  animation-name: c
+}
+
+.input-container>label:after {
+  content: "";
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  left: 45%;
+  background: #222;
+  -webkit-transition: .2s;
+  transition: .2s;
+  -webkit-transition-timing-function: cubic-bezier(.4,0,.2,1);
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+  visibility: hidden;
+  width: 10px
+}
+
+.input-container>input:focus+label:after,.input-container>select:focus+label:after,.input-container>textarea:focus+label:after {
+  left: 0;
+  width: 100%;
+  visibility: visible
+}
+
+.input-container>input[type=search] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none
+}
+
+.input-container>input[type=range] {
+  border-bottom: 0
+}
+
+.input-container>input[type=range]+label:after {
+  display: none
+}
+
+.input-container>select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none
+}
+
+.input-container>select+label:before {
+  content: "⌄";
+  line-height: 1.5rem;
+  position: absolute;
+  right: 5px;
+  zoom: 2;
+  top: 0;
+  bottom: 0;
+  color: #222
+}
+
+.input-container input[type=checkbox],.input-container input[type=radio] {
+  margin-top: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #222;
+  vertical-align: middle;
+  margin-right: .5rem;
+  text-align: center
+}
+
+.input-container input[type=radio] {
+  border-radius: 15px
+}
+
+.input-container input[type=checkbox]:not([disabled])+label,.input-container input[type=radio]:not([disabled])+label {
+  pointer-events: auto;
+  -webkit-animation: none;
+  animation: none;
+  vertical-align: middle;
+  opacity: 1;
+  cursor: pointer
+}
+
+.input-container input[type=checkbox]+label:after,.input-container input[type=radio]+label:after {
+  display: none
+}
+
+.input-container input[type=checkbox]:after,.input-container input[type=radio]:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  content: " ";
+  line-height: 1.4rem;
+  vertical-align: middle;
+  text-align: center;
+  background-color: #fff
+}
+
+.input-container input[type=checkbox]:checked:after {
+  background-color: #222;
+  color: #fff;
+  content: "✓"
+}
+
+.input-container input[type=radio]:checked {
+  background-color: #fff
+}
+
+.input-container input[type=radio]:after {
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  right: 3px;
+  border-radius: 12px
+}
+
+.input-container input[type=radio]:checked:after {
+  content: "";
+  font-size: 3.5rem;
+  background-color: #222
+}
+
+.input-container>label,_:-ms-lang(x) {
+  opacity: 1
+}
+
+.input-container>input:-ms-input-placeholder,_:-ms-lang(x) {
+  color: transparent
+}
+
+.input-container>input::placeholder,_:-ms-lang(x) {
+  color: transparent
+}
+
+.input-container>input::-ms-input-placeholder,_:-ms-lang(x) {
+  color: transparent
+}
+
+.input-container>select::-ms-expand {
+  display: none
+}
+
+.radio-container {
+  display: block;
+  margin-bottom: .5rem
+}
+
+.radio-container label {
+  font-family: Cardo,serif;
+  font-weight: 400;
+  text-transform: none;
+  color: #222;
+  font-size: .94rem
+}
+
+.amp-mode-mouse .radio-container label:hover {
+  text-decoration: underline
+}
+
+.input-container-chk, .radio-container {
+/*  width: auto; */
+  color: #4a4a4a
+}
+
+.select-wrapper {
+  position: relative;
+  padding-right: 13px;
+}
+
 
 
 /* .header */
@@ -388,7 +689,7 @@ amp-sidebar .faq li {
 
 
 /* Main pages */
-.landing, .commerce-listing {
+.landing, .listing {
   max-width: none;
 }
 
@@ -440,6 +741,92 @@ amp-sidebar .faq li {
   max-width: 500px;
   margin: 0 auto;
 }
+
+
+/* Product listings page */
+
+.listing .banner {
+  width: 100%;
+}
+
+.commerce-checkout-steps, .listing-filters {
+  border-top: 1px solid #f3f3f3;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.listing-filters {
+  padding: 1rem 0 1rem 1rem;
+}
+
+.listing-filters .select-wrapper {
+  display: inline-block;
+}
+
+.listing-filters select {
+  color: #666;
+}
+
+.listing-content {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-bottom: 2rem;
+}
+
+.listing .sidebar {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+}
+
+.listing-container {
+  width: 100%;
+  padding: 1rem 0 1.5rem;
+}
+
+.listing-header {
+  position: relative;
+  align-items: center;
+}
+
+.listing-header h1 {
+  flex: 1 1 auto;
+  font-size: 1.75rem;
+  padding: 0 1rem;
+  margin: 0 0 1rem;
+}
+
+.listing amp-list {
+  margin: 0 .5rem;
+}
+
+.listing-product {
+  position: relative;
+  display: inline-block;
+  min-height: 275px;
+  width: 50%;
+  padding: 0 .5rem;
+  margin-bottom: 1rem;
+}
+
+.listing-product>div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  min-height: 275px;
+}
+
+.listing amp-list amp-img {
+  margin-bottom: 1rem;
+  border-bottom: 1px dashed #dadada;
+}
+/* doesn't seem to work on the original site either
+.amp-mode-mouse .listing-product:hover>.listing-product-name {
+  text-decoration: underline
+}
+*/
 
 /* Footer */
 
@@ -576,8 +963,8 @@ footer .ampstart-social-follow {
   animation-delay: .32s
 }
 
-.commerce-listing-banner .loading {
-  margin-top: 100px
+.commerce .banner .loading {
+  margin-top: 100px;
 }
 
 
@@ -592,11 +979,12 @@ footer .ampstart-social-follow {
 /* Media queries */
 
 @media (min-width:52.06rem) {
-  .main {
-    min-height: calc(100vh - 181px - 5rem)
+  main {
+    min-height: calc(100vh - 181px - 5rem);
+    margin-top: 3.5rem;
   }
 
-  .header+:not(amp-sidebar),.header+amp-sidebar+*,.main {
+  .header+:not(amp-sidebar), .header+amp-sidebar+*, main {
     margin-top: 5rem
   }
 
@@ -689,6 +1077,47 @@ footer .ampstart-social-follow {
     color: #222
   }
 
+  .listing .side-panel {
+    position: sticky;
+    align-self: center;
+    padding: 2rem 2rem 0 0;
+  }
+
+  .listing .side-panel h2 {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+  }
+
+  .listing-container {
+    padding: .5rem 2rem 5rem;
+    width: 58.33333%;
+  }
+
+  .listing-header {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1.5rem 0 1rem;
+    border-top: 1px solid #f3f3f3;
+    border-bottom: 1px solid #f3f3f3;
+  }
+
+  .listing-header h1 {
+    margin-top: 1rem;
+  }
+
+  .listing amp-list {
+    margin: 0 -.5rem;
+  }
+
+  .listing-product {
+    width: 25%;
+    margin-bottom: 2rem;
+  }
+
+  .listing-filters {
+    border: none;
+  }
+
   footer {
     text-align: initial;
   }
@@ -712,15 +1141,20 @@ footer .ampstart-social-follow {
 
 }
 
-/* Hide! */
+
+
+/* Hide! 
+ * Note: these should appear last in the file so they can overwrite other display properties. 
+ */
+
 @media (max-width:40rem) {
-  .xs-hide {
+  .xs-hide, .listing .xs-hide {
     display: none;
   }
 }
 
 @media (min-width:40.06rem) and (max-width:52rem) {
-  .sm-hide {
+  .sm-hide, .listing .sm-hide {
     display: none;
   }
 }

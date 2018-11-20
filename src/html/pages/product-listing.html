@@ -1,0 +1,99 @@
+<!doctype html>
+<html ⚡ lang="en">
+
+<head>
+%%include('../partials/head.html')
+</head>
+
+<body>
+%%include('../partials/header.html')
+%%include('../partials/menu.html');
+
+  <main id="content" role="main" class="listing">
+	  <amp-state id="products">
+	    <script type="application/json">
+	      {
+	        "category": "all",
+	        "filter": "high-low"
+	      }
+	    </script>
+	  </amp-state>
+  	<amp-img class="banner xs-hide sm-hide" src="../img/e-commerce/wide-listings-hero.jpg" width="2560" height="400" layout="responsive" alt="Product listing" noloading="">
+  		<div placeholder="" class="loading"></div>
+  	</amp-img>
+	  <section class="listing-content">
+
+	    <div class="sidebar xs-hide sm-hide">
+	      <div class="side-panel">
+	        <h2>Categories</h2>
+
+        	<div class="input-container radio-container" on="change: AMP.setState({products: {category: &#39;all&#39;}})">
+      	    <input type="radio" value="" name="category" id="all" class="relative" checked="">
+      	    <label for="all" class="" aria-hidden="true">All</label>
+        	</div>
+
+        	<div class="input-container radio-container" on="change: AMP.setState({products: {category: &#39;bikes&#39;}})">
+        	    <input type="radio" value="" name="category" id="bikes" class="relative">
+        	    <label for="bikes" class="" aria-hidden="true">Bikes</label>
+        	</div>
+
+        	<div class="input-container radio-container" on="change: AMP.setState({products: {category: &#39;accessories&#39;}})">
+        	    <input type="radio" value="" name="category" id="accessories" class="relative">
+        	    <label for="accessories" class="" aria-hidden="true">Accessories</label>
+        	</div>
+
+        	<div class="input-container radio-container" on="change: AMP.setState({products: {category: &#39;components&#39;}})">
+        	    <input type="radio" value="" name="category" id="components" class="relative">
+        	    <label for="components" class="" aria-hidden="true">Components</label>
+        	</div>
+
+	      </div>
+	    </div>
+
+	    <div class="listing-container">
+	      <div class="listing-header">
+	        <h1>Products</h1>
+  	      <div class="listing-filters">
+          	<div class="select-wrapper md-hide lg-hide">
+          	  <label for="categories" class="h6 md-h7">Show:</label>
+          	  <select name="categories" id="categories" class="h6 md-h7" on="change: AMP.setState({products: {category: event.value}})">
+        	      <option value="all">all</option>
+        	      <option value="bikes">bikes</option>
+        	      <option value="accessories">accessories</option>
+        	      <option value="components">components</option>
+          	  </select>
+          	</div>
+          	<div class="select-wrapper">
+          	  <label for="price" class="h6">Sort by:</label>
+          	  <select name="price" id="price" class="h6 md-h7" on="change: AMP.setState({products: {filter: event.value}})">
+        	      <option value="high-low">Price: High-Low</option>
+        	      <option value="low-high">Price: Low-High</option>
+          	  </select>
+          	</div>
+          </div>
+        </div>
+
+        <amp-list [src]="'api/' + products.filter + '-' + products.category + '-products.json'" src="api/high-low-all-products.json" height="1000" width="300" layout="responsive">
+          <template type="amp-mustache">
+            <a href="product-details.amp.html" target="_self" class="listing-product">
+              <div>
+                <div>
+                  <amp-img src="{{image}}" width="340" height="340" layout="responsive" alt="{{ name }}" noloading=""><div placeholder="" class="loading"></div></amp-img>
+                  <h6>{{ name }}</h6>
+                  {{ description }}
+                </div>
+                <div class="h6 mt1">&#163;{{ price }}</div>
+              </div>
+            </a>
+          </template>
+        </amp-list>
+
+	    </div>
+
+	  </section>
+  </main>
+
+%%include('../partials/footer.html')
+
+</body>
+</html>
