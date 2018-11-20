@@ -125,13 +125,14 @@ class ApiManager {
         }
     }
 
-    createCartItem(productId, name, price, color, imgUrl) {
+    createCartItem(productId, name, price, color, imgUrl, quantity) {
         let cartProduct = new Object();
         cartProduct.productId = productId;
         cartProduct.name = name;
         cartProduct.price = parseInt(price);
         cartProduct.color = color;
         cartProduct.imgUrl = imgUrl;
+        cartProduct.quantity = quantity;
 
         //replace
         cartProduct.quantity = 1;
