@@ -24,23 +24,26 @@ limitations under the License.
             <section class="col-12 md-col-8 pt2 pb3 md-pt4 md-pb7">
             	%%include('../partials_new/cart-items.html')
             </section>
+            {{^isEmpty}}
             <section class="px2 pt3 pb4 md-px3 md-pt4 col-12 md-col-4 commerce-cart-summary commerce-side-panel">
                 <h2 class="h5 md-mt3">Order Summary</h2>
                 <dl class="flex flex-wrap">
                     <dt class="col-10">Subtotal</dt>
-                    <dd class="m0 col-2 pb1 right-align">&#163;698</dd>
+                    <dd class="m0 col-2 pb1 right-align">${{subtotal}}</dd>
                     <dt class="col-10 pb1">Shipping</dt>
-                    <dd class="m0 col-2 pb1 right-align">&#163;30</dd>
+                    <dd class="m0 col-2 pb1 right-align">${{shipping}}</dd>
                     <dt class="commerce-cart-total col-10 pt2 pb2 bold mt3 mb2">Total</dt>
-                    <dd class="commerce-cart-total m0 col-2 pt2 pb2 right-align bold mt3 mb2">&#163;753</dd>
+                    <dd class="commerce-cart-total m0 col-2 pt2 pb2 right-align bold mt3 mb2">${{total}}</dd>
                 </dl>
-                <p class="pb3">Donec id elit non mi porta gravida at eget metus. Donec ullamcorper nulla non metus auctor fringilla.</p>
                 <div class="commerce-cart-actions center">
                     <a href="checkout.html" class="ampstart-btn ampstart-btn-secondary caps">checkout</a>
                 </div>
             </section>
+            {{/isEmpty}}    
         </div>
+        <!--
         %%include('../partials_new/related-products.html')
+        -->
     </main>
     %%include('../partials_new/footer.html')
 </body>

@@ -124,6 +124,53 @@ class ApiManager {
             lastAvailable.Last = true;
         }
     }
+
+    createCartItem(productId, name, price, color, size, imgUrl, quantity) {
+        let cartProduct = new Object();
+        cartProduct.productId = productId;
+        cartProduct.name = name;
+        cartProduct.price = parseInt(price);
+        cartProduct.color = color;
+        cartProduct.size = size;
+        cartProduct.imgUrl = imgUrl;
+        cartProduct.quantity = quantity;
+
+        //replace
+        cartProduct.quantity = 1;
+
+        return cartProduct;
+    }
+
+    createCart(clientId) {
+
+        let shoppingCart = {
+            clientId: clientId,
+            cartItems: [],
+            subtotal: 0,
+            shipping: 30,
+            total: 0,
+            isEmpty: true,
+            addItem : function(item) {
+
+                //check if item exists in cart before pushing
+                var foundItem = this.cartItems.filter(function(elem){
+                    return(elem.productId == item.productId && elem.color == item.color && elem.size == item.size);
+                });
+
+                if(foundItem.length > 0) {
+                    foundItem[0].quantity += 1;
+                } else {
+                    this.cartItems.push(item);    
+                }
+                
+                this.subtotal = this.subtotal + item.price;
+                this.total = this.subtotal + this.shipping;
+                this.isEmpty = false;
+            }
+        };
+
+        return shoppingCart;
+    }
 }
 
 module.exports = ApiManager;

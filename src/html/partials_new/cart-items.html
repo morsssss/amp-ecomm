@@ -1,33 +1,26 @@
-<h1 class="h3 mb2 mx2 md-mx4 ">Your Basket</h1>
-<div class="commerce-cart-item flex flex-wrap items-center m0 p2 ">
-    <div class="col-3 sm-col-2 md-col-2 lg-col-2">
-        <amp-img class="commerce-cart-item-image" src="..&#x2F;..&#x2F;..&#x2F;img&#x2F;e-commerce&#x2F;product&#x2F;product-8.jpg" width="1" height="1" layout="responsive" alt="Caliper Brakes" noloading="">
-            <div placeholder="" class="commerce-loader"></div>
-        </amp-img>
-    </div>
-    <div class="commerce-cart-item-desc px1 col-6 sm-col-7 md-col-7 lg-col-7">
-        <div class="h6 mb1">Caliper Brakes</div>
-        <div>Fits most wheel sizes and designed to last long.</div>
-    </div>
-    <div class="commerce-cart-item-price col-3 h6 flex flex-wrap justify-around items-start">
-        <span>£349</span>
-        <span>1</span>
-        <div role="button" class="inline-block commerce-cart-icon" tabindex="0">✕</div>
-    </div>
-</div>
-<div class="commerce-cart-item flex flex-wrap items-center m0 p2 ">
-    <div class="col-3 sm-col-2 md-col-2 lg-col-2">
-        <amp-img class="commerce-cart-item-image" src="..&#x2F;..&#x2F;..&#x2F;img&#x2F;e-commerce&#x2F;product&#x2F;product-1.jpg" width="1" height="1" layout="responsive" alt="Sprocket Set" noloading="">
-            <div placeholder="" class="commerce-loader"></div>
-        </amp-img>
-    </div>
-    <div class="commerce-cart-item-desc px1 col-6 sm-col-7 md-col-7 lg-col-7">
-        <div class="h6 mb1">Sprocket Set</div>
-        <div>Steel, designed for long lasting stability.</div>
-    </div>
-    <div class="commerce-cart-item-price col-3 h6 flex flex-wrap justify-around items-start">
-        <span>£470</span>
-        <span>1</span>
-        <div role="button" class="inline-block commerce-cart-icon" tabindex="0">✕</div>
-    </div>
-</div>
+{{#isEmpty}}
+    <h1 class="h3 mb2 mx2 md-mx4 ">Your Basket is Empty</h1>
+{{/isEmpty}}
+{{^isEmpty}}
+    <h1 class="h3 mb2 mx2 md-mx4 ">Your Basket</h1>
+        {{#cartItems}}
+        <div class="commerce-cart-item flex flex-wrap items-center m0 p2 ">
+            <div class="col-3 sm-col-2 md-col-2 lg-col-2">
+                <amp-img class="commerce-cart-item-image" src="{{imgUrl}}" width="1" height="1" layout="responsive" alt="{{mame}}" noloading="">
+                    <div placeholder="" class="commerce-loader"></div>
+                </amp-img>
+            </div>
+            <div class="commerce-cart-item-desc px1 col-6 sm-col-7 md-col-7 lg-col-7">
+                <div class="h6 mb1">{{name}}</div>
+            </div>
+            <div class="commerce-cart-item-price col-3 h6 flex flex-wrap justify-around items-start">
+                <span>"{{size}}"</span>
+                <span>${{price}}</span>
+                <span>{{quantity}}</span>
+                <!--
+                <div role="button" class="inline-block commerce-cart-icon" tabindex="0">✕</div>
+                -->
+            </div>
+        </div>
+        {{/cartItems}}
+{{/isEmpty}}    
