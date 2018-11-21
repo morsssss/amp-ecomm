@@ -60,11 +60,12 @@ app.post('/add-to-cart', function(req, res) {
     let name = req.fields.name;
     let price = req.fields.price;
     let color = req.fields.color;
+    let size = req.fields.size;
     let imgUrl = req.fields.imgUrl;
     let origin = req.get('origin');
     let quantity = 1;
 
-    let cartProduct = apiManager.createCartItem(productId, name, price, color, imgUrl, quantity);
+    let cartProduct = apiManager.createCartItem(productId, name, price, color, size, imgUrl, quantity);
     let shoppingCart = memCache.get(clientId);
 
     if(!shoppingCart) {
@@ -72,7 +73,7 @@ app.post('/add-to-cart', function(req, res) {
     }
 
     shoppingCart.addItem(cartProduct);
-    memCache.put(clientId, shoppingCart, 60*60*60);
+    memCache.put(clientId, shoppingCart, 60*60*60*1000);
 
     //set AMP headers to redirect to cart page
     res.header("Access-Control-Expose-Headers", "AMP-Access-Control-Allow-Source-Origin,AMP-Redirect-To");
