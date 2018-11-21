@@ -24,6 +24,7 @@ limitations under the License.
             <section class="col-12 md-col-8 pt2 pb3 md-pt4 md-pb7">
             	%%include('../partials_new/cart-items.html')
             </section>
+            {{^isEmpty}}
             <section class="px2 pt3 pb4 md-px3 md-pt4 col-12 md-col-4 commerce-cart-summary commerce-side-panel">
                 <h2 class="h5 md-mt3">Order Summary</h2>
                 <dl class="flex flex-wrap">
@@ -38,6 +39,7 @@ limitations under the License.
                     <a href="checkout.html" class="ampstart-btn ampstart-btn-secondary caps">checkout</a>
                 </div>
             </section>
+            {{/isEmpty}}    
         </div>
         <!--
         %%include('../partials_new/related-products.html')

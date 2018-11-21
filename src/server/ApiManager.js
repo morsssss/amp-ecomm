@@ -149,6 +149,7 @@ class ApiManager {
             subtotal: 0,
             shipping: 30,
             total: 0,
+            isEmpty: true,
             addItem : function(item) {
 
                 //check if item exists in cart before pushing
@@ -164,6 +165,7 @@ class ApiManager {
                 
                 this.subtotal = this.subtotal + item.price;
                 this.total = this.subtotal + this.shipping;
+                this.isEmpty = false;
             }
         };
 

@@ -93,7 +93,7 @@ app.get('/cart-details', function(req, res) {
     if(shoppingCart) {
         res.render('cart-details', shoppingCart);       
     } else {
-        res.render('cart-details');
+        res.render('cart-details', apiManager.createCart(clientId));
     }
 });
 
