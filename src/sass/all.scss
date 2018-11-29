@@ -2918,12 +2918,6 @@ amp-selector [option][selected] {
   }
 }
 
-@media (max-width:40rem) {
-  .commerce-cart-item-desc {
-    margin-top: 2rem
-  }
-}
-
 .commerce-cart-added .ampstart-headerbar-icon-wrapper:after {
   content: "1";
   display: block;
@@ -2953,21 +2947,9 @@ amp-selector [option][selected] {
   }
 }
 
-.commerce-cart .commerce-related-products {
-  border-top: none
-}
-
 @media (min-width:52.06rem) {
-  .commerce-cart-item {
-    border-bottom: 1px solid #f3f3f3
-  }
-
   .commerce-cart-actions {
     text-align: left
-  }
-
-  .commerce-cart-item-image {
-    max-width: 100px
   }
 }
 
