@@ -2612,11 +2612,6 @@ hr {
   }
 }
 
-dd:after {
-  content: "";
-  display: block
-}
-
 @-webkit-keyframes a {
   0%,80%,to {
     box-shadow: 0 1rem 0 -1rem
@@ -2656,14 +2651,6 @@ amp-selector [option][selected] {
 
 .amp-carousel-button-next,.amp-carousel-button-prev {
   display: none
-}
-
-@media (min-width:52.06rem) {
-  .commerce-side-panel {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 5rem
-  }
 }
 
 .ampstart-pullquote {
@@ -2944,12 +2931,6 @@ amp-selector [option][selected] {
 @keyframes c {
   to {
     opacity: 1
-  }
-}
-
-@media (min-width:52.06rem) {
-  .commerce-cart-actions {
-    text-align: left
   }
 }
 

@@ -20,7 +20,6 @@ select {
   color: #666;
 }
 
-
 .h1,.h2,.h3,.h4,.h5,.h6,.h7,h1,h2,h3,h4,h5,h6,h7 {
   line-height: normal;
   letter-spacing: normal;
@@ -29,6 +28,12 @@ select {
   font-weight: 700;
   color: #000;
 }
+
+dd:after {
+  content: "";
+  display: block
+}
+
 
 /* Buttons */
 
@@ -80,6 +85,11 @@ select {
 
 .button-white:visited {
   color: #222;
+}
+
+.close-button {
+  display: inline-block;
+  color: #f88;
 }
 
 /* Inputs */
@@ -689,6 +699,17 @@ amp-sidebar .faq li {
   max-width: none;
 }
 
+/* Related products section */
+.related-products {
+
+}
+
+.cart .related-products {
+  width: 100%;
+  padding: 2rem 0;
+  border-top: none;
+}
+
 
 /* Main landing page. Used in index.html */
 
@@ -865,7 +886,7 @@ amp-sidebar .faq li {
 
 .cart-product-left {
   width: 50%;
-  padding: .5rem 0;
+  padding: 0 .5rem;
 }
 
 .cart-product-left h6 {
@@ -880,6 +901,47 @@ amp-sidebar .faq li {
   align-items: flex-start;
   justify-content: space-around;
   width: 25%;
+}
+
+.cart-sum-area {
+  width: 100%;
+  padding: 1.5rem 1rem 2rem;
+}
+
+.cart-sum-area h5 { 
+  font-size: 1.125rem;
+}
+
+.cart-sum-area dl {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cart-sum-area dt {
+  width: 83.3333%;
+}
+
+.cart-sum-area dd {
+  width: 16.6667%;
+  margin: 0;
+  padding-bottom: 0.5rem;
+  text-align: right;
+}
+
+.cart-sum-area .total {
+  margin: 1.5rem 0 1rem;
+  padding: 1rem 0;
+  font-weight: 700;
+  border-top: 1px solid #f3f3f3;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.cart-sum-area p {
+  padding-bottom: 1.5rem;
+}
+
+.cart-actions {
+  text-align: center;
 }
 
 
@@ -1055,6 +1117,12 @@ footer .ampstart-social-follow {
   main {
     min-height: calc(100vh - 181px - 5rem);
     margin-top: 3.5rem;
+  }
+
+  .side-panel {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 5rem
   }
 
   .header+:not(amp-sidebar), .header+amp-sidebar+*, main {
@@ -1236,6 +1304,19 @@ footer .ampstart-social-follow {
     justify-content: space-between;
   }
 
+  .cart-sum-area {
+    width: 33.3333%;
+    padding: 2rem 1.5rem;
+  }
+
+  .cart-sum-area h5 { 
+    margin-top: 1.5rem;
+  }
+
+  .cart-actions {
+    text-align: left;
+  }
+
   .cart-image-container amp-img {
     max-width: 100px;
   }
@@ -1248,13 +1329,13 @@ footer .ampstart-social-follow {
  */
 
 @media (max-width:40rem) {
-  .xs-hide, .listing .xs-hide {
+  .xs-hide {
     display: none;
   }
 }
 
 @media (min-width:40.06rem) and (max-width:52rem) {
-  .sm-hide, .listing .sm-hide {
+  .sm-hide {
     display: none;
   }
 }
