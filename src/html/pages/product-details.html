@@ -130,14 +130,14 @@ limitations under the License.
                                         {{#All_Colors.0.Avaliable_Sizes}}
                                             {{#available}}
                                                 {{#default}}
-                                                    <div style="border: 0;background: none;box-shadow: none;border-radius: 0px;width:30px" option="{{SizeName}}" class="" [class]="(product[product.selectedColor].sizes['{{SizeName}}'] != null)? '' : 'unavailable'" selected>{{SizeName}}</div>
+                                                    <button type="button" style="border: 0;background: none;box-shadow: none;border-radius: 0px;width:30px" option="{{SizeName}}" class="" [class]="(product[product.selectedColor].sizes['{{SizeName}}'] != null)? '' : 'unavailable'" selected>{{SizeName}}</button>
                                                 {{/default}}
                                                 {{^default}}
-                                                    <div style="border: 0;background: none;box-shadow: none;border-radius: 0px;width:30px" option="{{SizeName}}" option="{{SizeName}}" class="" [class]="(product[product.selectedColor].sizes['{{SizeName}}'] != null)? '' : 'unavailable'">{{SizeName}}</div>
+                                                    <button type="button" style="border: 0;background: none;box-shadow: none;border-radius: 0px;width:30px" option="{{SizeName}}" option="{{SizeName}}" class="" [class]="(product[product.selectedColor].sizes['{{SizeName}}'] != null)? '' : 'unavailable'">{{SizeName}}</button>
                                                 {{/default}}
                                             {{/available}}
                                             {{^available}}
-                                                    <div style="border: 0;background: none;box-shadow: none;border-radius: 0px;width:30px" option="{{SizeName}}" option="{{SizeName}}" class="unavailable" [class]="(product[product.selectedColor].sizes['{{SizeName}}'] != null)? '' : 'unavailable'">{{SizeName}}</div>
+                                                    <button type="button" style="border: 0;background: none;box-shadow: none;border-radius: 0px;width:30px" option="{{SizeName}}" option="{{SizeName}}" class="unavailable" [class]="(product[product.selectedColor].sizes['{{SizeName}}'] != null)? '' : 'unavailable'">{{SizeName}}</button>
                                             {{/available}}    
                                         {{/All_Colors.0.Avaliable_Sizes}}
                                     </amp-selector>    
