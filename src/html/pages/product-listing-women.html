@@ -35,32 +35,27 @@ limitations under the License.
             <div class="col-3 xs-hide sm-hide flex flex-column">
                 <div class="commerce-side-panel pt4 pr4 self-center">
                     <h2 class="h5 mb2">Categories</h2>
-                    <!-- Start Radio -->
-                    <div class="ampstart-input ampstart-input-radio inline-block relative m0 p0 mb3 " on="change: AMP.setState({products: {category: &#39;women-shirts&#39;}})">
-                        <input type="radio" value="" name="category" id="women-shirts" class="relative">
-                        <label for="women-shirts" class="" aria-hidden="true">Women's Shirts</label>
-                    </div>
-                    <!-- End Radio -->
-                    <!-- Start Radio -->
-                    <div class="ampstart-input ampstart-input-radio inline-block relative m0 p0 mb3 " on="change: AMP.setState({products: {category: &#39;women-shorts&#39;}})">
-                        <input type="radio" value="" name="category" id="women-shorts" class="relative">
-                        <label for="women-shorts" class="" aria-hidden="true">Women's Shorts</label>
-                    </div>
-                    <!-- End Radio -->
+                        <amp-selector name="category" layout="container" on="select:AMP.setState({products:{category: event.targetOption}})" [selected]="products.category">
+                            <button type="button" style="background: none;box-shadow: none;border-radius: 0px;width:80px" class="" option="women-shirts" selected>Shirts</button>
+                            <button type="button" style="background: none;box-shadow: none;border-radius: 0px;width:80px" class="" option="women-shorts">Shorts</button>
+                        </amp-selector> 
                 </div>
             </div>
+
             <div class="col-12 md-col-7 pt2 pb3 md-px4 md-pt1 md-pb7">
                 <div class="md-commerce-header relative md-flex flex-wrap items-center md-mx0 md-mb2">
                     <h1 class="h3 mb2 md-mt2 md-mb2 md-ml0 flex-auto px2">Women's Clothing</h1>
                     <div class="commerce-listing-filters pt2 pb2 mb3 md-mb0">
                         <div class="commerce-select-wrapper inline-block md-mr1 pl2 md-hide lg-hide">
-                            <label for="categories" class="bold caps h6 md-h7">Show:</label>
-                            <select name="categories" id="categories" class="commerce-select h6 md-h7" on="change: AMP.setState({products: {category: event.value}})">
-                                <option value="women-shirts">Women's Shirts</option>
-                                <option value="women-shorts">Women's Shorts</option>
-                            </select>
+                            <div class="commerce-select h6 md-h7">
+                                <label for="categories" class="bold caps h6 md-h7">Show:</label>
+                                <amp-selector name="category" layout="container" on="select:AMP.setState({products:{category: event.targetOption}})" [selected]="products.category">
+                                    <button type="button" style="background: none;box-shadow: none;border-radius: 0px;width:80px" class="" option="women-shirts" selected>Shirts</button>
+                                    <button type="button" style="background: none;box-shadow: none;border-radius: 0px;width:80px" class="" option="women-shorts">Shorts</button>
+                                </amp-selector> 
+                            </div>
                         </div>
-                        <div class="commerce-select-wrapper inline-block  ">
+                        <div class="commerce-select-wrapper inline-block md-mr1 pl2">
                             <label for="price" class="bold caps h6 md-h7">Sort by:</label>
                             <select name="price" id="price" class="commerce-select h6 md-h7" on="change: AMP.setState({products: {filter: event.value}})">
                                 <option value="high-low">Price: High-Low</option>
