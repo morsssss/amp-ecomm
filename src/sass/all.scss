@@ -2888,23 +2888,6 @@ amp-selector [option][selected] {
   margin-left: 0
 }
 
-.commerce-cart-icon {
-  color: #f88
-}
-
-.commerce-cart-total {
-  border-top: 1px solid #f3f3f3;
-  border-bottom: 1px solid #f3f3f3
-}
-
-@media (min-width:52.06rem) {
-  .commerce-cart-item-price {
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between
-  }
-}
-
 .commerce-cart-added .ampstart-headerbar-icon-wrapper:after {
   content: "1";
   display: block;
@@ -2932,40 +2915,4 @@ amp-selector [option][selected] {
   to {
     opacity: 1
   }
-}
-
-.commerce-related-products {
-  border-top: 1px solid #f3f3f3
-}
-
-.commerce-related-products .amp-carousel-button {
-  background: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z"/><path d="M0-.5h24v24H0z" fill="none"/></svg>') 30px 30px transparent;
-  cursor: pointer;
-  height: 30px;
-  width: 30px;
-  top: 40%
-}
-
-.commerce-related-products .amp-carousel-button-next,.commerce-related-products .amp-carousel-button-prev {
-  display: initial
-}
-
-.commerce-related-products .amp-carousel-button-prev {
-  left: 0
-}
-
-.commerce-related-products .amp-carousel-button-next {
-  right: 0;
-  -webkit-transform: translateY(-50%) rotate(180deg);
-  transform: translateY(-50%) rotate(180deg)
-}
-
-.commerce-related-product {
-  width: 105px;
-  overflow: hidden;
-  text-overflow: ellipsis
-}
-
-.amp-mode-mouse .commerce-related-product:hover .commerce-related-product-name {
-  text-decoration: underline
 }
