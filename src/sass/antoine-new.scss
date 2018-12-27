@@ -1,5 +1,5 @@
-main {
-	margin-top: 2.5em;
+main.product-details {
+	padding-bottom: 0;
 }
 .title {
     line-height: normal;
@@ -166,6 +166,11 @@ main {
 	padding-bottom: .5rem;
 	margin: 0;
 }
+.info-content .related-products {
+	width: 100%;
+	padding: 0 2rem;
+}
+
 @media (min-width: 52.06rem) {
 	.details-content {
 		padding-bottom: 5rem;
@@ -239,5 +244,17 @@ main {
 	}
 	.product-size-guide h2 {
 		font-size: 1.38rem;
+	}
+}
+
+@media (max-width: 40rem) {
+	.info-content .related-products {
+	    display: block;
+	}
+}
+
+@media (max-width: 52rem) and (min-width: 40.06rem) {
+	.info-content .related-products {
+	    display: block;
 	}
 }
