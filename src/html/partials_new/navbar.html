@@ -1,19 +1,19 @@
 <!-- Start Navbar -->
-<header class="ampstart-headerbar fixed flex justify-start items-center top-0 left-0 right-0 pl2 pr4 pt2 md-pt0">
+<header class="header">
     <div role="button" aria-label="open sidebar" on="tap:header-sidebar.toggle" tabindex="0" class="ampstart-navbar-trigger  pr2 absolute top-0 pr0 mr2 mt2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="block">
             <path fill="none" d="M0 0h24v24H0z"></path>
             <path fill="currentColor" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
         </svg>
     </div>
-    <a href="/" class="text-decoration-none inline-block mx-auto ampstart-headerbar-home-link mb1 md-mb0 ">
+    <a href="/">
       <amp-img src="../../img/e-commerce/logo.png" width="120" height="37" layout="fixed" class="my0 mx-auto " alt=""></amp-img>
     </a>
-    <div class="ampstart-headerbar-fixed center m0 p0 flex justify-center nowrap absolute top-0 right-0 pt2 pr3">
-        <div class="mr2">
+    <div class="cart-icon-container">
+        <div>
         </div>
         <amp-pixel src="https://foo.com/pixel?cid=CLIENT_ID(cart)"></amp-pixel>
-        <a href="/cart-details?clientId=CLIENT_ID(cart)" data-amp-replace="CLIENT_ID" class="text-decoration-none mr2 ampstart-headerbar-fixed-link">
-          <div class="ampstart-headerbar-icon-wrapper relative">
+        <a href="/cart-details?clientId=CLIENT_ID(cart)" data-amp-replace="CLIENT_ID">
+          <div>
             <amp-img src="../../img/e-commerce/campmor_backpack.png" width="35" height="27"></amp-img>
         </div>
         </a>
