@@ -323,7 +323,7 @@
 }
 
 
-/*contact-us page*/
+/* contact-us page */
 .contact section {
 	padding: 1rem 1rem 2.5rem;
 }
@@ -387,4 +387,25 @@
 .contact label.title {
 	opacity: 1;
 	font-size: .94rem;
+}
+
+@media (min-width: 52.06rem) {
+	.contact section {
+		width: 50%;
+		padding: 2rem 2rem 5rem;
+	}
+}
+
+/* checkout page */
+
+.checkout section {
+    padding: 1rem 1rem 2.5rem;
+}
+.checkout h3,
+.checkout p {
+    margin-bottom: 1rem;
+}
+.checkout .code {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
 }
