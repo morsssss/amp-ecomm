@@ -6,7 +6,7 @@
     font-weight: 700;
     color: #000;
 }
-.commerce-cart-notification {
+.cart-notification {
   background-color: #fff;
   border: 1px solid #f3f3f3;
   box-shadow: 0 6px 12px -3px #222;
@@ -19,31 +19,31 @@
   width: 100%;
   margin: 0;
 }
-.commerce-cart-added .commerce-cart-notification {
+.cart-added .cart-notification {
   -webkit-animation: b 2.5s 0s;
   animation: b 2.5s 0s;
   pointer-events: auto;
 }
-.commerce-cart-item {
+.cart-item {
 	margin: 0;
 	padding: 1rem;
 }
-.commerce-cart-item div {
+.cart-item div {
 	width: 25%;
 }
-.commerce-cart-item .title {
+.cart-item .title {
 	font-size: 1rem;
 	margin-bottom: .5rem;
 }
-.commerce-cart-item .commerce-cart-item-desc {
+.cart-item .cart-item-desc {
 	width: 50%;
     padding-left: .5rem;
     padding-right: .5rem;
 }
-.commerce-cart-item .commerce-cart-item-desc div {
+.cart-item .cart-item-desc div {
 	width: auto;
 }
-.commerce-cart-item .commerce-cart-item-desc .title {
+.cart-item .cart-item-desc .title {
 	margin-bottom: .5rem;
 }
 .actions-container {
@@ -127,10 +127,10 @@
 .product-sizes .title {
 	font-size: 1rem;
 }
-.product-sizes .title.commerce-select {
+.product-sizes .title.select {
 	color: #666;
 }
-.commerce-product-btn-wrapper {
+.product-btn-wrapper {
 	text-align: center;
 	width: 100%;
 	margin-bottom: 2rem;
@@ -207,13 +207,13 @@
 }
 
 @media (min-width: 52.06rem) {
-	.commerce-cart-notification {
+	.cart-notification {
 		top: calc(5rem - 1rem);
 		width: auto;
 		margin:0 1rem;
 	}
 
-	.commerce-cart-notification:before {
+	.cart-notification:before {
 		background: #fff;
 		border-top: 1px solid #f3f3f3;
 		border-left: 1px solid #f3f3f3;
@@ -226,7 +226,7 @@
 		-webkit-transform: translate(-50%,-50%) rotate(45deg);
 		transform: translate(-50%,-50%) rotate(45deg)
 	}
-	.commerce-cart-item {
+	.cart-item {
 	    border-bottom: 1px solid #f3f3f3;
 	}
 	.actions-container a {
@@ -264,7 +264,7 @@
 	.product-sizes .title {
 		font-size: 0.94rem;
 	}
-	.commerce-product-btn-wrapper {
+	.product-btn-wrapper {
 		text-align: initial;
 	}
 	.info-content hr.section-divider {
@@ -311,7 +311,7 @@
 	.info-content .related-products {
 	    display: block;
 	}
-	.commerce-cart-item-desc {
+	.cart-item-desc {
 	    margin-top: 2rem;
 	}
 }
