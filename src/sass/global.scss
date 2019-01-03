@@ -51,14 +51,9 @@ a:active,a:hover {
   outline-width: 0
 }
 
-b,strong {
+b, strong {
   font-weight: inherit;
   font-weight: bolder
-}
-
-code,kbd,samp {
-  font-family: monospace,monospace;
-  font-size: 1em
 }
 
 small {
@@ -68,7 +63,6 @@ small {
 img {
   border-style: none
 }
-
 
 button,input,optgroup,select,textarea {
   font-family: sans-serif;
@@ -85,6 +79,10 @@ button,select {
   text-transform: none
 }
 
+textarea {
+  overflow: auto
+}
+
 [type=reset],[type=submit],button,html [type=button] {
   -webkit-appearance: button
 }
@@ -96,10 +94,6 @@ button,select {
 
 [type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring {
   outline: 1px dotted ButtonText
-}
-
-textarea {
-  overflow: auto
 }
 
 [type=checkbox],[type=radio] {
@@ -300,103 +294,16 @@ amp-selector [option][selected] {
   display: none
 }
 
-
-.ampstart-headerbar-title {
-  font-size: 1.38rem;
-  font-weight: 700;
-  line-height: normal;
-  color: #222
-}
-
-@media (min-width:52.06rem) {
-  .ampstart-headerbar-title {
-    font-size: 1.75rem
-  }
-}
-
-.ampstart-headerbar-home-link {
-  padding-bottom: 0
-}
-
-.ampstart-headerbar-icon-wrapper {
-  width: 25px
-}
-
-@media (min-width:52.06rem) {
-  .ampstart-headerbar-fixed {
-    top: .5rem
-  }
-}
-
-.ampstart-headerbar-fixed-link {
-  margin-right: 0
-}
-
 .icon-star,.icon-star-empty {
   height: 14px;
   width: 14px;
-  color: #f9ab00
+  color: #f9ab00;
 }
 
 .icon-star-empty {
-  color: #dadada
+  color: #dadada;
 }
 
-
-/* Animation stuff. What is this? */
-
-@-webkit-keyframes a {
-  0%,80%,to {
-    box-shadow: 0 1rem 0 -1rem
-  }
-
-  40% {
-    box-shadow: 0 1rem 0 0
-  }
-}
-
-@keyframes a {
-  0%,80%,to {
-    box-shadow: 0 1rem 0 -1rem
-  }
-
-  40% {
-    box-shadow: 0 1rem 0 0
-  }
-}
-
-@-webkit-keyframes b {
-  0%,to {
-    opacity: 0
-  }
-
-  10%,90% {
-    opacity: 1
-  }
-}
-
-@keyframes b {
-  0%,to {
-    opacity: 0
-  }
-
-  10%,90% {
-    opacity: 1
-  }
-}
-
-
-@-webkit-keyframes c {
-  to {
-    opacity: 1
-  }
-}
-
-@keyframes c {
-  to {
-    opacity: 1
-  }
-}
 
 /* "commerce-" things. Are they still needed? */
 .commerce-product-btn-wrapper {
