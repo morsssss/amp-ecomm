@@ -19,7 +19,7 @@ limitations under the License.
 
 <body>
     %%include('../partials_new/navbar.html')
-    <main id="content" role="main" class="main commerce-listing">
+    <main id="content" role="main" class="listing">
         <amp-state id="products">
             <script type="application/json">
             {
@@ -28,53 +28,53 @@ limitations under the License.
             }
             </script>
         </amp-state>
-        <amp-img class="commerce-listing-banner xs-hide sm-hide" src="../img/e-commerce/wide-listings-women.jpg" width="2560" height="400" layout="responsive" alt="Product listing" noloading="">
-            <div placeholder="" class="commerce-loader"></div>
+        <amp-img class="banner xs-hide sm-hide" src="../img/e-commerce/wide-listings-women.jpg" width="2560" height="400" layout="responsive" alt="Product listing" noloading="">
+            <div placeholder="" class="loading"></div>
         </amp-img>
-        <section class="commerce-listing-content mx-auto flex flex-wrap pb4">
-            <div class="col-3 xs-hide sm-hide flex flex-column">
-                <div class="commerce-side-panel pt4 pr4 self-center">
-                    <h2 class="h5 mb2">Categories</h2>
+        <section class="listing-content">
+            <div class="sidebar xs-hide sm-hide">
+                <div class="side-panel title">
+                    <h2>Categories</h2>
                         <amp-selector name="category" layout="container" on="select:AMP.setState({products:{category: event.targetOption}})" [selected]="products.category">
-                            <button type="button" style="background: none;box-shadow: none;border-radius: 0px;width:80px" class="" option="women-shirts" selected>Shirts</button>
-                            <button type="button" style="background: none;box-shadow: none;border-radius: 0px;width:80px" class="" option="women-shorts">Shorts</button>
+                            <button type="button" option="women-shirts" selected>Shirts</button>
+                            <button type="button" option="women-shorts">Shorts</button>
                         </amp-selector> 
                 </div>
             </div>
 
-            <div class="col-12 md-col-7 pt2 pb3 md-px4 md-pt1 md-pb7">
-                <div class="md-commerce-header relative md-flex flex-wrap items-center md-mx0 md-mb2">
-                    <h1 class="h3 mb2 md-mt2 md-mb2 md-ml0 flex-auto px2">Women's Clothing</h1>
-                    <div class="commerce-listing-filters pt2 pb2 mb3 md-mb0">
-                        <div class="commerce-select-wrapper inline-block md-mr1 pl2 md-hide lg-hide">
-                            <div class="commerce-select h6 md-h7">
-                                <label for="categories" class="bold caps h6 md-h7">Show:</label>
+            <div class="listing-container">
+                <div class="listing-header">
+                    <h1>Women's Clothing</h1>
+                    <div class="listing-filters">
+                        <div class="select-wrapper md-hide lg-hide">
+                            <div class="commerce-select title">
+                                <label for="categories">Show:</label>
                                 <amp-selector name="category" layout="container" on="select:AMP.setState({products:{category: event.targetOption}})" [selected]="products.category">
-                                    <button type="button" style="background: none;box-shadow: none;border-radius: 0px;width:80px" class="" option="women-shirts" selected>Shirts</button>
-                                    <button type="button" style="background: none;box-shadow: none;border-radius: 0px;width:80px" class="" option="women-shorts">Shorts</button>
+                                    <button type="button" option="women-shirts" selected>Shirts</button>
+                                    <button type="button" option="women-shorts">Shorts</button>
                                 </amp-selector> 
                             </div>
                         </div>
-                        <div class="commerce-select-wrapper inline-block md-mr1 pl2">
-                            <label for="price" class="bold caps h6 md-h7">Sort by:</label>
-                            <select name="price" id="price" class="commerce-select h6 md-h7" on="change: AMP.setState({products: {filter: event.value}})">
+                        <div class="select-wrapper title">
+                            <label for="price">Sort by:</label>
+                            <select name="price" id="price" on="change: AMP.setState({products: {filter: event.value}})">
                                 <option value="high-low">Price: High-Low</option>
                                 <option value="low-high">Price: Low-High</option>
                             </select>
                         </div>
                     </div>
                 </div>
-                <amp-list class="mx1 md-mxn1" [src]="'/api/categories?categoryId=' + products.category + '&sort=' + products.filter" src="/api/categories?categoryId=women-shirts&sort=high-low" height="1000" width="300" layout="responsive">
+                <amp-list [src]="'/api/categories?categoryId=' + products.category + '&sort=' + products.filter" src="/api/categories?categoryId=women-shirts&sort=high-low" height="1000" width="300" layout="responsive">
                     <template type="amp-mustache">
-                        <a href="product-details?productId={{productId}}" target="_self" class="commerce-listing-product text-decoration-none inline-block col-6 md-col-4 lg-col-3 px1 mb2 md-mb4 relative">
-                            <div class="flex flex-column justify-between">
+                        <a href="product-details?productId={{productId}}" target="_self" class="listing-product">
+                            <div>
                                 <div>
-                                    <amp-img class="commerce-listing-product-image mb2" src="{{image}}" width="340" height="340" layout="responsive" alt="{{ name }}" noloading="">
-                                        <div placeholder="" class="commerce-loader"></div>
+                                    <amp-img src="{{image}}" width="340" height="340" layout="responsive" alt="{{ name }}" noloading="">
+                                        <div placeholder="" class="loading"></div>
                                     </amp-img>
-                                    <h2 class="commerce-listing-product-name h6">{{ name }}</h2> {{ description }}
+                                    <h2>{{ name }}</h2> {{ description }}
                                 </div>
-                                <div class="h6 mt1">&#163;{{ price }}</div>
+                                <div class="title">&#163;{{ price }}</div>
                             </div>
                         </a>
                     </template>

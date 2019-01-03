@@ -1,19 +1,19 @@
 {{#isEmpty}}
-    <h1 class="h3 mb2 mx2 md-mx4 ">Your Basket is Empty</h1>
+    <h3>Your Basket is Empty</h3>
 {{/isEmpty}}
 {{^isEmpty}}
-    <h1 class="h3 mb2 mx2 md-mx4 ">Your Basket</h1>
+    <h3>Your Basket</h3>
         {{#cartItems}}
-        <div class="commerce-cart-item flex flex-wrap items-center m0 p2 ">
-            <div class="col-3 sm-col-2 md-col-2 lg-col-2">
-                <amp-img class="commerce-cart-item-image" src="{{imgUrl}}" width="1" height="1" layout="responsive" alt="{{mame}}" noloading="">
-                    <div placeholder="" class="commerce-loader"></div>
+        <div class="cart-product">
+            <div class="cart-image-container">
+                <amp-img src="{{imgUrl}}" width="1" height="1" layout="responsive" alt="{{mame}}" noloading="">
+                    <div placeholder="" class="loading"></div>
                 </amp-img>
             </div>
-            <div class="commerce-cart-item-desc px1 col-6 sm-col-7 md-col-7 lg-col-7">
-                <div class="h6 mb1">{{name}}</div>
+            <div class="cart-product-left">
+                <h6>{{name}}</h6>
             </div>
-            <div class="commerce-cart-item-price col-3 h6 flex flex-wrap justify-around items-start">
+            <div class="cart-product-right title">
                 <span>"{{size}}"</span>
                 <span>${{price}}</span>
                 <span>{{quantity}}</span>

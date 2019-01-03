@@ -26,13 +26,45 @@ limitations under the License.
         }
         </script>
     </amp-state>
-    <main id="content" role="main" class="main">
+    <main id="content" role="main" class="main product-details">
         <!--
-        <div class="commerce-cart-notification fixed col-12 right-0 mx0 md-mx2">
-            include('../partials_new/cart-items.html')
-            <div class="flex p2 mxn1 md-py3">
-                <a href="#" class="ampstart-btn ampstart-btn-secondary caps center col col-6 mx1">send</a>
-                <a href="checkout.html" class="ampstart-btn caps center col col-6 mx1">checkout</a>
+        <div class="commerce-cart-notification">
+            <h1 class="display-none">Your Basket</h1>
+            <div class="commerce-cart-item flex flex-wrap items-center">
+                <div>
+                    <amp-img class="commerce-cart-item-image" src="../../img/e-commerce/product/product-8.jpg" width="1" height="1" layout="responsive" alt="Caliper Brakes" noloading="">
+                        <div placeholder="" class="commerce-loader"></div>
+                    </amp-img>
+                </div>
+                <div class="commerce-cart-item-desc">
+                    <div class="title">Caliper Brakes</div>
+                    <div>Fits most wheel sizes and designed to last long.</div>
+                </div>
+                <div class="commerce-cart-item-price flex flex-wrap justify-around items-start title">
+                    <span>£349</span>
+                    <span>1</span>
+                    <div role="button" class="inline-block commerce-cart-icon" tabindex="0">✕</div>
+                </div>
+            </div>
+            <div class="commerce-cart-item flex flex-wrap items-center">
+                <div>
+                    <amp-img class="commerce-cart-item-image" src="../../img/e-commerce/product/product-1.jpg" width="1" height="1" layout="responsive" alt="Sprocket Set" noloading="">
+                        <div placeholder="" class="commerce-loader"></div>
+                    </amp-img>
+                </div>
+                <div class="commerce-cart-item-desc">
+                    <div class="title">Sprocket Set</div>
+                    <div>Steel, designed for long lasting stability.</div>
+                </div>
+                <div class="commerce-cart-item-price flex flex-wrap justify-around items-start title">
+                    <span>£470</span>
+                    <span>1</span>
+                    <div role="button" class="inline-block commerce-cart-icon" tabindex="0">✕</div>
+                </div>
+            </div>
+            <div class="flex actions-container">
+                <a href="#" class="cart-actions button button-white">send</a>
+                <a href="checkout.amp.html" class="cart-actions button button-black">checkout</a>
             </div>
         </div>
         -->
@@ -72,21 +104,21 @@ limitations under the License.
             }
             </script>
         </amp-state>
-        <section class="flex flex-wrap pb4 md-pb7">
-            <div class="col-12 md-col-6 px2 pt2 md-pl7 md-pt4">
-                <amp-carousel width="1280" height="720" layout="responsive" type="slides" [slide]="product.selectedSlide" on="slideChange: AMP.setState({product: {selectedSlide: event.index}})">                    
+        <section class="details-content flex flex-wrap">
+            <div class="carousel-content">
+                <amp-carousel width="1280" height="720" layout="responsive" type="slides" [slide]="product.selectedSlide" on="slideChange: AMP.setState({product: {selectedSlide: event.index}})">
                     <amp-img [src]="product[product.selectedColor].large.image1" src="{{& All_Colors.0.Photo}}" width="1280" height="720" layout="responsive" role="button" tabindex="0" alt="product image" noloading="">
                         <div placeholder="" class="commerce-loader"></div>
                     </amp-img>
                 </amp-carousel>
             </div>
-            <div class="col-12 md-col-6 flex flex-wrap content-start px2 md-pl5 md-pr7 md-pt4">
-                <div class="col-6 self-start pb2">
-                    <h1 class="h3 md-h2">{{Product_Title}}</h1>
-                    <div class="h4 md-h3" [text]="'$' + product[product.selectedColor].sizes[product.selectedSize]">${{DefaultPrice}}</div>
+            <div class="parameters-content flex flex-wrap">
+                <div class="product-description self-start">
+                    <h1>{{Product_Title}}</h1>
+                    <div class="title" [text]="'$' + product[product.selectedColor].sizes[product.selectedSize]">${{DefaultPrice}}</div>
                 </div>
-                <div class="col-6 self-start right-align">
-                    <h2 class="h7 block pb1">Reviews ({{ReviewCount}})</h2> {{#ReviewFullStars }}
+                <div class="product-rating self-start">
+                    <h2>Reviews ({{ReviewCount}})</h2> {{#ReviewFullStars }}
                     <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-star">
                         <path fill="currentColor" d="M12.6229508 19.2631579L20.4491803 24l-2.0827869-8.9052632 6.8795082-5.93684206L16.157377 8.4 12.6229508 0 9.0885246 8.4 0 9.15789474l6.8795082 5.99999996L4.7967213 24"></path>
                     </svg>
@@ -96,78 +128,75 @@ limitations under the License.
                     </svg>
                     {{/ReviewEmptyStars }}
                 </div>
-                <hr class="mb4" />
-
-                <form id="order" method="POST"
-                    action-xhr="/add-to-cart"
-                    target="_top" class="flex flex-wrap m1">
-                        <div class="col-6 self-start pb4">
-                            <span class="h6 md-h7 align-top pr2">color:</span>
-                            <amp-selector class="inline-block" name="color" layout="container" [selected]="product.selectedColor" on="select:AMP.setState({
+                <hr />
+                <form id="order" method="POST" action-xhr="/add-to-cart" target="_top" class="flex flex-wrap">
+                    <div class="product-colors self-start">
+                        <span class="title">color:</span>
+                        <amp-selector class="inline-block" name="color" layout="container" [selected]="product.selectedColor" on="select:AMP.setState({
                                       product: {
                                         selectedColor: event.targetOption,
                                         selectedSize: product[event.targetOption].sizes[product.selectedSize] != null ? product.selectedSize : product[event.targetOption].defaultSize
                                       }
                                     })">
-                                <ul class="m0 list-reset inline-block">
-                                    {{#All_Colors}}
-                                    <li class="inline-block mr1">
-                                        {{#defaultColour}}
-                                            <amp-img option="{{ColorName}}" selected="selected" src="{{& Swatch}}" height="16" width="27"></amp-img>
-                                        {{/defaultColour}}
-                                        {{^defaultColour}}
-                                            <amp-img option="{{ColorName}}" src="{{& Swatch}}" height="16" width="27"></amp-img>
-                                        {{/defaultColour}}
-                                    </li>
-                                    {{/All_Colors}}
-                                </ul>
+                            <ul class="list-reset inline-block">
+                                {{#All_Colors}}
+                                <li>
+                                    {{#defaultColour}}
+                                    <amp-img option="{{ColorName}}" selected="selected" src="{{& Swatch}}" height="16" width="27"></amp-img>
+                                    {{/defaultColour}}
+                                    {{^defaultColour}}
+                                    <amp-img option="{{ColorName}}" src="{{& Swatch}}" height="16" width="27"></amp-img>
+                                    {{/defaultColour}}
+                                </li>
+                                {{/All_Colors}}
+                            </ul>
+                        </amp-selector>
+                    </div>
+                    <div class="product-sizes self-start">
+                        <div class="commerce-select-wrapper inline-block  ">
+                            <label for="sizes" class="title">Select a size: </label>
+                            <amp-selector name="size" class="commerce-select title" layout="container" on="select:AMP.setState({ product: {selectedSize:event.targetOption}})" [selected]="(product[product.selectedColor].sizes[product.selectedSize] != null) ? product.selectedSize : product[product.selectedColor].defaultSize">
+                                {{#All_Colors.0.Avaliable_Sizes}}
+                                {{#available}}
+                                {{#default}}
+                                <button type="button" style="border: 0;background: none;box-shadow: none;border-radius: 0px;width:30px" option="{{SizeName}}" class="" [class]="(product[product.selectedColor].sizes['{{SizeName}}'] != null)? '' : 'unavailable'" selected>{{SizeName}}</button>
+                                {{/default}}
+                                {{^default}}
+                                <button type="button" style="border: 0;background: none;box-shadow: none;border-radius: 0px;width:30px" option="{{SizeName}}" option="{{SizeName}}" class="" [class]="(product[product.selectedColor].sizes['{{SizeName}}'] != null)? '' : 'unavailable'">{{SizeName}}</button>
+                                {{/default}}
+                                {{/available}}
+                                {{^available}}
+                                <button type="button" style="border: 0;background: none;box-shadow: none;border-radius: 0px;width:30px" option="{{SizeName}}" option="{{SizeName}}" class="unavailable" [class]="(product[product.selectedColor].sizes['{{SizeName}}'] != null)? '' : 'unavailable'">{{SizeName}}</button>
+                                {{/available}}
+                                {{/All_Colors.0.Avaliable_Sizes}}
                             </amp-selector>
                         </div>
-                        <div class="col-6 self-start pb4">
-                            <div class="commerce-select-wrapper inline-block  ">
-                                <label for="sizes" class="bold caps h6 md-h7">Select a size: </label><br/><br/>
-                                    <amp-selector name="size" layout="container" on="select:AMP.setState({ product: {selectedSize:event.targetOption}})" [selected]="(product[product.selectedColor].sizes[product.selectedSize] != null) ? product.selectedSize : product[product.selectedColor].defaultSize" >
-                                        {{#All_Colors.0.Avaliable_Sizes}}
-                                            {{#available}}
-                                                {{#default}}
-                                                    <button type="button" style="border: 0;background: none;box-shadow: none;border-radius: 0px;width:30px" option="{{SizeName}}" class="" [class]="(product[product.selectedColor].sizes['{{SizeName}}'] != null)? '' : 'unavailable'" selected>{{SizeName}}</button>
-                                                {{/default}}
-                                                {{^default}}
-                                                    <button type="button" style="border: 0;background: none;box-shadow: none;border-radius: 0px;width:30px" option="{{SizeName}}" option="{{SizeName}}" class="" [class]="(product[product.selectedColor].sizes['{{SizeName}}'] != null)? '' : 'unavailable'">{{SizeName}}</button>
-                                                {{/default}}
-                                            {{/available}}
-                                            {{^available}}
-                                                    <button type="button" style="border: 0;background: none;box-shadow: none;border-radius: 0px;width:30px" option="{{SizeName}}" option="{{SizeName}}" class="unavailable" [class]="(product[product.selectedColor].sizes['{{SizeName}}'] != null)? '' : 'unavailable'">{{SizeName}}</button>
-                                            {{/available}}    
-                                        {{/All_Colors.0.Avaliable_Sizes}}
-                                    </amp-selector>    
-                            </div>
-                        </div>
-                    <hr class="mb4" />
-                    <div class="col-12 self-start mb4 commerce-product-btn-wrapper">
+                    </div>
+                    <hr />
+                    <div class="commerce-product-btn-wrapper self-start">
                         <!--
                             <button class="ampstart-btn ampstart-btn-secondary caps" on="tap:AMP.setState({cart: {added: true}})">Add to cart</button>
                         -->
-                        <input type="submit" class="ampstart-btn ampstart-btn-secondary caps" name="add-to-cart" value="add to cart">
+                        <input type="submit" class="cart-actions button button-white" name="add-to-cart" value="add to cart">
                         <input type="hidden" name="productId" value="{{Main_Id}}">
                         <input type="hidden" name="name" value="{{Product_Title}}">
                         <input type="hidden" name="price" value="{{DefaultPrice}}" [value]="product[product.selectedColor].sizes[product.selectedSize]">
-                        <input type="hidden" name="imgUrl" value="{{& All_Colors.0.Photo}}" [value]="product[product.selectedColor].large.image1">  
+                        <input type="hidden" name="imgUrl" value="{{& All_Colors.0.Photo}}" [value]="product[product.selectedColor].large.image1">
                         <input type="hidden" name="clientId" value="CLIENT_ID(cart)" data-amp-replace="CLIENT_ID">
                     </div>
-                    <hr class="md-hide lg-hide" />
+                    <hr class="section-devider" />
                 </form>
             </div>
-            <div class="col-12 flex flex-wrap pb3">
-                <hr class="xs-hide sm-hide mt4" />
-                <div class="col-12 md-col-6 px2 md-pl7 commerce-product-desc">
-                    <section class="pt3 md-pt6 md-px4">
-                        <h2 class="h5 md-h4">Overview</h2>
-                        <p class="mt2 mb3">{{Description}}</p>
-                        <hr/>
+            <div class="info-content flex flex-wrap">
+                <hr class="section-divider" />
+                <div class="product-copy">
+                    <section>
+                        <h2>Overview</h2>
+                        <p>{{Description}}</p>
+                        <hr />
                     </section>
                 </div>
-                <div class="col-12 md-col-5 md-pr7 md-pl5">
+                <div class="product-size-guide">
                     <!--
                     <section class="pt3 pb3 md-pb4 px2 md-pt6">
                         <h2 class="h5 md-h4">Size Guide</h2>

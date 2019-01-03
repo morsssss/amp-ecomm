@@ -1,0 +1,63 @@
+/* TODO: resolve below */
+header {
+    top:0;
+}
+nav .social-icons {
+	padding-bottom: 0;
+}
+
+/* New styles */
+#order {
+    width: 100%;
+}
+.unavailable {
+    position: relative;
+    background: gray;
+    overflow: hidden;
+    opacity: .6;
+    pointer-events: none;
+    user-select: none
+}
+.unavailable:after,
+.unavailable:before {
+    position: absolute;
+    content: '';
+    background: grey;
+    display: block;
+    width: auto;
+    height: 1px;
+    min-width: 56px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    left: -11px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    border-bottom: 2px solid
+}
+.unavailable:after {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg)
+}
+.contact .checkout-field {
+    padding: 0;
+    font-size: 1rem;
+}
+.listing-container amp-list {
+    margin-top: .45rem;
+}
+.listing-content .side-panel button,
+.listing-content .commerce-select button {
+    background: none;
+    box-shadow: none;
+    border-radius: 0px;
+    width:80px;
+}
+.listing-filters label {
+    display: block;
+    margin-bottom: 0.45rem; 
+}
+.listing-product h2 {
+    font-size: 1rem;
+}
