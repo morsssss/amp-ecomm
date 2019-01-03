@@ -17,7 +17,7 @@ limitations under the License.
 <html ⚡ lang="en">
 %%include('../partials_new/head.html')
 
-<body [class]="cart.added ? 'commerce-cart-added' : ''">
+<body [class]="cart.added ? 'cart-added' : ''">
     %%include('../partials_new/navbar.html')
     <amp-state id="cart">
         <script type="application/json">
@@ -28,38 +28,38 @@ limitations under the License.
     </amp-state>
     <main id="content" role="main" class="main product-details">
         <!--
-        <div class="commerce-cart-notification">
+        <div class="cart-notification">
             <h1 class="display-none">Your Basket</h1>
-            <div class="commerce-cart-item flex flex-wrap items-center">
+            <div class="cart-item flex flex-wrap items-center">
                 <div>
-                    <amp-img class="commerce-cart-item-image" src="../../img/e-commerce/product/product-8.jpg" width="1" height="1" layout="responsive" alt="Caliper Brakes" noloading="">
-                        <div placeholder="" class="commerce-loader"></div>
+                    <amp-img class="cart-item-image" src="../../img/e-commerce/product/product-8.jpg" width="1" height="1" layout="responsive" alt="Caliper Brakes" noloading="">
+                        <div placeholder="" class="loading"></div>
                     </amp-img>
                 </div>
-                <div class="commerce-cart-item-desc">
+                <div class="cart-item-desc">
                     <div class="title">Caliper Brakes</div>
                     <div>Fits most wheel sizes and designed to last long.</div>
                 </div>
-                <div class="commerce-cart-item-price flex flex-wrap justify-around items-start title">
+                <div class="cart-item-price flex flex-wrap justify-around items-start title">
                     <span>£349</span>
                     <span>1</span>
-                    <div role="button" class="inline-block commerce-cart-icon" tabindex="0">✕</div>
+                    <div role="button" class="inline-block cart-icon" tabindex="0">✕</div>
                 </div>
             </div>
-            <div class="commerce-cart-item flex flex-wrap items-center">
+            <div class="cart-item flex flex-wrap items-center">
                 <div>
-                    <amp-img class="commerce-cart-item-image" src="../../img/e-commerce/product/product-1.jpg" width="1" height="1" layout="responsive" alt="Sprocket Set" noloading="">
-                        <div placeholder="" class="commerce-loader"></div>
+                    <amp-img class="cart-item-image" src="../../img/e-commerce/product/product-1.jpg" width="1" height="1" layout="responsive" alt="Sprocket Set" noloading="">
+                        <div placeholder="" class="loading"></div>
                     </amp-img>
                 </div>
-                <div class="commerce-cart-item-desc">
+                <div class="cart-item-desc">
                     <div class="title">Sprocket Set</div>
                     <div>Steel, designed for long lasting stability.</div>
                 </div>
-                <div class="commerce-cart-item-price flex flex-wrap justify-around items-start title">
+                <div class="cart-item-price flex flex-wrap justify-around items-start title">
                     <span>£470</span>
                     <span>1</span>
-                    <div role="button" class="inline-block commerce-cart-icon" tabindex="0">✕</div>
+                    <div role="button" class="inline-block cart-icon" tabindex="0">✕</div>
                 </div>
             </div>
             <div class="flex actions-container">
@@ -108,7 +108,7 @@ limitations under the License.
             <div class="carousel-content">
                 <amp-carousel width="1280" height="720" layout="responsive" type="slides" [slide]="product.selectedSlide" on="slideChange: AMP.setState({product: {selectedSlide: event.index}})">
                     <amp-img [src]="product[product.selectedColor].large.image1" src="{{& All_Colors.0.Photo}}" width="1280" height="720" layout="responsive" role="button" tabindex="0" alt="product image" noloading="">
-                        <div placeholder="" class="commerce-loader"></div>
+                        <div placeholder="" class="loading"></div>
                     </amp-img>
                 </amp-carousel>
             </div>
@@ -153,9 +153,9 @@ limitations under the License.
                         </amp-selector>
                     </div>
                     <div class="product-sizes self-start">
-                        <div class="commerce-select-wrapper inline-block  ">
+                        <div class="select-wrapper inline-block  ">
                             <label for="sizes" class="title">Select a size: </label>
-                            <amp-selector name="size" class="commerce-select title" layout="container" on="select:AMP.setState({ product: {selectedSize:event.targetOption}})" [selected]="(product[product.selectedColor].sizes[product.selectedSize] != null) ? product.selectedSize : product[product.selectedColor].defaultSize">
+                            <amp-selector name="size" class="select title" layout="container" on="select:AMP.setState({ product: {selectedSize:event.targetOption}})" [selected]="(product[product.selectedColor].sizes[product.selectedSize] != null) ? product.selectedSize : product[product.selectedColor].defaultSize">
                                 {{#All_Colors.0.Avaliable_Sizes}}
                                 {{#available}}
                                 {{#default}}
@@ -173,7 +173,7 @@ limitations under the License.
                         </div>
                     </div>
                     <hr />
-                    <div class="commerce-product-btn-wrapper self-start">
+                    <div class="product-btn-wrapper self-start">
                         <!--
                             <button class="ampstart-btn ampstart-btn-secondary caps" on="tap:AMP.setState({cart: {added: true}})">Add to cart</button>
                         -->
@@ -201,8 +201,8 @@ limitations under the License.
                     <section class="pt3 pb3 md-pb4 px2 md-pt6">
                         <h2 class="h5 md-h4">Size Guide</h2>
                         <div class="mt2">
-                            <table class="commerce-table center">
-                                <thead class="commerce-table-header h7">
+                            <table class="table center">
+                                <thead class="table-header h7">
                                     <tr>
                                         <th>Rider Height</th>
                                         <th colspan="2">Suggested Size</th>
