@@ -440,7 +440,6 @@ main {
   left: 0;
   right: 0;
   align-items: center;
-  box-shadow: 0 0 5px 2px rgba(0,0,0,.1);
   border-bottom: 1px solid #f3f3f3;
 }
 
@@ -467,12 +466,20 @@ main {
   margin: 0 auto;
 }
 
+.burger {
+    position: absolute;
+    top: 0;
+    padding-right: 1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+}
+
 .cart-icon-container {
   position: absolute;
   display: flex;
   top: 0;
   right: 0;
-  padding: 1rem 1.5rem 0 0;
+  padding: 0.8rem 1.5rem 0 0;
 }
 
 .cart-icon-container div {
