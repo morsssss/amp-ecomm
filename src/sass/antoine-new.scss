@@ -327,14 +327,17 @@
 .contact section {
 	padding: 1rem 1rem 2.5rem;
 }
+
 .contact h1 {
 	font-size: 1.75rem;
 	margin-bottom: 1rem;
 }
+
 .contact p {
 	margin-bottom: 1rem;
 }
-.contact .ampstart-input {
+
+.contact .input-container {
 	display: inline-block;
 	position: relative;
 	padding: 0;
@@ -344,6 +347,7 @@
 	margin-top: 1.5rem;
 	margin-bottom: 2.5rem;
 }
+
 .contact input {
 	margin-top: 1.5rem;
 	border-bottom-width: 100%;
@@ -356,6 +360,7 @@
     outline: 0;
     color: #000;
 }
+
 .contact label {
 	position: absolute;
 	left: 0;
@@ -372,18 +377,11 @@
     animation-timing-function: cubic-bezier(.4,0,.2,1);
     animation-fill-mode: forwards;
 }
+
 .contact textarea {
-    border-bottom: 1px dashed #f3f3f3;
-    color: #222;
-    width: 100%;
-    margin-top: 1rem;
-    line-height: 1.5rem;
-    border: 0;
-    border-radius: 0;
-    background: none;
-    outline: 0;
-    padding: 0;
+    padding: 0 2px;
 }
+
 .contact label.title {
 	opacity: 1;
 	font-size: .94rem;
