@@ -306,6 +306,18 @@ amp-selector [option][selected] {
   color: #dadada;
 }
 
+@-webkit-keyframes c {
+  to {
+    opacity: 1
+  }
+}
+
+@keyframes c {
+  to {
+    opacity: 1
+  }
+}
+
 
 /* "commerce-" things. Are they still needed? */
 .commerce-product-btn-wrapper {
