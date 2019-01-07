@@ -421,7 +421,8 @@
 	align-items: flex-start;
 	flex-wrap: wrap;
 }
-.blog section {
+.blog section,
+.blog > article {
 	padding: 1rem 1rem 1.5rem;
 }
 .blog h1,
@@ -444,6 +445,9 @@
 }
 .blog article div {
 	margin-bottom: 1.5rem;
+}
+.blog > article div {
+	margin-bottom: 0;
 }
 .blog aside {
 	position: sticky;
@@ -482,6 +486,26 @@
 	display: inline-block;
     margin-left: -.5rem;
     padding: .5rem;
+}
+.blog .button {
+	text-decoration: none;
+    margin-top: 2rem;
+}
+.blog blockquote {
+	font-size: 2.2rem;
+    margin: 1.5rem 0 1rem;
+    line-height: 1.2;
+    border-left: none;
+    padding-left: 0;
+}
+.blog .quote-author {
+    font-family: Open Sans Condensed,sans-serif;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+	font-weight: 700;
+}
+.blog .article-space {
+	margin-bottom: 2.5rem;
 }
 
 @media (min-width: 52.06rem) {
