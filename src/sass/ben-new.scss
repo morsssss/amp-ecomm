@@ -980,7 +980,17 @@ amp-sidebar .faq li {
   padding: 1rem 0 1rem 1rem;
 }
 
-.listing-filters .select-wrapper {
+.listing-filters amp-selector button,
+.listing-content .side-panel button {
+  color: #666;
+}
+
+.listing-filters amp-selector button[selected],
+.listing-content .side-panel button[selected] {
+  color: #000;
+}
+
+.select-wrapper {
   display: inline-block;
 }
 
