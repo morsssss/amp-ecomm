@@ -336,6 +336,12 @@
 	width: 100%;
 	margin-bottom: 2rem;
 }
+.product-details amp-selector {
+	margin-top: .5rem;
+}
+.product-details amp-selector[name=size] {
+	font-size: .94rem;
+}
 
 
 /* contact-us page */
