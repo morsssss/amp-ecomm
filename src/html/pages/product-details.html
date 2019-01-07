@@ -4,7 +4,7 @@
 <head>
     %%include('../partials/head.html')
 </head>
-<body [class]="cart.added ? 'commerce-cart-added' : ''">
+<body [class]="cart.added ? 'cart-added' : ''">
     %%include('../partials/header.html')
     %%include('../partials/menu.html')
     <amp-state id="cart">
@@ -96,7 +96,7 @@
             <div class="carousel-content">
                 <amp-carousel width="1280" height="720" layout="responsive" type="slides" [slide]="product.selectedSlide" on="slideChange: AMP.setState({product: {selectedSlide: event.index}})">
                     <amp-img [src]="product[product.selectedColor].large.image1" src="{{& All_Colors.0.Photo}}" width="1280" height="720" layout="responsive" role="button" tabindex="0" alt="product image" noloading="">
-                        <div placeholder="" class="commerce-loader"></div>
+                        <div placeholder="" class="loading"></div>
                     </amp-img>
                 </amp-carousel>
             </div>
@@ -120,13 +120,13 @@
                 <form id="order" method="POST" action-xhr="/add-to-cart" target="_top" class="flex flex-wrap">
                     <div class="product-colors self-start">
                         <span class="title">color:</span>
-                        <amp-selector class="inline-block" name="color" layout="container" [selected]="product.selectedColor" on="select:AMP.setState({
+                        <amp-selector name="color" layout="container" [selected]="product.selectedColor" on="select:AMP.setState({
                                       product: {
                                         selectedColor: event.targetOption,
                                         selectedSize: product[event.targetOption].sizes[product.selectedSize] != null ? product.selectedSize : product[event.targetOption].defaultSize
                                       }
                                     })">
-                            <ul class="list-reset inline-block">
+                            <ul">
                                 {{#All_Colors}}
                                 <li>
                                     {{#defaultColour}}
@@ -140,10 +140,10 @@
                             </ul>
                         </amp-selector>
                     </div>
-                    <div class="product-sizes self-start">
-                        <div class="commerce-select-wrapper inline-block  ">
+                    <div class="product-sizes">
+                        <div class="select-container">
                             <label for="sizes" class="title">Select a size: </label>
-                            <amp-selector name="size" class="commerce-select title" layout="container" on="select:AMP.setState({ product: {selectedSize:event.targetOption}})" [selected]="(product[product.selectedColor].sizes[product.selectedSize] != null) ? product.selectedSize : product[product.selectedColor].defaultSize">
+                            <amp-selector name="size" class="title" layout="container" on="select:AMP.setState({ product: {selectedSize:event.targetOption}})" [selected]="(product[product.selectedColor].sizes[product.selectedSize] != null) ? product.selectedSize : product[product.selectedColor].defaultSize">
                                 {{#All_Colors.0.Avaliable_Sizes}}
                                 {{#available}}
                                 {{#default}}
@@ -161,7 +161,7 @@
                         </div>
                     </div>
                     <hr />
-                    <div class="commerce-product-btn-wrapper self-start">
+                    <div class="button-wrapper">
                         <!--
                             <button class="ampstart-btn ampstart-btn-secondary caps" on="tap:AMP.setState({cart: {added: true}})">Add to cart</button>
                         -->

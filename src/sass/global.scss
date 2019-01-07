@@ -261,6 +261,10 @@ h1,h2,h3,h4,h5,h6 {
   flex-direction: column;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .rounded {
   border-radius: 3px
 }
@@ -279,6 +283,13 @@ a,a:active,a:visited {
 }
 */
 
+amp-selector {
+  appearance: none;
+  border: none;
+  border-radius: 0;
+  background: none;
+  color: #666
+}
 
 amp-selector [option] {
   outline: 1px solid #f3f3f3
@@ -379,7 +390,7 @@ amp-selector [option][selected] {
   margin-left: -.5rem
 }
 
-.commerce-cart-added .ampstart-headerbar-icon-wrapper:after {
+.cart-added .ampstart-headerbar-icon-wrapper:after {
   content: "1";
   display: block;
   width: 17px;
