@@ -379,12 +379,17 @@
 }
 
 .contact textarea {
-    padding: 0 2px;
+    padding: 0;
+	display: block;
 }
 
 .contact label.title {
 	opacity: 1;
 	font-size: .94rem;
+}
+
+.contact label.title:after {
+	content: none;
 }
 
 @media (min-width: 52.06rem) {
