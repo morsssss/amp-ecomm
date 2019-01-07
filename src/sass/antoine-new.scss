@@ -62,23 +62,26 @@
 .details-content {
 	padding-bottom: 2rem;
 }
-.carousel-content {
+
+.product-carousel {
 	width: 100%;
     padding: 1rem 1rem 0 1rem;
+    margin-bottom: 2rem;
 }
 
-.carousel-content amp-selector ul {
+.product-carousel amp-selector ul {
 	display: inline-block;
 	margin: 1em 0;
 }
-.carousel-content amp-selector li:first-child {
+.product-carousel amp-selector li:first-child {
 	margin-left: 0;
 }
-.carousel-content amp-selector li {
+.product-carousel amp-selector li {
 	display: inline-block;
 	margin-left: .5rem;
 	width: 43px;
 }
+
 .parameters-content {
 	padding-right: 1rem;
 	padding-left: 1rem;
@@ -237,13 +240,16 @@
 	.details-content {
 		padding-bottom: 5rem;
 	}
-	.carousel-content {
+
+	.product-carousel {
 		width: 50%;
 		padding: 2rem 0 0 5rem;
 	}
-	.carousel-content amp-selector li {
+
+	.product-carousel amp-selector li {
 		width: 80px;
 	}
+
 	.parameters-content {
 		width: 50%;
 		padding-top: 2rem;
