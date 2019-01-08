@@ -64,6 +64,7 @@ class ApiManager {
         this.enhanceProductRatings(productObj);
         this.enhanceProductColors(productObj);
         this.enhanceProductSizes(productObj);
+        this.enhanceProductQuantity(productObj);
 
         return productObj;
     }
@@ -125,6 +126,11 @@ class ApiManager {
         }
     }
 
+    //If the stock of the default color is "1", don't allow the user to change the quantity on the selector.
+    enhanceProductQuantity(productObj) {
+        productObj.DefaultQuantityDisabled = (productObj.All_Colors[0].Stock == 1);
+    }
+
     createCartItem(productId, name, price, color, size, imgUrl, quantity) {
         let cartProduct = new Object();
         cartProduct.productId = productId;
@@ -133,10 +139,7 @@ class ApiManager {
         cartProduct.color = color;
         cartProduct.size = size;
         cartProduct.imgUrl = imgUrl;
-        cartProduct.quantity = quantity;
-
-        //replace
-        cartProduct.quantity = 1;
+        cartProduct.quantity = parseInt(quantity);
 
         return cartProduct;
     }
@@ -158,7 +161,7 @@ class ApiManager {
                 });
 
                 if(foundItem.length > 0) {
-                    foundItem[0].quantity += 1;
+                    foundItem[0].quantity += item.quantity;
                 } else {
                     this.cartItems.push(item);    
                 }

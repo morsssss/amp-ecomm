@@ -63,7 +63,7 @@ app.post('/add-to-cart', function(req, res) {
     let size = req.fields.size;
     let imgUrl = req.fields.imgUrl;
     let origin = req.get('origin');
-    let quantity = 1;
+    let quantity = req.fields.quantity;
 
     let cartProduct = apiManager.createCartItem(productId, name, price, color, size, imgUrl, quantity);
     let shoppingCart = memCache.get(clientId);

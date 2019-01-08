@@ -61,6 +61,7 @@
             {
                 "selectedColor": "{{DefaultColor}}",
                 "selectedSize": "{{DefaultSize}}",
+                "selectedQuantity": 1,
                 {{#All_Colors}}
                     "{{ColorName}}": {
                         "sizes" : {
@@ -75,6 +76,7 @@
                                 {{/available}}
                             {{/Avaliable_Sizes}}
                         },
+                        "stock" : "{{Stock}}",
                         "defaultSize" : "{{DefaultSize}}",
                         "thumb": {
                             "image1": "{{& Photo}}",
@@ -123,7 +125,8 @@
                         <amp-selector name="color" layout="container" [selected]="product.selectedColor" on="select:AMP.setState({
                                       product: {
                                         selectedColor: event.targetOption,
-                                        selectedSize: product[event.targetOption].sizes[product.selectedSize] != null ? product.selectedSize : product[event.targetOption].defaultSize
+                                        selectedSize: product[event.targetOption].sizes[product.selectedSize] != null ? product.selectedSize : product[event.targetOption].defaultSize,
+                                        selectedQuantity: 1
                                       }
                                     })">
                             <ul>
@@ -161,10 +164,25 @@
                         </div>
                     </div>
                     <hr />
+                    <div class="product-colors self-start">
+                        <div>    
+                            <span class="title">Quantity:</span>
+                            <div>
+                                <button type="button" style="background: none;box-shadow: none;border-radius: 0px;width:30px" [disabled]="product.selectedQuantity == 1" disabled on="tap:AMP.setState({ product: {selectedQuantity : product.selectedQuantity - 1} })">-</button>
+                                <input type="text" class="title" style="text-align:center;width:20px" value="1" name="quantity" width="5" height="1" [value]="product.selectedQuantity" readonly>
+                                {{#DefaultQuantityDisabled}}
+                                    <button type="button" style="background: none;box-shadow: none;border-radius: 0px;width:30px" [disabled]="product[product.selectedColor].stock == product.selectedQuantity" disabled on="tap:AMP.setState({ product: {selectedQuantity : (product.selectedQuantity + 1) } })">+</button>
+                                {{/DefaultQuantityDisabled}}
+                                {{^DefaultQuantityDisabled}}
+                                    <button type="button" style="background: none;box-shadow: none;border-radius: 0px;width:30px" [disabled]="product[product.selectedColor].stock == product.selectedQuantity" on="tap:AMP.setState({ product: {selectedQuantity : (product.selectedQuantity + 1) } })">+</button>
+                                {{/DefaultQuantityDisabled}}
+                                <br>
+                                <p [text]="'(' + product[product.selectedColor].stock + ' Available)'"> ({{All_Colors.0.Stock}} Available)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
                     <div class="button-wrapper">
-                        <!--
-                            <button class="ampstart-btn ampstart-btn-secondary caps" on="tap:AMP.setState({cart: {added: true}})">Add to cart</button>
-                        -->
                         <input type="submit" class="cart-actions button button-white" name="add-to-cart" value="add to cart">
                         <input type="hidden" name="productId" value="{{Main_Id}}">
                         <input type="hidden" name="name" value="{{Product_Title}}">
