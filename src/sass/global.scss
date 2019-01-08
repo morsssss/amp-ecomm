@@ -333,67 +333,6 @@ amp-selector [option][selected] {
   }
 }
 
-
-/* "commerce-" things. Are they still needed? */
-.commerce-product-btn-wrapper {
-  text-align: center
-}
-
-@media (min-width:52.06rem) {
-  .commerce-product-btn-wrapper {
-    text-align: initial
-  }
-}
-
-.commerce-product-color-swatch {
-  height: 24px;
-  width: 24px;
-  margin-left: .5rem
-}
-
-.commerce-product-color-swatch:first-child {
-  margin-left: 0
-}
-
-.commerce-product-color-blue {
-  background-color: #1d4cdf
-}
-
-.commerce-product-color-black {
-  background-color: #000
-}
-
-.commerce-product-thumb {
-  width: 43px;
-  margin-left: .5rem
-}
-
-.commerce-product-thumb:first-child {
-  margin-left: 0
-}
-
-@media (min-width:52.06rem) {
-  .commerce-product-thumb {
-    width: 80px
-  }
-
-  .commerce-product-desc {
-    margin-right: 8.33333%
-  }
-}
-
-.commerce-blog-wrapper {
-  background-color: #fff
-}
-
-.commerce-blog-wrapper p {
-  line-height: 1.6
-}
-
-.commerce-blog-sidebar .ampstart-social-follow li:first-child a {
-  margin-left: -.5rem
-}
-
 .cart-added .ampstart-headerbar-icon-wrapper:after {
   content: "1";
   display: block;
