@@ -969,7 +969,7 @@ amp-sidebar .faq li {
 }
 
 .listing-filters {
-  padding: 1rem 0 1rem 1rem;
+  padding: 1rem;
 }
 
 .listing-filters amp-selector button,
@@ -985,6 +985,9 @@ amp-sidebar .faq li {
 .select-wrapper {
   display: inline-block;
 }
+.listing .select-wrapper {
+  width: 49.5%;
+}
 
 .listing-filters select {
   color: #666;
@@ -997,6 +1000,8 @@ amp-sidebar .faq li {
   margin: 0 auto;
   padding-bottom: 2rem;
 }
+
+
 
 /* Changed .listing .sidebar to .sidebar to let .xs-hide and .sm-hide override display style. */
 .sidebar {
@@ -1452,6 +1457,10 @@ footer .ampstart-social-follow {
   .listing .side-panel h2 {
     font-size: 1.125rem;
     margin-bottom: 1rem;
+  }
+
+  .listing .select-wrapper {
+    width: auto;
   }
 
   .listing-container {
