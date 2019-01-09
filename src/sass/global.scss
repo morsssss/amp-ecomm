@@ -766,6 +766,19 @@ amp-selector [option][selected] {
 }
 
 
+/* Titles */
+.title,
+.title select,
+.title button {
+    line-height: normal;
+    letter-spacing: normal;
+    font-family: Open Sans Condensed,sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #000;
+}
+
+
 /* Media queries */
 
 @media (min-width:52.06rem) {
