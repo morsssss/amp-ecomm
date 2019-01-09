@@ -764,3 +764,46 @@ amp-selector [option][selected] {
   opacity: 0;
   animation: c .5s forwards
 }
+
+
+/* Media queries */
+
+@media (min-width:52.06rem) {
+ main {
+    min-height: calc(100vh - 181px - 5rem);
+  }
+
+  hr {
+    width: 100%;
+    margin: 0;
+  }  
+}
+
+
+/* Hide things! 
+ * Note: these should appear last in the file so they can overwrite other display properties. 
+ */
+
+@media (max-width:40rem) {
+  .xs-hide {
+    display: none;
+  }
+}
+
+@media (min-width:40.06rem) and (max-width:52rem) {
+  .sm-hide {
+    display: none;
+  }
+}
+
+@media (min-width:52.06rem) and (max-width:64rem) {
+  .md-hide {
+    display: none;
+  }
+}
+
+@media (min-width:64.06rem) {
+  .lg-hide {
+    display: none;
+  }
+}

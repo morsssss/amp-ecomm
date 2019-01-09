@@ -82,3 +82,29 @@
   cursor: pointer;
   text-decoration: none
 }
+
+
+@media (min-width:52.06rem) {
+  .header+:not(amp-sidebar), .header+amp-sidebar+*, main {
+    margin-top: 5rem
+  }
+
+  .header {
+    height: 5rem;
+    border-bottom-color: #f3f3f3
+  }
+
+  .header .menu-open-button {
+    margin-left: .5rem;
+    top: .5rem
+  }
+
+  .burger {
+    margin-left: .5rem;
+    top: .5rem;
+  }
+
+  .cart-icon-container {
+    top: .5rem;
+  }
+}
