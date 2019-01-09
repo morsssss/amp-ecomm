@@ -1,0 +1,84 @@
+.header {
+  display: flex;
+  position: fixed;
+  background-color: #fff;
+  color: #000;
+  height: 3.5rem;
+  z-index: 999;
+  padding: 0 1rem;
+  left: 0;
+  right: 0;
+  align-items: center;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.header+:not(amp-sidebar),.header+amp-sidebar+* {
+  margin-top: 3.5rem
+}
+
+.header .ampstart-.menu-search:active,.header .ampstart-.menu-search:focus,.header .ampstart-.menu-search:hover {
+  box-shadow: none
+}
+
+.header .ampstart-.menu-search:active,.header .ampstart-.menu-search:focus,.header .ampstart-.menu-search:hover {
+  box-shadow: none
+}
+
+.header a {
+  padding-bottom: 0;
+  margin: 0 auto;
+}
+
+.header amp-img {
+  margin: 0 auto;
+}
+
+.burger {
+    position: absolute;
+    top: 0;
+    padding-right: 1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+}
+
+.cart-icon-container {
+  position: absolute;
+  display: flex;
+  top: 0;
+  right: 0;
+  padding: 0.8rem 1.5rem 0 0;
+}
+
+.cart-icon-container div {
+  width: 25px;
+}
+
+/* menu button */
+
+.menu-open-button {
+  position: absolute;
+  top: 0;
+  margin: 1rem 1rem 0 0;
+  line-height: 3.5rem;
+  font-size: 2.2rem;
+  color: #222;
+  font-size: 1.38rem;
+  padding-right: 0
+}
+
+.menu-open-button:focus {
+  outline: 5px auto -webkit-focus-ring-color
+}
+
+.menu-open-button:focus {
+  outline: none;
+}
+
+.menu-open-button svg {
+  pointer-events: none;
+}
+
+.menu a,.menu-open-button, amp-sidebar-faq a {
+  cursor: pointer;
+  text-decoration: none
+}
