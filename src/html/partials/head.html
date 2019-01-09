@@ -15,7 +15,11 @@
 
 <style amp-custom>
 %%include('../../css/global.css')
+%%include('../../css/header.css')
 %%include('../../css/antoine-new.css')
 %%include('../../css/ben-new.css')
 %%include('../../css/merge-new.css')
+%%if (context.pageType == 'blog') {
+  %%include('../../css/blog.css')
+}
 </style>
