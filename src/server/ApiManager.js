@@ -40,7 +40,7 @@ class ApiManager {
             let originalProd = prod.Value;
             let parsedProd = new Object();
             parsedProd.productId = originalProd.Main_Id;
-            parsedProd.name = originalProd.Product_Title;
+            parsedProd.name = originalProd.Product_Title.replace(/ - Women's| - Men's/g,'');
             parsedProd.description = originalProd.Product_Title; /* Missing field on Campmor API */
             parsedProd.price = originalProd.Price;
             parsedProd.image = originalProd.Photo;
