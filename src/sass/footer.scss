@@ -1,0 +1,92 @@
+footer {
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+}
+
+footer h3 {
+  padding-top: 0
+}
+
+.amp-mode-mouse footer a:hover {
+  text-decoration: underline
+}
+
+footer h3 {
+  color: #fff;
+}
+
+footer hr {
+  width: 100%;
+  background-color: #4a4a4a;
+}
+
+footer nav {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+footer nav h2 {
+  color: #fff;
+  font-size: .94rem;
+  padding-bottom: 1rem;
+}
+
+footer .ampstart-icon {
+  fill: #6a6a6a
+}
+
+footer .ampstart-social-follow {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+.footer-main {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  width: 100%;
+  padding-top: 1.5rem;
+}
+
+.footer-section.social-section {
+  padding: 2rem 0 1.5rem;
+}
+
+.footer-section h2 {
+  font-size: .94rem;
+  font-weight: 700;
+  padding-bottom: 1rem;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.footer-section ul {
+  padding-bottom: 1.5rem;
+}
+
+.footer-section.social-section h2 {
+  padding-bottom: 0;
+}
+
+.social-icons {
+  display: inline-block;
+  margin: 0;
+}
+
+.social-icons li {
+  display: inline-block;
+}
+
+.social-icons li a {
+  display: inline-block;
+  padding: .5rem;
+}
+
+.footer-logo {
+  flex: 1 1 auto;
+  text-align: right;
+  padding-right: 20px;
+}
