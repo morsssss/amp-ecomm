@@ -90,3 +90,26 @@ footer .ampstart-social-follow {
   text-align: right;
   padding-right: 20px;
 }
+
+@media (min-width:52.06rem) {
+  footer {
+    text-align: initial;
+  }
+
+  footer nav {
+    padding: 2.5rem 0;
+  }
+
+  .footer-section {
+    width: 25%;
+    padding: 0 2rem;
+  }
+
+  .footer-section.social-section {
+    padding: 0 0 1.5rem;
+  }
+
+  .footer-section.social-section li:first-child a {
+    padding-left: 0;
+  }
+}

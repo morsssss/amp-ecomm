@@ -131,106 +131,6 @@
 }
 
 
-/* Product listings page */
-
-.listing .banner {
-  width: 100%;
-}
-
-.checkout-steps, .listing-filters {
-  border-top: 1px solid #f3f3f3;
-  border-bottom: 1px solid #f3f3f3;
-}
-
-.listing-filters {
-  padding: 1rem;
-}
-
-.listing-filters amp-selector button,
-.listing-content .side-panel button {
-  color: #666;
-}
-
-.listing-filters amp-selector button[selected],
-.listing-content .side-panel button[selected] {
-  color: #000;
-}
-
-.select-wrapper {
-  display: inline-block;
-}
-.listing .select-wrapper {
-  width: 49.5%;
-}
-
-.listing-filters select {
-  color: #666;
-}
-
-.listing-content {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding-bottom: 2rem;
-}
-
-
-
-/* Changed .listing .sidebar to .sidebar to let .xs-hide and .sm-hide override display style. */
-.sidebar {
-  width: 25%;
-  display: flex;
-  flex-direction: column;
-}
-
-.listing-container {
-  width: 100%;
-  padding: 1rem 0 1.5rem;
-}
-
-.listing-header {
-  position: relative;
-  align-items: center;
-}
-
-.listing-header h1 {
-  flex: 1 1 auto;
-  font-size: 1.75rem;
-  padding: 0 1rem;
-  margin: 0 0 1rem;
-}
-
-.listing amp-list {
-  margin: 0 .5rem;
-}
-
-.listing-product {
-  position: relative;
-  display: inline-block;
-  min-height: 275px;
-  width: 50%;
-  padding: 0 .5rem;
-  margin-bottom: 1rem;
-}
-
-.listing-product>div {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  min-height: 275px;
-}
-
-.listing amp-list amp-img {
-  margin: 2.5rem 0 1rem;
-}
-/* doesn't seem to work on the original site either
-.amp-mode-mouse .listing-product:hover>.listing-product-name {
-  text-decoration: underline
-}
-*/
-
 /* Cart page */
 
 .cart {
@@ -363,11 +263,6 @@
 }
 
 @media (min-width:52.06rem) {
-  .side-panel {
-    position: sticky;
-    top: 5rem
-  }
-
   .hero-wrapper {
     position: relative;
     text-align: left;
@@ -425,72 +320,6 @@
   .amp-mode-mouse .hero-content-theme-secondary .button:hover {
     background-color: #fff;
     color: #222
-  }
-
-  .listing .side-panel {
-    position: sticky;
-    align-self: center;
-    padding: 2rem 2rem 0 0;
-  }
-
-  .listing .side-panel h2 {
-    font-size: 1.125rem;
-    margin-bottom: 1rem;
-  }
-
-  .listing .select-wrapper {
-    width: auto;
-  }
-
-  .listing-container {
-    padding: .5rem 2rem 5rem;
-    width: 58.33333%;
-  }
-
-  .listing-header {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 1.5rem 0 1rem;
-    border-top: 1px solid #f3f3f3;
-    border-bottom: 1px solid #f3f3f3;
-  }
-
-  .listing-header h1 {
-    margin-top: 1rem;
-  }
-
-  .listing amp-list {
-    margin: 0 -.5rem;
-  }
-
-  .listing-product {
-    width: 25%;
-    margin-bottom: 2rem;
-  }
-
-  .listing-filters {
-    border: none;
-  }
-
-  footer {
-    text-align: initial;
-  }
-
-  footer nav {
-    padding: 2.5rem 0;
-  }
-
-  .footer-section {
-    width: 25%;
-    padding: 0 2rem;
-  }
-
-  .footer-section.social-section {
-    padding: 0 0 1.5rem;
-  }
-
-  .footer-section.social-section li:first-child a {
-    padding-left: 0;
   }
 
   .cart {

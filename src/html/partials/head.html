@@ -20,6 +20,7 @@
 %%include('../../css/ben-new.css')
 %%include('../../css/merge-new.css')
 %%include('../../css/footer.css')
+
 %%if (context.pageType == 'blog') {
   %%include('../../css/blog.css')
 }
@@ -29,5 +30,9 @@
 %%if (context.pageType == 'contact') {
   %%include('../../css/contact.css')
 }
+%%if (context.pageType == 'product-listing') {
+  %%include('../../css/product-listing.css')
+}
+
 %%include('../../css/global.css')
 </style>
