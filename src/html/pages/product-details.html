@@ -2,7 +2,9 @@
 %%include('../partials/copyright.html')
 <html ⚡="" lang="en">
 <head>
-    %%include('../partials/head.html')
+    %%include('../partials/head.html', {
+        "pageType": "product-details"
+    })
 </head>
 <body [class]="cart.added ? 'cart-added' : ''">
     %%include('../partials/header.html')
@@ -57,50 +59,81 @@
         </div>
         -->
         <amp-state id="product">
-            <script type="application/json">
-            {
-                "selectedColor": "{{DefaultColor}}",
-                "selectedSize": "{{DefaultSize}}",
-                "selectedQuantity": 1,
-                {{#All_Colors}}
-                    "{{ColorName}}": {
-                        "sizes" : {
-                            {{#Avaliable_Sizes}}
-                                {{#available}}
-                                    {{#Last}}
-                                        "{{SizeName}}":"{{Discount_Price}}"
-                                    {{/Last}}
-                                    {{^Last}}
-                                        "{{SizeName}}":"{{Discount_Price}}",
-                                    {{/Last}}
-                                {{/available}}
-                            {{/Avaliable_Sizes}}
-                        },
-                        "stock" : "{{Stock}}",
-                        "defaultSize" : "{{DefaultSize}}",
-                        "thumb": {
-                            "image1": "{{& Photo}}",
-                            "image2": "{{& Photo}}",
-                            "image3": "{{& Photo}}"
-                        },
-                        "large": {
-                            "image1": "{{& Photo}}",
-                            "image2": "{{& Photo}}",
-                            "image3": "{{& Photo}}"
-                        }
+        <script type="application/json">
+        {
+            "selectedColor": "{{DefaultColor}}",
+            "selectedSize": "{{DefaultSize}}",
+            "selectedQuantity": 1,
+            {{#All_Colors}}
+                "{{ColorName}}": {
+                    "sizes" : {
+                        {{#Avaliable_Sizes}}
+                            {{#available}}
+                                {{#Last}}
+                                    "{{SizeName}}":"{{Discount_Price}}"
+                                {{/Last}}
+                                {{^Last}}
+                                    "{{SizeName}}":"{{Discount_Price}}",
+                                {{/Last}}
+                            {{/available}}
+                        {{/Avaliable_Sizes}}
                     },
-                {{/All_Colors}}
-                "selectedSlide": 0
-            }
-            </script>
+                    "stock" : "{{Stock}}",
+                    "defaultSize" : "{{DefaultSize}}",
+                    "thumb": {
+                        "image1": "{{& Photo}}",
+                        "image2": "{{& Photo}}",
+                        "image3": "{{& Photo}}"
+                    },
+                    "large": {
+                        "image1": "{{& Photo}}",
+                        "image2": "{{& Photo}}",
+                        "image3": "{{& Photo}}"
+                    },
+                    "option":"{{option}}"
+                },
+                "{{& option}}": "{{ColorName}}",
+            {{/All_Colors}}
+            "selectedSlide": 0
+        }
+        </script>
         </amp-state>
+
         <section class="details-content flex flex-wrap">
             <div class="product-carousel">
-                <amp-carousel width="1280" height="720" layout="responsive" type="slides" [slide]="product.selectedSlide" on="slideChange: AMP.setState({product: {selectedSlide: event.index}})">
-                    <amp-img [src]="product[product.selectedColor].large.image1" src="{{& All_Colors.0.Photo}}" width="1280" height="720" layout="responsive" role="button" tabindex="0" alt="product image" noloading="">
+                <amp-carousel id="main-carousel" width="1280" height="720" layout="responsive" type="slides" [slide]="product.selectedSlide" 
+                on="slideChange: AMP.setState({product: {
+                    selectedSlide: event.index,
+                    selectedColor: product[event.index + 1]
+                }})">
+                    {{#All_Colors}}
+                    <amp-img src="{{& Photo}}" width="1280" height="720" layout="responsive" role="button" tabindex="0" alt="product image" noloading="">
                         <div placeholder="" class="loading"></div>
                     </amp-img>
+                    {{/All_Colors}}
                 </amp-carousel>
+
+                <amp-selector name="color" layout="container" [selected]="product.selectedColor" 
+                on="select:AMP.setState({
+                  product: {
+                    selectedSlide: product[event.targetOption].option -1,
+                    selectedColor: event.targetOption,
+                    selectedSize: product[event.targetOption].sizes[product.selectedSize] != null ? product.selectedSize : product[event.targetOption].defaultSize,
+                    selectedQuantity: 1
+                }})">
+                    <ul>
+                        {{#All_Colors}}
+                        <li>
+                            {{#defaultColour}}
+                            <amp-img option="{{ColorName}}" src="{{& Photo}}" height="48.5" width="45" selected="selected"></amp-img>
+                            {{/defaultColour}}
+                            {{^defaultColour}}
+                            <amp-img option="{{ColorName}}" src="{{& Photo}}" height="48.5" width="45"></amp-img>
+                            {{/defaultColour}}
+                        </li>
+                        {{/All_Colors}}
+                    </ul>
+                </amp-selector>
             </div>
             <div class="parameters-content flex flex-wrap">
                 <div class="product-description self-start">
@@ -122,13 +155,14 @@
                 <form id="order" method="POST" action-xhr="/add-to-cart" target="_top" class="flex flex-wrap">
                     <div class="product-colors self-start">
                         <span class="title">color:</span>
-                        <amp-selector name="color" layout="container" [selected]="product.selectedColor" on="select:AMP.setState({
-                                      product: {
-                                        selectedColor: event.targetOption,
-                                        selectedSize: product[event.targetOption].sizes[product.selectedSize] != null ? product.selectedSize : product[event.targetOption].defaultSize,
-                                        selectedQuantity: 1
-                                      }
-                                    })">
+                        <amp-selector name="color" layout="container" [selected]="product.selectedColor" 
+                        on="select:AMP.setState({
+                          product: {
+                            selectedSlide: product[event.targetOption].option -1,
+                            selectedColor: event.targetOption,
+                            selectedSize: product[event.targetOption].sizes[product.selectedSize] != null ? product.selectedSize : product[event.targetOption].defaultSize,
+                            selectedQuantity: 1
+                        }})">
                             <ul>
                                 {{#All_Colors}}
                                 <li>
@@ -236,9 +270,7 @@
                     </section>
                     -->
                 </div>
-                <!--
                 %%include('../partials/related-products.html')
-                -->
             </div>
         </section>
     </main>
