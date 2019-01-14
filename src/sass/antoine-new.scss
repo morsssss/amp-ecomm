@@ -59,7 +59,10 @@
     padding: 1rem 1rem 0 1rem;
     margin-bottom: 2rem;
 }
-
+.product-carousel {
+	width: 100%;
+	padding: 1rem 1rem 0;
+}
 .product-carousel amp-selector ul {
 	display: inline-block;
 	margin: 1em 0;
@@ -246,6 +249,11 @@
 		padding-top: 2rem;
 		padding-right: 5rem;
 		padding-left: 2.5rem;
+	}
+	.product-carousel {
+		padding-left: 5rem;
+		padding-top: 2rem;
+		width: 50%;
 	}
 	.parameters-content hr {
 		width: 100%;
