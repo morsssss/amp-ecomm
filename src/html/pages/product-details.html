@@ -95,10 +95,12 @@
             </script>
         </amp-state>
         <section class="details-content flex flex-wrap">
-            <div class="product-container">
-                <amp-img [src]="product[product.selectedColor].large.image1" src="{{& All_Colors.0.Photo}}" width="245" height="264" layout="intrinsic" role="button" tabindex="0" alt="product image" noloading="">
+            <div class="product-carousel">
+                <amp-carousel width="1280" height="720" layout="responsive" type="slides" [slide]="product.selectedSlide" on="slideChange: AMP.setState({product: {selectedSlide: event.index}})">
+                    <amp-img [src]="product[product.selectedColor].large.image1" src="{{& All_Colors.0.Photo}}" width="1280" height="720" layout="responsive" role="button" tabindex="0" alt="product image" noloading="">
                         <div placeholder="" class="loading"></div>
                     </amp-img>
+                </amp-carousel>
             </div>
             <div class="parameters-content flex flex-wrap">
                 <div class="product-description self-start">
