@@ -1,4 +1,3 @@
-<!--TODO: when we're using mustache, create option to not include checkout -->
     <section class="cart-sum-area side-panel">
       <h5>Order Summary</h5>
       <dl>
@@ -10,7 +9,11 @@
         <dd class="total">&#163;753</dd>
       </dl>
       <p>Donec id elit non mi porta gravida at eget metus. Donec ullamcorper nulla non metus auctor fringilla.</p>
+
+%%if (context.pageType == 'checkout') {      
       <div class="cart-actions">
         <a href="checkout.amp.html" class="button button-white">checkout</a>
       </div>
+}      
+
     </section>

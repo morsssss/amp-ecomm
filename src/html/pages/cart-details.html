@@ -2,7 +2,9 @@
 %%include('../partials/copyright.html')
 <html ⚡="" lang="en">
 <head>
-    %%include('../partials/head.html')
+    %%include('../partials/head.html', {
+        "pageType": "cart-details"
+    })
 </head>
 <body>
     %%include('../partials/header.html')
@@ -29,9 +31,7 @@
             </section>
             {{/isEmpty}}    
         </div>
-        <!--
-        %%include('../partials/related-products.html')
-        -->
+    %%include('../partials/related-products.html')
     </main>
     %%include('../partials/footer.html')
 </body>
