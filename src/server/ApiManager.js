@@ -166,9 +166,28 @@ class ApiManager {
                     this.cartItems.push(item);    
                 }
                 
-                this.subtotal = this.subtotal + item.price;
+                this.subtotal = this.subtotal + (item.price * item.quantity);
                 this.total = this.subtotal + this.shipping;
                 this.isEmpty = false;
+            },
+            removeItem: function(productId, color, size) {
+
+                for (var i = 0; i < this.cartItems.length; i++) {
+                    if (this.cartItems[i].productId === productId && this.cartItems[i].color === color && this.cartItems[i].size === size) {
+
+                        let cartItem = this.cartItems[i];
+                        //update totals
+                        this.subtotal = this.subtotal - (cartItem.price * cartItem.quantity);
+                        this.total = this.subtotal + this.shipping;
+
+                        //remove item
+                        this.cartItems.splice(i, 1);
+
+                        if(this.cartItems.length == 0) {
+                            this.isEmpty = true;
+                        }
+                    }
+                }
             }
         };
 

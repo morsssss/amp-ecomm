@@ -1,39 +1,102 @@
 <!doctype html>
 %%include('../partials/copyright.html')
 <html ⚡="" lang="en">
+
 <head>
-    %%include('../partials/head.html', {
-        "pageType": "cart-details"
-    })
+    %%include('../partials/head.html')
 </head>
+
 <body>
     %%include('../partials/header.html')
     %%include('../partials/menu.html')
     <main id="content" role="main" class="main cart">
         <div class="cart-wrapper">
-            <section class="cart-products-area">
-            	%%include('../partials/cart-items.html')
-            </section>
-            {{^isEmpty}}
-            <section class="cart-sum-area side-panel">
-                <h5>Order Summary</h5>
-                <dl>
-                    <dt>Subtotal</dt>
-                    <dd>${{subtotal}}</dd>
-                    <dt>Shipping</dt>
-                    <dd>${{shipping}}</dd>
-                    <dt class="total">Total</dt>
-                    <dd class="total">${{total}}</dd>
-                </dl>
-                <div class="cart-actions">
-                    <a href="checkout.html" class="button button-white">checkout</a>
-                </div>
-            </section>
-            {{/isEmpty}}    
+            <amp-list layout="fill" src="/api/cart-items?clientId=CLIENT_ID(cart)" [src]="shopCartList.items">
+                <template type="amp-mustache" id="cart-items">
+                    {{#isEmpty}}
+                    <h3>Your Basket is Empty</h3>
+                    {{/isEmpty}}
+                    {{^isEmpty}}
+                    <section class="cart-products-area">
+                        <h3>Your Basket</h3>
+                        {{#cartItems}}
+                        <div class="cart-product">
+                            <div class="cart-image-container">
+                                <amp-img src="{{imgUrl}}" width="1" height="1" layout="responsive" alt="{{mame}}" noloading="">
+                                    <div placeholder="" class="loading"></div>
+                                </amp-img>
+                            </div>
+                            <div class="cart-product-left">
+                                <h6>{{name}}</h6>
+                            </div>
+                            <div class="cart-product-right title">
+                                <span>"{{size}}"</span>
+                                <span>${{price}}</span>
+                                <span>{{quantity}}</span>
+                                <button type="button" style="background: none;box-shadow: none;border-radius: 0px;width:30px" 
+                                    on="tap: AMP.setState({
+                                        cartParam: {
+                                            productId: '{{productId}}',
+                                            size: '{{size}}',
+                                            color: '{{color}}'
+                                    }}), form-cart-delete.submit">X</button>
+                            </div>
+                        </div>
+                        {{/cartItems}}
+                    </section>
+                    <section class="cart-sum-area side-panel">
+                        <h5>Order Summary</h5>
+                        <dl>
+                            <dt>Subtotal</dt>
+                            <dd>${{subtotal}}</dd>
+                            <dt>Shipping</dt>
+                            <dd>${{shipping}}</dd>
+                            <dt class="total">Total</dt>
+                            <dd class="total">${{total}}</dd>
+                        </dl>
+                        <div class="cart-actions">
+                            <a href="checkout.html" class="button button-white">checkout</a>
+                        </div>
+                    </section>
+                    {{/isEmpty}}
+                </template>
+            </amp-list>
         </div>
-    %%include('../partials/related-products.html')
+
+        <!-- Put form here -->
+        <form id="form-cart-delete" method="POST" target="_top" action-xhr="/api/delete-cart-item"
+            on="submit-success: AMP.setState({
+                shopCartList: event.response
+            })" novalidate="">
+            <input type="hidden" name="productId" value="" [value]="cartParam.productId">
+            <input type="hidden" name="color" value="" [value]="cartParam.color">
+            <input type="hidden" name="size" value="" [value]="cartParam.size">
+            <input type="hidden" name="clientId" value="CLIENT_ID(cart)" data-amp-replace="CLIENT_ID">
+        </form>
+
+        <!--
+        %%include('../partials/related-products.html')
+        -->
     </main>
-    %%include('../partials/footer.html')
+    <!--
+        %%wxclude('../partials/footer.html')
+    -->
+    <amp-state id="shopCartList">
+        <script type="application/json">
+        {
+
+        }
+        </script>
+    </amp-state>
+
+    <amp-state id="cartParam">
+        <script type="application/json">
+        {
+
+        }
+        </script>
+    </amp-state>
+
 </body>
 
 </html>

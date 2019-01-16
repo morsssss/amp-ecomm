@@ -78,23 +78,10 @@ app.post('/add-to-cart', function(req, res) {
     //set AMP headers to redirect to cart page
     res.header("Access-Control-Expose-Headers", "AMP-Access-Control-Allow-Source-Origin,AMP-Redirect-To");
     res.header("AMP-Access-Control-Allow-Source-Origin", origin);
-    res.header("AMP-Redirect-To", origin + "/cart-details?clientId=" + clientId);
+    res.header("AMP-Redirect-To", origin + "/cart-details.html");
 
     //amp-form requires json response
     res.json({});
-});
-
-//Cart Details page
-app.get('/cart-details', function(req, res) {
-  
-    let clientId = req.query.clientId;
-    let shoppingCart = memCache.get(clientId);
-
-    if(shoppingCart) {
-        res.render('cart-details', shoppingCart);       
-    } else {
-        res.render('cart-details', apiManager.createCart(clientId));
-    }
 });
 
 //API
@@ -137,3 +124,51 @@ app.get('/api/product', function(req, res) {
         }
     });
 });
+
+app.get('/api/cart-items', function(req, res) {
+
+    let clientId = req.query.clientId;
+    let shoppingCart = memCache.get(clientId);
+
+    if(!shoppingCart) {
+        shoppingCart = apiManager.createCart(clientId);
+        memCache.put(clientId, shoppingCart, 60*60*60*1000);   
+    }
+
+    //wrap the shopping cart into an 'items' array, so it can be consumed with amp-list.
+    let shoppingCartResponse = {items : []};
+    shoppingCartResponse.items.push(shoppingCart);
+
+    res.send(shoppingCartResponse);
+});
+
+app.post('/api/delete-cart-item', function(req, res) {
+
+    let clientId = req.fields.clientId;
+    let productId = req.fields.productId;
+    let color = req.fields.color;
+    let size = req.fields.size;
+
+    let shoppingCartResponse = {items : []};
+
+    let shoppingCart = memCache.get(clientId);
+
+    if(shoppingCart) {
+         shoppingCart.removeItem(productId, color, size);
+         shoppingCartResponse.items.push(shoppingCart);
+    }
+
+    enableCors(req, res);
+    res.send(shoppingCartResponse);
+});
+
+function enableCors(req, res) {
+
+  //set to all for dev purposes only, change it by configuration to final domain
+  let origin = req.get('origin');
+
+  res.header("Access-Control-Allow-Origin", origin);
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Expose-Headers", "AMP-Access-Control-Allow-Source-Origin");
+  res.header("AMP-Access-Control-Allow-Source-Origin", origin);
+}
