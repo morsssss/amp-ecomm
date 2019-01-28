@@ -72,7 +72,17 @@ amp-sidebar h3 {
 
 .menu li {
   color: #222;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.menu .sub-item {
+  margin: 0;
+}
+
+.menu .sub-item a {
+  font-size: .94rem;
+  line-height: .94rem;
+  margin: 0;
 }
 
 .menu li:active, .menu li:focus, .menu li:hover {
@@ -144,7 +154,6 @@ amp-sidebar h3 {
   font-weight: 700;
   line-height: normal;
   display: inline-block;
-  margin-bottom: 1rem;
   position: relative
 }
 

@@ -32,6 +32,35 @@ const listener = app.listen(port, () => {
 //serve static files
 app.use(express.static(path.join(__dirname, '/../')));
 
+//Product Listing Page
+app.get('/product-listing', function(req, res) {
+    let productsCategory = req.query.productsCategory;
+    let listingUrl = apiManager.getCategoryUrl(productsCategory);
+    // defaults to women-shirts
+    let resProductsGender = 'women';
+    let resProductsCategory = 'women-shirts';
+    let resShirtSelected = 'selected';
+    let resShortSelected = '';
+
+    if (!listingUrl.match('categoryId=undefined')) {
+        resProductsCategory = productsCategory;
+        if (!resProductsCategory.match('women')) {
+            resProductsGender = 'men';
+        }
+        if (!resProductsCategory.match('shirt')) {
+            resShirtSelected = '';
+            resShortSelected = 'selected';
+        }
+    } 
+    mustache.tags = ['<%','%>'];
+    res.render('product-listing', {
+        productsCategory: resProductsCategory,
+        productsGender: resProductsGender,
+        shirtSelected: resShirtSelected,
+        shortSelected: resShortSelected
+    });
+});
+
 //Product Page
 app.get('/product-details', function(req, res) {
 
@@ -45,6 +74,7 @@ app.get('/product-details', function(req, res) {
     request(options, (error, response, body) => {
         if (!error && body != 'Product not found' && !body.includes('An error has occurred')) {
             var productObj = apiManager.parseProduct(body);
+            mustache.tags = ['{{','}}'];
             res.render('product-details', productObj);
         } else {
             res.render('product-not-found');
