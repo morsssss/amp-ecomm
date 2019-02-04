@@ -1,0 +1,165 @@
+.cart {
+  display: block;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-bottom: 1.5rem;
+  align-items: flex-start;
+}
+
+
+.cart .related-products {
+  border-top: none;
+}
+
+.cart .cart-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.checkout .cart-wrapper {
+  margin-top: 1rem;
+  padding: 0 1rem;
+}
+
+.cart-products-area {
+  width: 100%;
+  padding: 1rem 0 1.5rem;
+}
+
+.cart-products-area h3 {
+  margin: 0 1rem 1rem;
+}
+
+.cart-product {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0 1rem 1rem;
+}
+
+.cart-image-container {
+  width: 25%;
+}
+
+.cart-product-left {
+  width: 50%;
+  padding: 0 .5rem;
+}
+
+.cart-product-left h6 {
+  font-size: 1rem;
+  margin-bottom: .5rem;
+}
+
+.cart-product-right {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1rem;
+  align-items: flex-start;
+  justify-content: space-around;
+  width: 25%;
+}
+
+.cart-sum-area {
+  width: 100%;
+  padding: 1.5rem 1rem 2rem;
+}
+
+.cart-sum-area h5 { 
+  font-size: 1.125rem;
+}
+
+.cart-sum-area dl {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cart-sum-area dt {
+  width: 83.3333%;
+}
+
+.cart-sum-area dd {
+  width: 16.6667%;
+  margin: 0;
+  padding-bottom: 0.5rem;
+  text-align: right;
+}
+
+.cart-sum-area .total {
+  margin: 1.5rem 0 1rem;
+  padding: 1rem 0;
+  font-weight: 700;
+  border-top: 1px solid #f3f3f3;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.cart-sum-area p {
+  padding-bottom: 1.5rem;
+}
+
+.cart-actions {
+  text-align: center;
+}
+
+@media (max-width:40rem) {
+  .cart-product-left {
+    margin-top: 2rem;
+  }
+}
+
+@media (min-width:40.06rem) {
+  .cart-image-container {
+    width: 16.66667%;
+  }
+
+  .cart-product-left {
+    width: 58.3333%;
+  }  
+}
+
+@media (min-width:52.06rem) {
+  .cart {
+    margin-bottom: 1.5rem;
+    padding-bottom: 5rem;
+  }
+
+  .cart-products-area {
+    padding: 2rem 0 5rem;
+    width: 66.66667%;
+  }
+
+  .cart-products-area h3 {
+    margin: 0 2rem 1rem 2rem;
+  }
+
+  .cart-product {
+    border-bottom: solid 1px #f3f3f3;
+    margin: 1.5rem 2rem 1rem 0;
+    padding-bottom: 1.5rem;
+  }
+
+  .cart .cart-product {
+    margin-left: 2rem;
+  }
+
+  .cart-product-right {
+    justify-content: space-between;
+  }
+
+  .cart-sum-area {
+    width: 33.3333%;
+    padding: 2rem 1.5rem;
+  }
+
+  .cart-sum-area h5 { 
+    margin-top: 1.5rem;
+  }
+
+  .cart-actions {
+    text-align: left;
+  }
+
+  .cart-image-container amp-img {
+    max-width: 100px;
+  }
+}

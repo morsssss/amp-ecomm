@@ -1,3 +1,6 @@
+.listing {
+  max-width: none;
+}
 .listing .banner {
   width: 100%;
 }
@@ -81,6 +84,25 @@
 
 .listing amp-list amp-img {
   margin: 2.5rem 0 1rem;
+}
+
+.listing-container amp-list {
+    margin-top: .45rem;
+}
+.listing-content .side-panel button,
+.listing-content .select-wrapper button {
+    background: none;
+    box-shadow: none;
+    border-radius: 0px;
+    width:80px;
+    border-style: none;
+}
+.listing-filters label {
+    display: block;
+    margin-bottom: 0.45rem; 
+}
+.listing-product h2 {
+    font-size: 1rem;
 }
 
 /* doesn't seem to work on the original site either

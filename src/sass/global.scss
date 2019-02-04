@@ -826,6 +826,14 @@ amp-selector [option][selected] {
   animation-delay: .32s
 }
 
+.label {
+  font-size: 1.125rem;
+  color: #4f4f4f;
+  line-height: 1.125rem;
+  letter-spacing: .06rem;
+  text-transform: uppercase;
+}
+
 /* Media queries */
 
 @media (min-width:52.06rem) {
