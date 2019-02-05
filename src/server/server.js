@@ -34,31 +34,38 @@ app.use(express.static(path.join(__dirname, '/../')));
 
 //Product Listing Page
 app.get('/product-listing', function(req, res) {
-    let productsCategory = req.query.productsCategory;
-    let listingUrl = apiManager.getCategoryUrl(productsCategory);
-    // defaults to women-shirts
+    // defaults to women shirts
     let resProductsGender = 'women';
-    let resProductsCategory = 'women-shirts';
-    let resShirtSelected = 'selected';
-    let resShortSelected = '';
-
+    let resProductsCategory = 'shirts';
+    let resShirtSelected = true;
+    let resShortSelected = false;
+    // read parameters
+    let productsGender = req.query.gender || resProductsGender;
+    let productsCategory = req.query.category || resProductsCategory;
+    let listingUrl = apiManager.getCategoryUrl(productsGender+'-'+productsCategory);
     if (!listingUrl.match('categoryId=undefined')) {
         resProductsCategory = productsCategory;
-        if (!resProductsCategory.match('women')) {
+        resProductsGender = productsGender;
+        if (!resProductsGender.match('women')) {
             resProductsGender = 'men';
         }
         if (!resProductsCategory.match('shirt')) {
-            resShirtSelected = '';
-            resShortSelected = 'selected';
+            resShirtSelected = false;
+            resShortSelected = true;
         }
     } 
     mustache.tags = ['<%','%>'];
-    res.render('product-listing', {
+    let responseObj = {
         productsCategory: resProductsCategory,
-        productsGender: resProductsGender,
-        shirtSelected: resShirtSelected,
-        shortSelected: resShortSelected
-    });
+        productsGender: resProductsGender
+    };
+    if (resShirtSelected) {
+        responseObj.shirtSelected = true;
+    }
+    else if (resShortSelected) {
+        responseObj.shortSelected = true;
+    }
+    res.render('product-listing', responseObj);
 });
 
 //Product Page
