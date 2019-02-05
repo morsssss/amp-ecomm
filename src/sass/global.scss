@@ -86,77 +86,46 @@ textarea {
 }
 
 
-.h1 {
-  font-size: 3.5rem
-}
-
-.h2 {
-  font-size: 2.2rem
-}
-
-.h3 {
-  font-size: 1.75rem
-}
-
-.h3 {
-  color: #222
-}
-
-.h4 {
-  font-size: 1.38rem
-}
-
-.h5 {
-  font-size: 1.125rem
-}
-
-.h6 {
-  font-size: 1rem
-}
-.h7 {
-  font-size: .94rem
+h1 {
+  font-size: 2em;
+  margin: .67em 0;
 }
 
 h1 {
-  font-size: 2em;
-  margin: .67em 0
-}
-
-.h1,h1 {
   font-size: 3.5rem;
-  line-height: 3.5rem
+  line-height: 3.5rem;
 }
 
-.h2,h2 {
+h2 {
   font-size: 2.2rem;
-  line-height: 2.5rem
+  line-height: 2.5rem;
 }
 
-.h3,h3 {
+h3 {
   font-size: 1.75rem;
-  line-height: 2rem
+  line-height: 2rem;
 }
 
-.h4,h4 {
+h4 {
   font-size: 1.38rem;
-  line-height: 1.5rem
+  line-height: 1.5rem;
 }
 
-.h5,h5 {
+h5 {
   font-size: 1.125rem;
-  line-height: 1.125rem
+  line-height: 1.125rem;
 }
 
-.h6,h6 {
+h6 {
   font-size: 1rem;
-  line-height: 1rem
+  line-height: 1rem;
 }
 
 h1,h2,h3,h4,h5,h6 {
   margin: 0;
   padding: 0;
   font-weight: 400;
-  letter-spacing: .06rem
+  letter-spacing: .06rem;
 }
 
 a {
@@ -179,29 +148,13 @@ select {
   color: #666;
 }
 
-.h1,.h2,.h3,.h4,.h5,.h6,.h7,h1,h2,h3,h4,h5,h6,h7,.sans-big {
+h1,h2,h3,h4,h5,h6,.sans-big {
   line-height: normal;
   letter-spacing: normal;
   font-family: Open Sans Condensed,sans-serif;
   text-transform: uppercase;
   font-weight: 700;
   color: #000;
-}
-
-h3 {
-  font-size: 1.75rem;
-}
-
-h4 {
-  font-size: 1.38rem;
-}
-
-h5 {
-  font-size: 1.125rem;
-}
-
-h6 {
-  font-size: 1rem;
 }
 
 hr {
