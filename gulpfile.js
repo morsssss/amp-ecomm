@@ -12,6 +12,8 @@ const bs = require('browser-sync').create();
 const autoScript = require('amphtml-autoscript').create();
 const reload = bs.reload;
 const nodemon = require('gulp-nodemon');
+const replace = require('gulp-replace');
+const noop = require('gulp-noop');
 
 // Build type is configurable such that some options can be changed e.g. whether
 // to minimise CSS. Usage 'gulp <task> --env development'.
@@ -44,11 +46,18 @@ const paths = {
 /**
  * Builds the styles, bases on SASS files taken from src. The resulting CSS is
  * used as partials that are included in the final AMP HTML.
+ * When SASS sees a non-ASCII character in a file, it starts the CSS file it builds with "@charset "UTF-8";".
+ * That's great in CSS files, but not accepted within <style> tags.
+ * So unless the SASS team takes on https://github.com/sass/sass/issues/2288, we need to remove it.
  */
+
 gulp.task('styles', function buildStyles() {
+    const cssEncodingDirective = '@charset "UTF-8";';
+
     return gulp.src(paths.css.src)
         .pipe(plumber())
         .pipe(sass(options.env === 'dist' ? { outputStyle: 'compressed' } : {}))
+        .pipe(options.env === 'dev' ? replace(cssEncodingDirective, '') : noop() )
         .pipe(autoprefixer({ browsers: ['> 10%'] }))
         .pipe(gulp.dest(paths.css.dest));
 });
