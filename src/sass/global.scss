@@ -396,7 +396,7 @@ dd:after {
     }
   }
 
-  & input[type=radio] {
+  input[type=radio] {
     border-radius: 15px;
 
     &:checked {
@@ -418,7 +418,7 @@ dd:after {
     }
   }
 
-  & input[type=checkbox], & input[type=radio] {
+  input[type=checkbox], & input[type=radio] {
     margin-top: 0;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -431,7 +431,7 @@ dd:after {
     text-align: center
   }
 
-  & input[type=checkbox]:not([disabled])+label, & input[type=radio]:not([disabled])+label {
+  input[type=checkbox]:not([disabled])+label, & input[type=radio]:not([disabled])+label {
     pointer-events: auto;
     -webkit-animation: none;
     animation: none;
@@ -440,11 +440,11 @@ dd:after {
     cursor: pointer
   }
 
-  & input[type=checkbox]+label:after, & input[type=radio]+label:after {
+  input[type=checkbox]+label:after, & input[type=radio]+label:after {
     display: none
   }
 
-  & input[type=checkbox]:after, & input[type=radio]:after {
+  input[type=checkbox]:after, & input[type=radio]:after {
     position: absolute;
     top: 0;
     left: 0;
@@ -457,7 +457,7 @@ dd:after {
     background-color: #fff
   }
 
-  & input[type=checkbox]:checked:after {
+  input[type=checkbox]:checked:after {
     background-color: #222;
     color: #fff;
     content: "✓"
@@ -488,7 +488,7 @@ dd:after {
   display: block;
   margin-bottom: .5rem;
 
-  & label {
+  label {
     font-family: Cardo,serif;
     font-weight: 400;
     text-transform: none;
@@ -496,7 +496,7 @@ dd:after {
     font-size: .94rem;
   }
 
-  & input {
+  input {
     position: relative;
   }
 }
