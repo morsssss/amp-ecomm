@@ -718,31 +718,31 @@ amp-selector {
   animation-fill-mode: both;
   -webkit-animation: a 1.44s infinite ease-in-out;
   animation: a 1.44s infinite ease-in-out;
-  will-change: contents
+  will-change: contents;
 }
 
 .loading {
   color: #666;
   margin: 24% auto;
   -webkit-animation-delay: .16s;
-  animation-delay: .16s
+  animation-delay: .16s;
 
   &:after, &:before {
     content: "";
     position: absolute;
-    top: 0
+    top: 0;
   }
 
   &:before {
     left: -1rem;
     -webkit-animation-delay: 0s;
-    animation-delay: 0s
+    animation-delay: 0s;
   }
 
   &:after {
     left: 1rem;
     -webkit-animation-delay: .32s;
-    animation-delay: .32s
+    animation-delay: .32s;
   }
 }
 
