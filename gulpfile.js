@@ -49,7 +49,7 @@ gulp.task('styles', function buildStyles() {
     return gulp.src(paths.css.src)
         .pipe(plumber())
         .pipe(sass(options.env === 'dist' ? { outputStyle: 'compressed' } : {}))
-        .pipe(autoprefixer({ browsers: ['> 10%'] }))
+        .pipe(autoprefixer('last 10 versions'))
         .pipe(gulp.dest(paths.css.dest));
 });
 
