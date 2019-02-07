@@ -296,12 +296,12 @@ dd:after {
     outline: 0
   }
 
-  &>label:after {
+  >label:after {
     height: 1px;
     background: #f3f3f3;
   }
 
-  &>input, &>select, &>textarea {
+  >input, >select, >textarea {
     width: 100%;
     margin-top: 1rem;
     line-height: 1.5rem;
@@ -311,17 +311,17 @@ dd:after {
     outline: 0
   }
 
-  &>input, &>textarea {
+  >input, >textarea {
     border-bottom: 1px dashed #f3f3f3;
     color: #222
   }
 
-  &>select {
+  >select {
     border-bottom: 1px solid #4a4a4a;
     color: #4a4a4a;
   }
 
-  &>label {
+  >label {
     color: #222;
     pointer-events: none;
     text-align: left;
@@ -333,24 +333,24 @@ dd:after {
     animation-fill-mode: forwards
   }
 
-  &>input:focus, &>select:focus, &>textarea:focus {
+  >input:focus, >select:focus, >textarea:focus {
     outline: 0
   }
 
-  &>input:focus::placeholder, &>select:focus::placeholder, &>textarea:focus::placeholder {
+  >input:focus::placeholder, >select:focus::placeholder, >textarea:focus::placeholder {
     color: transparent
   }
 
-  &>input:not(:placeholder-shown):not([disabled])+label, &>select:not(:placeholder-shown):not([disabled])+label, &>textarea:not(:placeholder-shown):not([disabled])+label {
+  >input:not(:placeholder-shown):not([disabled])+label, >select:not(:placeholder-shown):not([disabled])+label, >textarea:not(:placeholder-shown):not([disabled])+label {
     opacity: 1
   }
 
-  &>input:focus+label, &>select:focus+label, &>textarea:focus+label {
+  >input:focus+label, >select:focus+label, >textarea:focus+label {
     -webkit-animation-name: c;
     animation-name: c
   }
 
-  &>label:after {
+  >label:after {
     content: "";
     height: 2px;
     position: absolute;
@@ -363,28 +363,28 @@ dd:after {
     width: 10px
   }
 
-  &>input:focus+label:after, &>select:focus+label:after, &>textarea:focus+label:after {
+  >input:focus+label:after, >select:focus+label:after, >textarea:focus+label:after {
     left: 0;
     width: 100%;
     visibility: visible
   }
 
-  &>input[type=search] {
+  >input[type=search] {
     appearance: none
   }
 
-  &>input[type=range] {
+  >input[type=range] {
     border-bottom: 0
   }
 
-  &>input[type=range]+label:after {
+  >input[type=range]+label:after {
     display: none
   }
 
-  &>select {
+  >select {
     appearance: none;
 
-    &+label:before {
+    +label:before {
       content: "⌄";
       line-height: 1.5rem;
       position: absolute;
@@ -418,7 +418,7 @@ dd:after {
     }
   }
 
-  input[type=checkbox], & input[type=radio] {
+  input[type=checkbox], input[type=radio] {
     margin-top: 0;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -431,7 +431,7 @@ dd:after {
     text-align: center
   }
 
-  input[type=checkbox]:not([disabled])+label, & input[type=radio]:not([disabled])+label {
+  input[type=checkbox]:not([disabled])+label, input[type=radio]:not([disabled])+label {
     pointer-events: auto;
     -webkit-animation: none;
     animation: none;
@@ -440,11 +440,11 @@ dd:after {
     cursor: pointer
   }
 
-  input[type=checkbox]+label:after, & input[type=radio]+label:after {
+  input[type=checkbox]+label:after, input[type=radio]+label:after {
     display: none
   }
 
-  input[type=checkbox]:after, & input[type=radio]:after {
+  input[type=checkbox]:after, input[type=radio]:after {
     position: absolute;
     top: 0;
     left: 0;
@@ -463,23 +463,23 @@ dd:after {
     content: "✓"
   }
 
-  &>label,_:-ms-lang(x) {
+  >label,_:-ms-lang(x) {
     opacity: 1
   }
 
-  &>input:-ms-input-placeholder,_:-ms-lang(x) {
+  >input:-ms-input-placeholder,_:-ms-lang(x) {
     color: transparent
   }
 
-  &>input::placeholder,_:-ms-lang(x) {
+  >input::placeholder,_:-ms-lang(x) {
     color: transparent
   }
 
-  &>input::-ms-input-placeholder,_:-ms-lang(x) {
+  >input::-ms-input-placeholder,_:-ms-lang(x) {
     color: transparent
   }
 
-  &>select::-ms-expand {
+  >select::-ms-expand {
     display: none
   }
 }
@@ -499,11 +499,12 @@ dd:after {
   input {
     position: relative;
   }
+
+  .amp-mode-mouse & label:hover {
+    text-decoration: underline;
+  }
 }
 
-.amp-mode-mouse .radio-container label:hover {
-  text-decoration: underline;
-}
 
 .input-container-chk, .radio-container {
 /*  width: auto; */
@@ -626,20 +627,21 @@ amp-selector {
   border: none;
   border-radius: 0;
   background: none;
-  color: #666
+  color: #666;
+
+  [option] {
+    outline: 1px solid #f3f3f3;
+  }
+
+  [option]:hover {
+    outline: 1px solid #222;
+  }
+
+  [option][selected] {
+    outline-color: #222;
+  }
 }
 
-amp-selector [option] {
-  outline: 1px solid #f3f3f3
-}
-
-amp-selector [option]:hover {
-  outline: 1px solid #222
-}
-
-amp-selector [option][selected] {
-  outline-color: #222
-}
 
 .amp-carousel-button-next, .amp-carousel-button-prev {
   display: none
@@ -724,24 +726,24 @@ amp-selector [option][selected] {
   margin: 24% auto;
   -webkit-animation-delay: .16s;
   animation-delay: .16s
-}
 
-.loading:after, .loading:before {
-  content: "";
-  position: absolute;
-  top: 0
-}
+  &:after, &:before {
+    content: "";
+    position: absolute;
+    top: 0
+  }
 
-.loading:before {
-  left: -1rem;
-  -webkit-animation-delay: 0s;
-  animation-delay: 0s
-}
+  &:before {
+    left: -1rem;
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s
+  }
 
-.loading:after {
-  left: 1rem;
-  -webkit-animation-delay: .32s;
-  animation-delay: .32s
+  &:after {
+    left: 1rem;
+    -webkit-animation-delay: .32s;
+    animation-delay: .32s
+  }
 }
 
 .label {
