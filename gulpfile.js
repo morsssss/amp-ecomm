@@ -14,6 +14,7 @@ const reload = bs.reload;
 const nodemon = require('gulp-nodemon');
 const replace = require('gulp-replace');
 const noop = require('gulp-noop');
+const mergeMediaQuery = require('gulp-merge-media-queries');
 
 // Build type is configurable such that some options can be changed e.g. whether
 // to minimise CSS. Usage 'gulp <task> --env development'.
@@ -59,6 +60,7 @@ gulp.task('styles', function buildStyles() {
         .pipe(sass(options.env === 'dist' ? { outputStyle: 'compressed' } : {}))
         .pipe(options.env === 'dev' ? replace(cssEncodingDirective, '') : noop())
         .pipe(autoprefixer('last 10 versions'))
+        .pipe(mergeMediaQuery({log: true}))
         .pipe(gulp.dest(paths.css.dest));
 });
 
