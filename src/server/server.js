@@ -5,11 +5,19 @@ const fs = require('fs');
 const productApiManager = require('./ApiManager.js');
 const mustache = require("mustache");
 const formidableMiddleware = require('express-formidable');
-const memCache = require('memory-cache');
+const sessions = require("client-sessions");
+const serializer = require('serialize-to-js');
+const rand = require("random-key");
 
 const app = express();
 
 app.use(formidableMiddleware());
+app.use(sessions({
+    cookieName: 'session',
+    secret: 'eommercedemoofamazigness',
+    duration: 24 * 60 * 60 * 1000,
+    activeDuration: 1000 * 60 * 5
+}));
 
 app.engine('html', function(filePath, options, callback) {
     fs.readFile(filePath, function(err, content) {
@@ -92,7 +100,6 @@ app.get('/product-details', function(req, res) {
 //Add to Cart logic
 app.post('/add-to-cart', function(req, res) {
 
-    let clientId = req.fields.clientId;
     let productId = req.fields.productId;
     let name = req.fields.name;
     let price = req.fields.price;
@@ -102,15 +109,17 @@ app.post('/add-to-cart', function(req, res) {
     let origin = req.get('origin');
     let quantity = req.fields.quantity;
 
-    let cartProduct = apiManager.createCartItem(productId, name, price, color, size, imgUrl, quantity);
-    let shoppingCart = memCache.get(clientId);
-
-    if(!shoppingCart) {
-        shoppingCart = apiManager.createCart(clientId);
+    //If comes from the cache
+    if (req.headers['amp-same-origin'] !== 'true') {
+        //transfrom POST into GET and redirect to same url
+        let queryString = 'productId=' + productId + '&name=' + name + '&price=' + price + '&color=' + color + '&size=' + size + '&quantity=' + quantity + '&origin=' + origin + '&imgUrl=' + imgUrl;
+        res.header("Access-Control-Expose-Headers", "AMP-Access-Control-Allow-Source-Origin,AMP-Redirect-To");
+        res.header("AMP-Access-Control-Allow-Source-Origin", origin);
+        res.header("AMP-Redirect-To", origin + "/add_to_cart?" + queryString);
+    } else {
+        updateShoppingCartOnSession(req, productId, name, price, color, size, imgUrl, quantity);
+        res.header("AMP-Redirect-To", origin + "/shopping_cart");
     }
-
-    shoppingCart.addItem(cartProduct);
-    memCache.put(clientId, shoppingCart, 60*60*60*1000);
 
     //set AMP headers to redirect to cart page
     res.header("Access-Control-Expose-Headers", "AMP-Access-Control-Allow-Source-Origin,AMP-Redirect-To");
@@ -119,6 +128,19 @@ app.post('/add-to-cart', function(req, res) {
 
     //amp-form requires json response
     res.json({});
+});
+
+app.get('/api/add_to_cart', function(req, res) {
+    let productId = req.query.productId;
+    let name = req.query.name;
+    let price = req.query.price;
+    let color = req.query.color;
+    let size = req.query.size;
+    let imgUrl = req.query.imgUrl;
+    let quantity = req.query.quantity;
+
+    updateShoppingCartOnSession(req, productId, name, price, color, size, imgUrl, quantity);
+    res.redirect('/shopping_cart');
 });
 
 //API
@@ -164,12 +186,15 @@ app.get('/api/product', function(req, res) {
 
 app.get('/api/cart-items', function(req, res) {
 
-    let clientId = req.query.clientId;
-    let shoppingCart = memCache.get(clientId);
+    let shoppingCart = req.session.shoppingCart;
 
-    if(!shoppingCart) {
-        shoppingCart = apiManager.createCart(clientId);
-        memCache.put(clientId, shoppingCart, 60*60*60*1000);   
+    //cookie exists, but cart is empty
+    if (shoppingCart) {
+        shoppingCart = serializer.deserialize(shoppingCart);
+    } else {
+        let cartId = rand.generate(7);
+        shoppingCart = createCart(cartId);
+        req.session.shoppingCart = serializer.serialize(shoppingCart);
     }
 
     //wrap the shopping cart into an 'items' array, so it can be consumed with amp-list.
@@ -181,23 +206,39 @@ app.get('/api/cart-items', function(req, res) {
 
 app.post('/api/delete-cart-item', function(req, res) {
 
-    let clientId = req.fields.clientId;
     let productId = req.fields.productId;
     let color = req.fields.color;
     let size = req.fields.size;
 
     let shoppingCartResponse = {items : []};
 
-    let shoppingCart = memCache.get(clientId);
+    let shoppingCart = req.session.shoppingCart;
 
     if(shoppingCart) {
-         shoppingCart.removeItem(productId, color, size);
-         shoppingCartResponse.items.push(shoppingCart);
+        shoppingCart = serializer.deserialize(shoppingCart);
+        shoppingCart.removeItem(productId, color, size);
+        req.session.shoppingCart = serializer.serialize(shoppingCart);
+        shoppingCartResponse.items.push(shoppingCart);
     }
 
     enableCors(req, res);
     res.send(shoppingCartResponse);
 });
+
+function updateShoppingCartOnSession(req, productId, name, price, color, size, imgUrl, quantity) {
+    let cartProduct = apiManager.createCartItem(productId, name, price, color, size, imgUrl, quantity);
+    let shoppingCart = req.session.shoppingCart;
+
+    if (shoppingCart) {
+        shoppingCart = serializer.deserialize(shoppingCart);
+    } else {
+        let cartId = rand.generate(7);
+        shoppingCart = apiManager.createCart(cartId);
+    }
+
+    shoppingCart.addItem(cartProduct);
+    req.session.shoppingCart = serializer.serialize(shoppingCart);
+}
 
 function enableCors(req, res) {
 

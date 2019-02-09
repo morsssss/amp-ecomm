@@ -13,10 +13,12 @@
     %%include('../partials/menu.html')
     <main id="content" role="main" class="main cart">
         <div class="cart-wrapper">
-            <amp-list layout="fill" src="/api/cart-items?clientId=CLIENT_ID(cart)" [src]="shopCartList.items">
+            <amp-list layout="fill" src="/api/cart-items" [src]="shopCartList.items">
                 <template type="amp-mustache" id="cart-items">
                     {{#isEmpty}}
-                    <h3>Your Basket is Empty</h3>
+                    <div class="cart-actions">
+                        <h3>Your Basket is Empty</h3>
+                    </div>
                     {{/isEmpty}}
                     {{^isEmpty}}
                     <section class="cart-products-area">
@@ -73,7 +75,6 @@
             <input type="hidden" name="productId" value="" [value]="cartParam.productId">
             <input type="hidden" name="color" value="" [value]="cartParam.color">
             <input type="hidden" name="size" value="" [value]="cartParam.size">
-            <input type="hidden" name="clientId" value="CLIENT_ID(cart)" data-amp-replace="CLIENT_ID">
         </form>
 
         <!--
