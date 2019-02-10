@@ -7,7 +7,6 @@ const mustache = require("mustache");
 const formidableMiddleware = require('express-formidable');
 const sessions = require("client-sessions");
 const serializer = require('serialize-to-js');
-const rand = require("random-key");
 
 const app = express();
 
@@ -192,8 +191,7 @@ app.get('/api/cart-items', function(req, res) {
     if (shoppingCart) {
         shoppingCart = serializer.deserialize(shoppingCart);
     } else {
-        let cartId = rand.generate(7);
-        shoppingCart = createCart(cartId);
+        shoppingCart = createCart();
         req.session.shoppingCart = serializer.serialize(shoppingCart);
     }
 
@@ -232,8 +230,7 @@ function updateShoppingCartOnSession(req, productId, name, price, color, size, i
     if (shoppingCart) {
         shoppingCart = serializer.deserialize(shoppingCart);
     } else {
-        let cartId = rand.generate(7);
-        shoppingCart = apiManager.createCart(cartId);
+        shoppingCart = apiManager.createCart();
     }
 
     shoppingCart.addItem(cartProduct);

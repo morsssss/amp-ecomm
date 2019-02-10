@@ -32,8 +32,7 @@
     "workbox-build": "^3.6.3",
     "workbox-sw": "^3.6.3",
     "client-sessions": "^0.8.0",
-    "serialize-to-js": "^1.2.2",
-    "random-key": "^0.3.2"
+    "serialize-to-js": "^1.2.2"
   },
   "devDependencies": {
     "gulp": "github:gulpjs/gulp",
