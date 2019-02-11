@@ -42,6 +42,11 @@
 	width: 100%;
 	padding: 1rem 0 1.5rem;
 
+	@include desktop {
+		width: 66.66667%;
+		padding: 2rem 2rem 5rem;	
+	}
+
 	h3 {
 		padding: 0 1rem;
 		margin-bottom: 1rem;
@@ -50,22 +55,17 @@
 	hr {
 		margin: 1rem 1.5rem .5rem 1rem;
 	}
-
-	@include desktop {
-		width: 66.66667%;
-		padding: 2rem 2rem 5rem;	
-	}
 }
 
 .checkout-step-area {
 	padding: 0 1rem;
 
-	h5 {
-		margin-bottom: 1rem;
-	}
-
 	@include desktop {
 		margin-top: 1.5rem;	
+	}
+
+	h5 {
+		margin-bottom: 1rem;
 	}
 }
 
@@ -111,13 +111,13 @@
 	width: 100%;
 	padding: 0 1rem;
 
+	@include desktop {
+		padding: 1.5rem 1rem;
+	}
+
 	h5 {
 		width: 100%;
 		margin: 1rem 0;
-	}
-
-	@include desktop {
-		padding: 1.5rem 1rem;
 	}
 }
 

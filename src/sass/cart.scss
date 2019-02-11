@@ -7,6 +7,11 @@
 	padding-bottom: 1.5rem;
 	align-items: flex-start;
 
+	@include desktop {
+		margin-bottom: 1.5rem;
+		padding-bottom: 5rem;
+	}
+
 	.related-products {
 		border-top: none;
 	}
@@ -14,11 +19,6 @@
 	.cart-wrapper {
 		display: flex;
 		flex-wrap: wrap;
-	}
-
-	@include desktop {
-		margin-bottom: 1.5rem;
-		padding-bottom: 5rem;
 	}
 
 	.cart-product {
@@ -39,17 +39,17 @@
 	width: 100%;
 	padding: 1rem 0 1.5rem;
 
+	@include desktop {
+		padding: 2rem 0 5rem;
+		width: 66.66667%;
+	}
+
 	h3 {
 		margin: 0 1rem 1rem;
 
 		@include desktop {
 			margin: 0 2rem 1rem 2rem;
 		}
-	}
-
-	@include desktop {
-		padding: 2rem 0 5rem;
-		width: 66.66667%;
 	}
 }
 
@@ -84,17 +84,17 @@
 	width: 50%;
 	padding: 0 .5rem;
 
-	h6 {
-		font-size: 1rem;
-		margin-bottom: .5rem;
-	}
-
 	@include phone {
 		margin-top: 2rem;
 	}
 
 	@include tablet {
 		width: 58.3333%;
+	}
+
+	h6 {
+		font-size: 1rem;
+		margin-bottom: .5rem;
 	}
 }
 
@@ -114,6 +114,11 @@
 .cart-sum-area {
 	width: 100%;
 	padding: 1.5rem 1rem 2rem;
+
+	@include desktop {
+		width: 33.3333%;
+		padding: 2rem 1.5rem;		
+	}
 
 	h5 { 
 		font-size: 1.125rem;
@@ -149,11 +154,6 @@
 		font-weight: 700;
 		border-top: 1px solid #f3f3f3;
 		border-bottom: 1px solid #f3f3f3;
-	}
-
-	@include desktop {
-		width: 33.3333%;
-		padding: 2rem 1.5rem;		
 	}
 }
 
