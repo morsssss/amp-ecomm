@@ -1,236 +1,142 @@
 /* Sidebar */
 
 amp-sidebar {
-  background-color: #fff;
-  color: #000;
-  min-width: 300px;
-  width: 350px;
-  padding: 0 1.5rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  height: 100%;
+	background-color: #fff;
+	color: #000;
+	min-width: 300px;
+	width: 350px;
+	padding: 0 1.5rem;
+	margin-bottom: 1.5rem;
+	text-align: center;
+	height: 100%;
+
+	@include desktop {
+		width: 25%;
+
+		&.menu-button {
+			margin-top: .5rem;
+			padding-top: 0;
+		}
+	}
+
+	h3 {
+		font-size: .94rem;
+		padding-top: 1.5rem;
+	}
+
+	.social {
+		margin:.5rem 0 1rem;
+
+		li {
+			display: inline-block;
+
+			a {
+				display: inline-block;
+				padding: .5rem;
+			}
+		}
+
+		.icon {
+			fill: #222
+		}
+	}
+
+	.faq {
+		width: 100%;
+		color: #222;
+		font-family: Cardo,serif;
+		padding-top: 1rem
+
+		li {
+			line-height: normal;
+			padding: 0 0 .5rem
+		}
+	}
+
+	.amp-mode-mouse & .faq li:hover {
+		text-decoration: underline;
+	}
 }
 
 .menu-close-button {
-  margin-top: 1rem;
-  font-size: 1.5rem;
-  line-height: 2.5rem;
-  top: 0
-}
-
-amp-sidebar.ampstart-icon {
-  fill: #f88
-}
-
-amp-sidebar .social {
-    margin-top: 1rem;
-}
-
-amp-sidebar .social li {
-  display: inline-block;
-}
-
-amp-sidebar .social li a {
-  display: inline-block;
-  padding: .5rem;
-}
-
-/* TODO: consider removing "amp-sidebar" from all of the following */
-
-amp-sidebar.ampstart-.menu-dropdown {
-  margin: 0
-}
-
-/* TODO: this has to supercede the margin: 0 0 2 rem rule */
-amp-sidebar .ampstart-faq-item {
-  margin: 0
-}
-
-/*
-amp-sidebar .ampstart-dropdown-item, amp-sidebar .ampstart-dropdown header, amp-sidebar .ampstart-faq-item, amp-sidebar .ampstart-.menu-item, amp-sidebar .ampstart-social-follow {
-  margin: 0 0 2rem
-}
-*/
-
-amp-sidebar .social {
-  margin:.5rem 0 1rem;
-}
-
-amp-sidebar h3 {
-  font-size: .94rem;
-  padding-top: 1.5rem;
-}
-
-.menu .label {
-  color: inherit;
+	margin-top: 1rem;
+	font-size: 1.5rem;
+	line-height: 2.5rem;
+	top: 0
 }
 
 .menu {
-  margin-bottom: 2rem;
-  text-transform: uppercase;
-}
+	margin-bottom: 2rem;
+	text-transform: uppercase;
 
-.menu li {
-  color: #222;
-  margin-top: 1rem;
-}
+	a {
+		font-family: Open Sans Condensed,sans-serif;
+		font-size: 1.75rem;
+		font-weight: 700;
+		line-height: normal;
+		display: inline-block;
+		position: relative
+	}
 
-.menu .sub-item {
-  margin: 0;
-}
+	li {
+		color: #222;
+		margin-top: 1rem;
 
-.menu .sub-item a {
-  font-size: .94rem;
-  line-height: .94rem;
-  margin: 0;
-}
+		&:active,
+		&:focus,
+		&:hover {
+			opacity: 1
+		}
 
-.menu li:active, .menu li:focus, .menu li:hover {
-  opacity: 1
-}
+		&.logo,
+		&.logo a {
+			margin-bottom: 0;
+		}
 
-.menu li.logo, .menu li.logo a {
-  margin-bottom: 0;
-}
+		amp-img {
+			display: inline-block;
+			width: 120px;
+			margin-bottom: 2rem;
+		}
+	}
 
-/* does .ampstart-headerbar-.menu this ever get used? */
-.ampstart-headerbar-.menu .ampstart-.menu-item {
-  padding: 0 1rem;
-  background: transparent;
-  opacity: .8
-}
+	.label {
+		color: inherit;
+	}
 
-.ampstart-headerbar-.menu {
-  line-height: 3.5rem
-}
+	.sub-item {
+		margin: 0;
 
-.ampstart-headerbar-.menu {
-  flex: 1
-}
+		a {
+			font-size: .94rem;
+			line-height: .94rem;
+			margin: 0;
+		}
+	}
 
-.ampstart-.menu-search {
-  -webkit-box-flex: 0.5;
-  -ms-flex-positive: 0.5;
-  flex-grow: 0.5
-}
+	.amp-mode-mouse & li {
+		&:after {
+			background-color: #222;
+			left: 0;
+			position: absolute;
+			transform: scaleX(0);
+			transform-origin: left center;
+			transition: transform .3s cubic-bezier(.19,1,.22,1);
+			width: 100%;
+			bottom: 0;
+			height: 2px;
+			content: "";
+			display: block
+		}
 
-.ampstart-.menu-search>input {
-  border: none;
-  border-radius: 3px;
-  line-height: normal
-}
-
-.ampstart-.menu-dropdown {
-  min-width: 200px
-}
-
-.ampstart-.menu-dropdown amp-accordion header {
-  background-color: #fff;
-  border: none
-}
-
-.ampstart-.menu-dropdown amp-accordion ul {
-  background-color: #fff
-}
-
-.ampstart-.menu-dropdown .ampstart-dropdown-item,.ampstart-.menu-dropdown .ampstart-dropdown>section>header {
-  background-color: #fff;
-  color: #000
-}
-
-.ampstart-.menu-dropdown .ampstart-dropdown-item {
-  color: #f88
+		&:hover:after {
+			transform: scaleX(1)
+		}
+	}
 }
 
 .menu-header {
-  display: flex;
-  line-height: 3.5rem;
-  min-height: 3.5rem
-}
-
-.menu a {
-  font-family: Open Sans Condensed,sans-serif;
-  font-size: 1.75rem;
-  font-weight: 700;
-  line-height: normal;
-  display: inline-block;
-  position: relative
-}
-
-.amp-mode-mouse .menu li:after {
-  background-color: #222;
-  left: 0;
-  position: absolute;
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform .3s cubic-bezier(.19,1,.22,1);
-  transition: transform .3s cubic-bezier(.19,1,.22,1);
-  width: 100%;
-  bottom: 0;
-  height: 2px;
-  content: "";
-  display: block
-}
-
-.amp-mode-mouse .menu li:hover:after {
-  transform: scaleX(1)
-}
-
-/* removed seemingly redundant .ampstart-sidebar .ampstart-icon class here. But you never know. */
-.ampstart-icon {
-  fill: #222
-}
-
-.menu li amp-img {
-  display: inline-block;
-  width: 120px;
-  margin-bottom: 2rem;
-}
-
-.ampstart-sidebar-header {
-  position: relative;
-  z-index: 1
-}
-
-amp-sidebar .faq {
-  width: 100%;
-  color: #222;
-  font-family: Cardo,serif;
-  padding-top: 1rem
-}
-
-amp-sidebar .faq li {
-  line-height: normal;
-  padding: 0 0 .5rem
-}
-
-.amp-mode-mouse amp-sidebar .faq li:hover {
-  text-decoration: underline;
-}
-
-
-/* Media queries */
-/* TODO: three of these may not be needed */
-
-@media (min-width:52.06rem) {
-  amp-sidebar.menu-button {
-    margin-top: .5rem;
-    padding-top: 0;
-  }
-
-  amp-sidebar {
-    width: 25%;
-  }
-
-  .ampstart-sidebar-header {
-    position: absolute;
-    top: 1rem;
-    left: 2rem
-  }  
-
-  .ampstart-sidebar-.menu {
-    display: inline-block;
-    text-align: center;
-  }
-
+	display: flex;
+	line-height: 3.5rem;
+	min-height: 3.5rem
 }
