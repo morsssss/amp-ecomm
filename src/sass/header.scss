@@ -1,3 +1,5 @@
+@import 'mixins';
+
 .header {
   display: flex;
   position: fixed;
@@ -6,55 +8,63 @@
   height: 3.5rem;
   z-index: 999;
   padding: 0 1rem;
-  top:0;
+  top: 0;
   left: 0;
   right: 0;
   align-items: center;
   border-bottom: 1px solid #f3f3f3;
-}
 
-.header+:not(amp-sidebar),.header+amp-sidebar+* {
-  margin-top: 3.5rem
-}
+  @include desktop {
+    height: 5rem;
+    border-bottom-color: #f3f3f3;
+  }
 
-.header .ampstart-.menu-search:active,.header .ampstart-.menu-search:focus,.header .ampstart-.menu-search:hover {
-  box-shadow: none
-}
+  &+:not(amp-sidebar),
+  &+amp-sidebar+* {
+    margin-top: 3.5rem;
+  }
 
-.header .ampstart-.menu-search:active,.header .ampstart-.menu-search:focus,.header .ampstart-.menu-search:hover {
-  box-shadow: none
-}
+  a {
+    padding-bottom: 0;
+    margin: 0 auto;
+  }
 
-.header a {
-  padding-bottom: 0;
-  margin: 0 auto;
-}
-
-.header amp-img {
-  margin: 0 auto;
+  amp-img {
+    margin: 0 auto;
+  }
 }
 
 .burger {
-    position: absolute;
-    top: 0;
-    padding-right: 1rem;
-    margin-right: 1rem;
-    margin-top: 1rem;
+  position: absolute;
+  top: 0;
+  padding-right: 1rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+
+  @include desktop {
+    margin-left: .5rem;
+    top: .5rem;
+  }
 }
 
 .cart-icon-container {
   position: absolute;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   top: 0;
   right: 0;
   padding: 0.8rem 1.5rem 0 0;
-}
 
-.cart-icon-container div {
-  width: 25px;
-}
+  @include desktop {
+    top: .5rem;
+  }
 
-/* menu button */
+  div {
+    width: 25px;
+  }
+}
 
 .menu-open-button {
   position: absolute;
@@ -64,48 +74,33 @@
   font-size: 2.2rem;
   color: #222;
   font-size: 1.38rem;
-  padding-right: 0
+  padding-right: 0;
+
+  @include desktop {
+    margin-left: .5rem;
+    top: .5rem;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  svg {
+    pointer-events: none;
+  }
 }
 
-.menu-open-button:focus {
-  outline: 5px auto -webkit-focus-ring-color
-}
-
-.menu-open-button:focus {
-  outline: none;
-}
-
-.menu-open-button svg {
-  pointer-events: none;
-}
-
-.menu a,.menu-open-button, amp-sidebar-faq a {
+.menu a,
+.menu-open-button,
+amp-sidebar-faq a {
   cursor: pointer;
-  text-decoration: none
+  text-decoration: none;
 }
 
-
-@media (min-width:52.06rem) {
-  .header+:not(amp-sidebar), .header+amp-sidebar+*, main {
-    margin-top: 5rem
-  }
-
-  .header {
-    height: 5rem;
-    border-bottom-color: #f3f3f3
-  }
-
-  .header .menu-open-button {
-    margin-left: .5rem;
-    top: .5rem
-  }
-
-  .burger {
-    margin-left: .5rem;
-    top: .5rem;
-  }
-
-  .cart-icon-container {
-    top: .5rem;
+@include desktop {
+  .header+:not(amp-sidebar),
+  .header+amp-sidebar+*,
+  main {
+    margin-top: 5rem;
   }
 }
