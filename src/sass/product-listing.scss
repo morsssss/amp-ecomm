@@ -1,159 +1,160 @@
+@import 'mixins';
+
 .listing {
-  max-width: none;
-}
-.listing .banner {
-  width: 100%;
+	max-width: none;
+
+	@include desktop {
+		.side-panel {
+			position: sticky;
+			align-self: center;
+			padding: 2rem 2rem 0 0;
+
+			h2 {
+				font-size: 1.125rem;
+				margin-bottom: 1rem;
+			}
+		}
+	}
+
+	amp-list {
+		margin: 0 .5rem;
+
+		@include desktop {
+			margin: 0 -.5rem;
+		}
+
+		amp-img {
+			margin: 2.5rem 0 1rem;
+		}
+	}
+
+	.banner {
+		width: 100%;
+	}
+
+	.select-wrapper {
+		margin: 0 4px;
+	}
 }
 
-.checkout-steps, .listing-filters {
-  border-top: 1px solid #f3f3f3;
-  border-bottom: 1px solid #f3f3f3;
+.checkout-steps, 
+.listing-filters {
+	border-top: 1px solid #f3f3f3;
+	border-bottom: 1px solid #f3f3f3;
 }
 
 .listing-filters {
-  padding: 1rem;
+	padding: 1rem;
+
+	@include desktop {
+		border: none;
+	}
+
+	select {
+		color: #666;
+	}
+
+	label {
+			display: block;
+			margin-bottom: 0.45rem; 
+	}
 }
 
 .listing-filters amp-selector button,
 .listing-content .side-panel button {
-  color: #666;
+	color: #666;
 }
 
 .listing-filters amp-selector button[selected],
 .listing-content .side-panel button[selected] {
-  color: #000;
+	color: #000;
 }
 
 .select-wrapper {
-  display: inline-block;
-}
+	display: inline-block;
 
-.listing .select-wrapper {
-  margin: 0 4px;
-}
-
-.listing-filters select {
-  color: #666;
+	@include desktop {
+		width: auto;
+	}
 }
 
 .listing-content {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding-bottom: 2rem;
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 1280px;
+	margin: 0 auto;
+	padding-bottom: 2rem;
+
+	.side-panel button,
+	.select-wrapper button {
+		background: none;
+		box-shadow: none;
+		border-radius: 0px;
+		width:80px;
+		border-style: none;
+	}
 }
 
 .listing-container {
-  width: 100%;
-  padding: 1rem 0 1.5rem;
+	width: 100%;
+	padding: 1rem 0 1.5rem;
+
+	@include desktop {
+		padding: .5rem 2rem 5rem;
+		width: 58.33333%;
+	}
+
+	amp-list {
+			margin-top: .45rem;
+	}
 }
 
 .listing-header {
-  position: relative;
-  align-items: center;
-}
+	position: relative;
+	align-items: center;
 
-.listing-header h1 {
-  flex: 1 1 auto;
-  font-size: 1.75rem;
-  padding: 0 1rem;
-  margin: 0 0 1rem;
-}
+	@include desktop {
+		display: flex;
+		flex-wrap: wrap;
+		margin: 1.5rem 0 1rem;
+		border-top: 1px solid #f3f3f3;
+		border-bottom: 1px solid #f3f3f3;
+	}
 
-.listing amp-list {
-  margin: 0 .5rem;
+	h1 {
+		flex: 1 1 auto;
+		font-size: 1.75rem;
+		padding: 0 1rem;
+		margin: 0 0 1rem;
+
+		@include desktop {
+			margin-top: 1rem;
+		}
+	}
 }
 
 .listing-product {
-  position: relative;
-  display: inline-block;
-  min-height: 275px;
-  width: 50%;
-  padding: 0 .5rem;
-  margin-bottom: 1rem;
-}
+	position: relative;
+	display: inline-block;
+	min-height: 275px;
+	width: 50%;
+	padding: 0 .5rem;
+	margin-bottom: 1rem;
 
-.listing-product>div {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  min-height: 275px;
-}
+	@include desktop {
+		width: 25%;
+		margin-bottom: 2rem;
+	}
 
-.listing amp-list amp-img {
-  margin: 2.5rem 0 1rem;
-}
+	h2 {
+			font-size: 1rem;
+	}
 
-.listing-container amp-list {
-    margin-top: .45rem;
-}
-.listing-content .side-panel button,
-.listing-content .select-wrapper button {
-    background: none;
-    box-shadow: none;
-    border-radius: 0px;
-    width:80px;
-    border-style: none;
-}
-.listing-filters label {
-    display: block;
-    margin-bottom: 0.45rem; 
-}
-.listing-product h2 {
-    font-size: 1rem;
-}
-
-/* doesn't seem to work on the original site either
-.amp-mode-mouse .listing-product:hover>.listing-product-name {
-  text-decoration: underline
-}
-*/
-
-@media (min-width:52.06rem) {
-  .listing .side-panel {
-    position: sticky;
-    align-self: center;
-    padding: 2rem 2rem 0 0;
-  }
-
-  .listing .side-panel h2 {
-    font-size: 1.125rem;
-    margin-bottom: 1rem;
-  }
-
-  .listing .select-wrapper {
-    width: auto;
-  }
-
-  .listing-container {
-    padding: .5rem 2rem 5rem;
-    width: 58.33333%;
-  }
-
-  .listing-header {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 1.5rem 0 1rem;
-    border-top: 1px solid #f3f3f3;
-    border-bottom: 1px solid #f3f3f3;
-  }
-
-  .listing-header h1 {
-    margin-top: 1rem;
-  }
-
-  .listing amp-list {
-    margin: 0 -.5rem;
-  }
-
-  .listing-product {
-    width: 25%;
-    margin-bottom: 2rem;
-  }
-
-  .listing-filters {
-    border: none;
-  }
+	&>div {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		position: relative;
+		min-height: 275px;
+	}
 }
