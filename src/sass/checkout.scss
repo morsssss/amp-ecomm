@@ -1,3 +1,5 @@
+@import 'mixins';
+
 .checkout {
 	display: flex;
 	flex-wrap: wrap;
@@ -28,7 +30,7 @@
 	font-size: .94rem;
 	padding: 1rem;
 
-	@media (min-width:52.06rem) {
+	@include desktop {
 		max-width: 350px;
 		border: none;
 		margin-left: 1rem;
@@ -49,7 +51,7 @@
 		margin: 1rem 1.5rem .5rem 1rem;
 	}
 
-	@media (min-width:52.06rem) {
+	@include desktop {
 		width: 66.66667%;
 		padding: 2rem 2rem 5rem;	
 	}
@@ -62,7 +64,7 @@
 		margin-bottom: 1rem;
 	}
 
-	@media (min-width:52.06rem) {
+	@include desktop {
 		margin-top: 1.5rem;	
 	}
 }
@@ -114,7 +116,7 @@
 		margin: 1rem 0;
 	}
 
-	@media (min-width:52.06rem) {
+	@include desktop {
 		padding: 1.5rem 1rem;
 	}
 }
@@ -124,7 +126,7 @@
 }
 
 .checkout-actions {
-	@media (min-width:52.06rem) {
+	@include desktop {
 		text-align: initial;
 		margin-top: 1.5rem;
 	}

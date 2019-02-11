@@ -1,3 +1,5 @@
+@import 'mixins';
+
 .blog {
 	display: flex;
 	align-items: flex-start;
@@ -110,7 +112,7 @@
 		margin-bottom: 2.5rem;
 	}
 
-	@media (min-width: 52.06rem) {
+	@include desktop {
 		h1 {
 			margin-top: 1.5rem;
 			border-top: 1px solid #f3f3f3;
