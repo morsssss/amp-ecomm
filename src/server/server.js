@@ -60,7 +60,7 @@ app.get('/product-listing', function(req, res) {
             resShirtSelected = false;
             resShortSelected = true;
         }
-    } 
+    }
     mustache.tags = ['<%','%>'];
     let responseObj = {
         productsCategory: resProductsCategory,

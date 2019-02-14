@@ -31,6 +31,7 @@ class ApiManager {
 
         let prodCategory = JSON.parse(apiCategoryResponse);
         let prodListing = prodCategory.matchingProducts;
+        let productCount = 0;
 
         var parsedCategory = {
             items: []
@@ -47,8 +48,9 @@ class ApiManager {
             parsedProd.category = originalProd.Main_Id; /* Missing field on Campmor API */
 
             parsedCategory.items.push(parsedProd);
+            productCount++;
         }
-
+        parsedCategory.productCount = productCount;
         return parsedCategory;
     }
 
