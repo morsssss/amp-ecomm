@@ -5,6 +5,7 @@ class ApiManager {
         this.apiUrlEndpoint = 'https://campmor.ampify.wompmobile.com/campmor';
         this.apiCategoriesEndpoint = this.apiUrlEndpoint + '/fetchCategories';
         this.apiProductEndpoint = this.apiUrlEndpoint + '/fetchProduct';
+        this.MAX_RELATED_PRODUCTS = 11;
 
 
         var apiUrlValues = [
@@ -21,10 +22,30 @@ class ApiManager {
 
     //Example url: https://campmor.ampify.wompmobile.com/campmor/fetchCategories?categoryId=200368507&sortBy=priceLtoH
     getCategoryUrl(categoryId, sort) {
-
-        var apiUrlParams = 'categoryId=' + this.apiUrlMap.get(categoryId) + '&sortBy=' + this.apiUrlMap.get(sort);
+        var apiUrlParams = 'categoryId=' + this.apiUrlMap.get(categoryId) + (sort != undefined ? '&sortBy=' + this.apiUrlMap.get(sort) : '');
         return this.apiCategoriesEndpoint + '?' + apiUrlParams;
+    }
 
+    //Returns all items from the category sent as parameter, with he exception of the one with productId == to the first param.
+    getRelatedProducts(productId, apiCategoryResponse) {
+        let parsedCategory = this.parseCategory(apiCategoryResponse);
+        let relatedCategoryItems = parsedCategory.items;
+
+        //only return up to this.MAX_RELATED_PRODUCTS
+        if(relatedCategoryItems.length > this.MAX_RELATED_PRODUCTS) {
+            relatedCategoryItems.splice(this.MAX_RELATED_PRODUCTS, relatedCategoryItems.length - this.MAX_RELATED_PRODUCTS);
+        }
+
+        //remove the item currently being shown
+        for(var i = 0; i < relatedCategoryItems.length; i++){
+            if(relatedCategoryItems[i].productId === productId) {
+                relatedCategoryItems.splice(i, 1);
+                break;
+            }
+        }
+
+        parsedCategory.items = relatedCategoryItems;
+        return parsedCategory;
     }
 
     parseCategory(apiCategoryResponse) {

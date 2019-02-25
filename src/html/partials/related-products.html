@@ -1,89 +1,24 @@
-  <section class="related-products xs-hide sm-hide">
+<section class="related-products xs-hide sm-hide">
     <div class="related-products-area">
-      <h4>You may also like</h4>
-      <amp-carousel height="170" layout="fixed-height" type="carousel">
-        <ul>
-            <li>
-              <a href="product-details.amp.html" class="text-decoration-none">
-                <amp-img src="../img/e-commerce/product/product-1.jpg" width="1" height="1" layout="responsive" alt="Sprocket Set" noloading="">
-                  <div placeholder="" class="loading"></div>
-                </amp-img>
-                <h6>Sprocket Set</h6>
-              </a>
-            </li>
-            <li>
-              <a href="product-details.amp.html" class="text-decoration-none">
-                <amp-img src="../img/e-commerce/product/product-1.jpg" width="1" height="1" layout="responsive" alt="Sprocket Set" noloading="">
-                  <div placeholder="" class="loading"></div>
-                </amp-img>
-                <h6>Fixie Blue</h6>
-              </a>
-            </li>
-            <li>
-              <a href="product-details.amp.html" class="text-decoration-none">
-                <amp-img src="../img/e-commerce/product/product-3.jpg" width="1" height="1" layout="responsive" alt="Chain set" noloading="">
-                  <div placeholder="" class="loading"></div>
-                </amp-img>
-                <h6>Chain set</h6>
-              </a>
-            </li>
-            <li>
-              <a href="product-details.amp.html" class="text-decoration-none">
-                <amp-img src="../img/e-commerce/product/product-4.jpg" width="1" height="1" layout="responsive" alt="Leather Saddle" noloading="">
-                  <div placeholder="" class="loading"></div>
-                </amp-img>
-                <h6>Leather Saddle</h6>
-              </a>
-            </li>
-            <li>
-              <a href="product-details.amp.html" class="text-decoration-none">
-                <amp-img src="../img/e-commerce/product/product-5.jpg" width="1" height="1" layout="responsive" alt="16-Speed" noloading="">
-                  <div placeholder="" class="loading"></div>
-                </amp-img>
-                <h6>16-Speed</h6>
-              </a>
-            </li>
-            <li>
-              <a href="product-details.amp.html" class="text-decoration-none">
-                <amp-img src="../img/e-commerce/product/product-6.jpg" width="1" height="1" layout="responsive" alt="Red Cruiser" noloading="">
-                  <div placeholder="" class="loading"></div>
-                </amp-img>
-                <h6>Red Cruiser</h6>
-              </a>
-            </li>
-            <li>
-              <a href="product-details.amp.html" class="text-decoration-none">
-                <amp-img src="../img/e-commerce/product/product-7.jpg" width="1" height="1" layout="responsive" alt="Horn Handles" noloading="">
-                  <div placeholder="" class="loading"></div>
-                </amp-img>
-                <h6>Horn Handles</h6>
-              </a>
-            </li>
-            <li>
-              <a href="product-details.amp.html" class="text-decoration-none">
-                <amp-img src="../img/e-commerce/product/product-8.jpg" width="1" height="1" layout="responsive" alt="Caliper Brakes" noloading="">
-                  <div placeholder="" class="loading"></div>
-                </amp-img>
-                <h6>Caliper Brakes</h6>
-              </a>
-            </li>
-            <li>
-              <a href="product-details.amp.html" class="text-decoration-none">
-                <amp-img src="../img/e-commerce/product/product-9.jpg" width="1" height="1" layout="responsive" alt="Road Bike" noloading="">
-                  <div placeholder="" class="loading"></div>
-                </amp-img>
-                <h6>Road Bike</h6>
-              </a>
-            </li>
-            <li>
-              <a href="product-details.amp.html" class="text-decoration-none">
-                <amp-img src="../img/e-commerce/product/product-10.jpg" width="1" height="1" layout="responsive" alt="Wheel Set" noloading="">
-                  <div placeholder="" class="loading"></div>
-                </amp-img>
-                <h6>Wheel Set</h6>
-              </a>
-            </li>
-        </ul>
-      </amp-carousel>
+        <h4>You may also like</h4>
+        <br>
+        <amp-list id="products-list" src="/api/related-products?categoryId=<%CategoryId%>&productId=<%Main_Id%>" height="140" width="auto" layout="fixed-height">
+            <template type="amp-mustache">
+                <amp-carousel height="170" layout="fixed-height" type="carousel">
+                  {{#items}}
+                    <ul>
+                        <li>
+                            <a href="/product-details?categoryId=<%CategoryId%>&productId={{productId}}" class="text-decoration-none">
+                                <amp-img src="{{image}}" width="1" height="1" layout="responsive" alt="{{name}}" noloading="">
+                                    <div placeholder="" class="loading"></div>
+                                </amp-img>
+                                <h6>{{name}}</h6>
+                            </a>
+                        </li>
+                    </ul>
+                  {{/items}}
+                </amp-carousel>
+            </template>
+        </amp-list>
     </div>
-  </section>
+</section>

@@ -78,6 +78,7 @@ app.get('/product-listing', function(req, res) {
 //Product Page
 app.get('/product-details', function(req, res) {
 
+    let categoryId = req.query.categoryId;
     let productId = req.query.productId;
     let productUrl = apiManager.getProductUrl(productId);
 
@@ -88,7 +89,8 @@ app.get('/product-details', function(req, res) {
     request(options, (error, response, body) => {
         if (!error && body != 'Product not found' && !body.includes('An error has occurred')) {
             var productObj = apiManager.parseProduct(body);
-            mustache.tags = ['{{','}}'];
+            productObj.CategoryId = categoryId;
+            mustache.tags = ['<%','%>'];
             res.render('product-details', productObj);
         } else {
             res.render('product-not-found');
@@ -221,6 +223,32 @@ app.post('/api/delete-cart-item', function(req, res) {
 
     enableCors(req, res);
     res.send(shoppingCartResponse);
+});
+
+app.get('/api/related-products', function(req, res) {
+    let categoryId = req.query.categoryId;
+    let productId = req.query.productId;
+
+    let categoryUrl = apiManager.getCategoryUrl(categoryId);
+
+    //the response will be a 1 element items array, to be able to combine amp-list with amp-mustache
+    //see: https://github.com/ampproject/amphtml/issues/4405#issuecomment-379696849
+    let relatedProductsResponse = {items : []};
+
+    const options = {
+        url: categoryUrl
+    };
+
+    request(options, (error, response, body) => {
+        if (!error) {
+            let relatedProducts = apiManager.getRelatedProducts(productId, body);
+            relatedProductsResponse.items.push(relatedProducts);
+            res.send(relatedProductsResponse);
+        } else {
+            res.json({ error: 'An error occurred in /api/related-products' });
+            console.log(error);
+        }
+    });
 });
 
 function updateShoppingCartOnSession(req, productId, name, price, color, size, imgUrl, quantity) {

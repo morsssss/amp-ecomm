@@ -76,7 +76,7 @@
                 </div>
                 <amp-list id="products-list" [src]="'/api/categories?categoryId=' + products.category + '&sort=' + products.filter" src="/api/categories?categoryId=<%productsGender%>-<%productsCategory%>&sort=high-low" height="1000" width="300" layout="responsive">
                     <template type="amp-mustache">
-                        <a href="product-details?productId={{productId}}" target="_self" class="listing-product">
+                        <a href="product-details?categoryId=<%productsGender%>-<%productsCategory%>&productId={{productId}}" target="_self" class="listing-product" [href]="'product-details?categoryId=' + products.category + '&productId={{productId}}'">
                             <div>
                                 <div>
                                     <amp-img src="{{image}}" width="340" height="340" layout="responsive" alt="{{ name }}" noloading="">
