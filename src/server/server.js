@@ -49,7 +49,7 @@ app.get('/product-listing', function(req, res) {
     // read parameters
     let productsGender = req.query.gender || resProductsGender;
     let productsCategory = req.query.category || resProductsCategory;
-    let listingUrl = apiManager.getCategoryUrl(productsGender+'-'+productsCategory);
+    let listingUrl = apiManager.getCategoryUrl(productsGender + '-' + productsCategory);
     if (!listingUrl.match('categoryId=undefined')) {
         resProductsCategory = productsCategory;
         resProductsGender = productsGender;
@@ -61,15 +61,14 @@ app.get('/product-listing', function(req, res) {
             resShortSelected = true;
         }
     }
-    mustache.tags = ['<%','%>'];
+    mustache.tags = ['<%', '%>'];
     let responseObj = {
         productsCategory: resProductsCategory,
         productsGender: resProductsGender
     };
     if (resShirtSelected) {
         responseObj.shirtSelected = true;
-    }
-    else if (resShortSelected) {
+    } else if (resShortSelected) {
         responseObj.shortSelected = true;
     }
     res.render('product-listing', responseObj);
@@ -90,7 +89,7 @@ app.get('/product-details', function(req, res) {
         if (!error && body != 'Product not found' && !body.includes('An error has occurred')) {
             var productObj = apiManager.parseProduct(body);
             productObj.CategoryId = categoryId;
-            mustache.tags = ['<%','%>'];
+            mustache.tags = ['<%', '%>'];
             res.render('product-details', productObj);
         } else {
             res.render('product-not-found');
@@ -98,10 +97,31 @@ app.get('/product-details', function(req, res) {
     });
 });
 
-//Add to Cart logic
-app.post('/add-to-cart', function(req, res) {
+app.get('/shopping-cart', function(req, res) {
+
+    //get related products for the cart page: items belonging to the category of the first item in the cart, excluding the item.
+    let shoppingCart = req.session.shoppingCart;
+    let relatedProductsObj = new Object();
+
+    if (shoppingCart) {
+        shoppingCart = serializer.deserialize(shoppingCart);
+        let cartItems = shoppingCart.cartItems;
+        if(cartItems.length > 0) {
+            let firstCartItem = cartItems[0];
+            relatedProductsObj.Main_Id = firstCartItem.productId;
+            relatedProductsObj.CategoryId = firstCartItem.categoryId;
+        }
+    }
+
+    mustache.tags = ['<%', '%>'];
+    res.render('cart-details', relatedProductsObj);
+});
+
+//API
+app.post('/api/add-to-cart', function(req, res) {
 
     let productId = req.fields.productId;
+    let categoryId = req.fields.categoryId;
     let name = req.fields.name;
     let price = req.fields.price;
     let color = req.fields.color;
@@ -113,26 +133,26 @@ app.post('/add-to-cart', function(req, res) {
     //If comes from the cache
     if (req.headers['amp-same-origin'] !== 'true') {
         //transfrom POST into GET and redirect to same url
-        let queryString = 'productId=' + productId + '&name=' + name + '&price=' + price + '&color=' + color + '&size=' + size + '&quantity=' + quantity + '&origin=' + origin + '&imgUrl=' + imgUrl;
+        let queryString = 'productId=' + productId + '&categoryId=' + categoryId + '&name=' + name + '&price=' + price + '&color=' + color + '&size=' + size + '&quantity=' + quantity + '&origin=' + origin + '&imgUrl=' + imgUrl;
         res.header("Access-Control-Expose-Headers", "AMP-Access-Control-Allow-Source-Origin,AMP-Redirect-To");
         res.header("AMP-Access-Control-Allow-Source-Origin", origin);
-        res.header("AMP-Redirect-To", origin + "/add_to_cart?" + queryString);
+        res.header("AMP-Redirect-To", origin + "/api/add-to-cart?" + queryString);
     } else {
-        updateShoppingCartOnSession(req, productId, name, price, color, size, imgUrl, quantity);
-        res.header("AMP-Redirect-To", origin + "/shopping_cart");
+        updateShoppingCartOnSession(req, productId, categoryId, name, price, color, size, imgUrl, quantity);
+        res.header("AMP-Redirect-To", origin + "/shopping-cart");
     }
 
     //set AMP headers to redirect to cart page
     res.header("Access-Control-Expose-Headers", "AMP-Access-Control-Allow-Source-Origin,AMP-Redirect-To");
     res.header("AMP-Access-Control-Allow-Source-Origin", origin);
-    res.header("AMP-Redirect-To", origin + "/cart-details.html");
 
     //amp-form requires json response
     res.json({});
 });
 
-app.get('/api/add_to_cart', function(req, res) {
+app.get('/api/add-to-cart', function(req, res) {
     let productId = req.query.productId;
+    let categoryId = req.query.categoryId;
     let name = req.query.name;
     let price = req.query.price;
     let color = req.query.color;
@@ -140,11 +160,10 @@ app.get('/api/add_to_cart', function(req, res) {
     let imgUrl = req.query.imgUrl;
     let quantity = req.query.quantity;
 
-    updateShoppingCartOnSession(req, productId, name, price, color, size, imgUrl, quantity);
-    res.redirect('/shopping_cart');
+    updateShoppingCartOnSession(req, productId, categoryId, name, price, color, size, imgUrl, quantity);
+    res.redirect('/shopping-cart');
 });
 
-//API
 app.get('/api/categories', function(req, res) {
 
     let categoryId = req.query.categoryId;
@@ -180,7 +199,7 @@ app.get('/api/product', function(req, res) {
             var productObj = apiManager.parseProduct(body);
             res.send(productObj);
         } else {
-            res.json({ error: 'An error occurred in /api/product: ' + body});
+            res.json({ error: 'An error occurred in /api/product: ' + body });
         }
     });
 });
@@ -198,7 +217,7 @@ app.get('/api/cart-items', function(req, res) {
     }
 
     //wrap the shopping cart into an 'items' array, so it can be consumed with amp-list.
-    let shoppingCartResponse = {items : []};
+    let shoppingCartResponse = { items: [] };
     shoppingCartResponse.items.push(shoppingCart);
 
     res.send(shoppingCartResponse);
@@ -210,11 +229,11 @@ app.post('/api/delete-cart-item', function(req, res) {
     let color = req.fields.color;
     let size = req.fields.size;
 
-    let shoppingCartResponse = {items : []};
+    let shoppingCartResponse = { items: [] };
 
     let shoppingCart = req.session.shoppingCart;
 
-    if(shoppingCart) {
+    if (shoppingCart) {
         shoppingCart = serializer.deserialize(shoppingCart);
         shoppingCart.removeItem(productId, color, size);
         req.session.shoppingCart = serializer.serialize(shoppingCart);
@@ -233,7 +252,7 @@ app.get('/api/related-products', function(req, res) {
 
     //the response will be a 1 element items array, to be able to combine amp-list with amp-mustache
     //see: https://github.com/ampproject/amphtml/issues/4405#issuecomment-379696849
-    let relatedProductsResponse = {items : []};
+    let relatedProductsResponse = { items: [] };
 
     const options = {
         url: categoryUrl
@@ -251,8 +270,8 @@ app.get('/api/related-products', function(req, res) {
     });
 });
 
-function updateShoppingCartOnSession(req, productId, name, price, color, size, imgUrl, quantity) {
-    let cartProduct = apiManager.createCartItem(productId, name, price, color, size, imgUrl, quantity);
+function updateShoppingCartOnSession(req, productId, categoryId, name, price, color, size, imgUrl, quantity) {
+    let cartProduct = apiManager.createCartItem(productId, categoryId, name, price, color, size, imgUrl, quantity);
     let shoppingCart = req.session.shoppingCart;
 
     if (shoppingCart) {
@@ -267,11 +286,11 @@ function updateShoppingCartOnSession(req, productId, name, price, color, size, i
 
 function enableCors(req, res) {
 
-  //set to all for dev purposes only, change it by configuration to final domain
-  let origin = req.get('origin');
+    //set to all for dev purposes only, change it by configuration to final domain
+    let origin = req.get('origin');
 
-  res.header("Access-Control-Allow-Origin", origin);
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Expose-Headers", "AMP-Access-Control-Allow-Source-Origin");
-  res.header("AMP-Access-Control-Allow-Source-Origin", origin);
+    res.header("Access-Control-Allow-Origin", origin);
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Expose-Headers", "AMP-Access-Control-Allow-Source-Origin");
+    res.header("AMP-Access-Control-Allow-Source-Origin", origin);
 }

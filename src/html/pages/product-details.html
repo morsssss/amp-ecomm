@@ -152,7 +152,7 @@
                     <%/ReviewEmptyStars %>
                 </div>
                 <hr />
-                <form id="order" method="POST" action-xhr="/add-to-cart" target="_top" class="flex flex-wrap">
+                <form id="order" method="POST" action-xhr="/api/add-to-cart" target="_top" class="flex flex-wrap">
                     <div class="product-colors self-start">
                         <span class="title">color:</span>
                         <amp-selector name="color" layout="container" [selected]="product.selectedColor" 
@@ -219,6 +219,7 @@
                     <div class="button-wrapper">
                         <input type="submit" class="cart-actions button button-white" name="add-to-cart" value="add to cart">
                         <input type="hidden" name="productId" value="<%Main_Id%>">
+                        <input type="hidden" name="categoryId" value="<%CategoryId%>">
                         <input type="hidden" name="name" value="<%Product_Title%>">
                         <input type="hidden" name="price" value="<%DefaultPrice%>" [value]="product[product.selectedColor].sizes[product.selectedSize]">
                         <input type="hidden" name="imgUrl" value="<%& All_Colors.0.Photo%>" [value]="product[product.selectedColor].large.image1">

@@ -154,9 +154,10 @@ class ApiManager {
         productObj.DefaultQuantityDisabled = (productObj.All_Colors[0].Stock == 1);
     }
 
-    createCartItem(productId, name, price, color, size, imgUrl, quantity) {
+    createCartItem(productId, categoryId, name, price, color, size, imgUrl, quantity) {
         let cartProduct = new Object();
         cartProduct.productId = productId;
+        cartProduct.categoryId = categoryId;
         cartProduct.name = name;
         cartProduct.price = parseInt(price);
         cartProduct.color = color;
