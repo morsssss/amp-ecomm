@@ -134,8 +134,6 @@ app.post('/api/add-to-cart', function(req, res) {
     if (req.headers['amp-same-origin'] !== 'true') {
         //transfrom POST into GET and redirect to same url
         let queryString = 'productId=' + productId + '&categoryId=' + categoryId + '&name=' + name + '&price=' + price + '&color=' + color + '&size=' + size + '&quantity=' + quantity + '&origin=' + origin + '&imgUrl=' + imgUrl;
-        res.header("Access-Control-Expose-Headers", "AMP-Access-Control-Allow-Source-Origin,AMP-Redirect-To");
-        res.header("AMP-Access-Control-Allow-Source-Origin", origin);
         res.header("AMP-Redirect-To", origin + "/api/add-to-cart?" + queryString);
     } else {
         updateShoppingCartOnSession(req, productId, categoryId, name, price, color, size, imgUrl, quantity);
@@ -212,7 +210,7 @@ app.get('/api/cart-items', function(req, res) {
     if (shoppingCart) {
         shoppingCart = serializer.deserialize(shoppingCart);
     } else {
-        shoppingCart = createCart();
+        shoppingCart = apiManager.createCart();
         req.session.shoppingCart = serializer.serialize(shoppingCart);
     }
 
@@ -220,6 +218,7 @@ app.get('/api/cart-items', function(req, res) {
     let shoppingCartResponse = { items: [] };
     shoppingCartResponse.items.push(shoppingCart);
 
+    enableCors(req, res);
     res.send(shoppingCartResponse);
 });
 
@@ -287,10 +286,12 @@ function updateShoppingCartOnSession(req, productId, categoryId, name, price, co
 function enableCors(req, res) {
 
     //set to all for dev purposes only, change it by configuration to final domain
-    let origin = req.get('origin');
+    
+    let sourceOrigin = req.query.__amp_source_origin;
+    let origin = req.headers.origin || sourceOrigin;
 
     res.header("Access-Control-Allow-Origin", origin);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Expose-Headers", "AMP-Access-Control-Allow-Source-Origin");
-    res.header("AMP-Access-Control-Allow-Source-Origin", origin);
+    res.header("Access-Control-Expose-Headers", "AMP-Access-Control-Allow-Source-Origin,AMP-Redirect-To");
+    res.header("AMP-Access-Control-Allow-Source-Origin", sourceOrigin);
 }

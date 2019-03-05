@@ -13,7 +13,7 @@
     %%include('../partials/menu.html')
     <main id="content" role="main" class="main cart">
         <div class="cart-wrapper">
-            <amp-list layout="fill" src="/api/cart-items" [src]="shopCartList.items">
+            <amp-list credentials="include" layout="fill" src="/api/cart-items" [src]="cartItemsList.items">
                 <template type="amp-mustache" id="cart-items">
                     {{#isEmpty}}
                     <div class="cart-actions">
@@ -34,12 +34,12 @@
                                 <h6>{{name}}</h6>
                             </div>
                             <div class="cart-product-right title">
-                                <span>"{{size}}"</span>
+                                <span>{{size}}</span>
                                 <span>${{price}}</span>
                                 <span>{{quantity}}</span>
                                 <button type="button" style="background: none;box-shadow: none;border-radius: 0px;width:30px" 
                                     on="tap: AMP.setState({
-                                        cartParam: {
+                                        cartItem: {
                                             productId: '{{productId}}',
                                             size: '{{size}}',
                                             color: '{{color}}'
@@ -70,11 +70,11 @@
         <!-- Put form here -->
         <form id="form-cart-delete" method="POST" target="_top" action-xhr="/api/delete-cart-item"
             on="submit-success: AMP.setState({
-                shopCartList: event.response
+                cartItemsList: event.response
             })" novalidate="">
-            <input type="hidden" name="productId" value="" [value]="cartParam.productId">
-            <input type="hidden" name="color" value="" [value]="cartParam.color">
-            <input type="hidden" name="size" value="" [value]="cartParam.size">
+            <input type="hidden" name="productId" value="" [value]="cartItem.productId">
+            <input type="hidden" name="color" value="" [value]="cartItem.color">
+            <input type="hidden" name="size" value="" [value]="cartItem.size">
         </form>
         <!--
         %%include('../partials/related-products.html')
@@ -83,7 +83,7 @@
     <!--
         %%wxclude('../partials/footer.html')
     -->
-    <amp-state id="shopCartList">
+    <amp-state id="cartItemsList">
         <script type="application/json">
         {
 
@@ -91,7 +91,7 @@
         </script>
     </amp-state>
 
-    <amp-state id="cartParam">
+    <amp-state id="cartItem">
         <script type="application/json">
         {
 

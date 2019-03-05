@@ -64,7 +64,7 @@ class ApiManager {
             parsedProd.productId = originalProd.Main_Id;
             parsedProd.name = originalProd.Product_Title.replace(/ - Women's| - Men's/g,'');
             parsedProd.description = originalProd.Product_Title; /* Missing field on Campmor API */
-            parsedProd.price = originalProd.Price;
+            parsedProd.price = originalProd.Discount_Price; /* Using Discount_Price, since it's the one associated to each product size on the Product API. */
             parsedProd.image = originalProd.Photo;
             parsedProd.category = originalProd.Main_Id; /* Missing field on Campmor API */
 
