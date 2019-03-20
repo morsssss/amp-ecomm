@@ -140,10 +140,7 @@ app.post('/api/add-to-cart', function(req, res) {
         res.header("AMP-Redirect-To", origin + "/shopping-cart");
     }
 
-    //set AMP headers to redirect to cart page
-    res.header("Access-Control-Expose-Headers", "AMP-Access-Control-Allow-Source-Origin,AMP-Redirect-To");
-    res.header("AMP-Access-Control-Allow-Source-Origin", origin);
-
+    enableCors(req, res);
     //amp-form requires json response
     res.json({});
 });
@@ -271,25 +268,26 @@ app.get('/api/related-products', function(req, res) {
 
 function updateShoppingCartOnSession(req, productId, categoryId, name, price, color, size, imgUrl, quantity) {
     let cartProduct = apiManager.createCartItem(productId, categoryId, name, price, color, size, imgUrl, quantity);
-    let shoppingCart = req.session.shoppingCart;
+    let shoppingCartJson = req.session.shoppingCart;
+    let shoppingCartObj;
 
-    if (shoppingCart) {
-        shoppingCart = serializer.deserialize(shoppingCart);
+    if (shoppingCartJson) {
+        shoppingCartObj = serializer.deserialize(shoppingCartJson);
     } else {
-        shoppingCart = apiManager.createCart();
+        shoppingCartObj = apiManager.createCart();
     }
 
-    shoppingCart.addItem(cartProduct);
-    req.session.shoppingCart = serializer.serialize(shoppingCart);
+    shoppingCartObj.addItem(cartProduct);
+    req.session.shoppingCart = serializer.serialize(shoppingCartObj);
 }
 
 function enableCors(req, res) {
 
     //set to all for dev purposes only, change it by configuration to final domain
-    
     let sourceOrigin = req.query.__amp_source_origin;
-    let origin = req.headers.origin || sourceOrigin;
+    let origin = req.get('origin') || sourceOrigin;
 
+    res.header('Access-Control-Allow-Credentials', 'true');
     res.header("Access-Control-Allow-Origin", origin);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Expose-Headers", "AMP-Access-Control-Allow-Source-Origin,AMP-Redirect-To");
