@@ -159,8 +159,26 @@
 
 .cart-actions {
 	text-align: center;
+	padding-bottom: 70px;
 
 	@include desktop {
 		text-align: left;	
+		padding-bottom: 190px;
+	}
+}
+footer { 
+	position: fixed;
+	z-index: 1;
+	bottom: 0;
+	transform: translateY(354px);
+	transition: all .3s cubic-bezier(.19,1,.22,1);
+	width: 100%;
+
+	@include desktop {
+		transform: translateY(0);
+	}
+
+	&.expanded {
+		transform: translateY(0);
 	}
 }

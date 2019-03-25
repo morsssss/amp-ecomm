@@ -1,4 +1,11 @@
-<footer>
+<footer 
+%%if (context.pageType == 'cart-details') {
+    [class] ="footerToggle ? 'expanded' : ''"
+    on="tap:AMP.setState({footerToggle: !footerToggle})"
+    tabindex="0"
+    role="button"
+}
+>
     <nav>
         <ul class="footer-main">
             <li class="footer-section">

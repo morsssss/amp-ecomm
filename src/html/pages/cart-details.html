@@ -14,7 +14,7 @@
     <main id="content" role="main" class="main cart">
         <div class="cart-wrapper">
             <amp-list credentials="include" layout="fill" src="/api/cart-items" [src]="cartItemsList.items">
-                <template type="amp-mustache" id="cart-items">
+                <template type="amp-mustache">
                     {{#isEmpty}}
                     <div class="cart-actions">
                         <h3>Your Basket is Empty</h3>
@@ -80,15 +80,12 @@
         %%include('../partials/related-products.html')
         -->    
     </main>
-    <!--
-        %%wxclude('../partials/footer.html')
-    -->
-    <amp-state id="cartItemsList">
-        <script type="application/json">
-        {
-
-        }
-        </script>
+    
+    %%include('../partials/footer.html', {
+        "pageType": "cart-details"
+    })
+    
+    <amp-state id="cartItemsList" src="/api/cart-items">
     </amp-state>
 
     <amp-state id="cartItem">
