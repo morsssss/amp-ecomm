@@ -26,12 +26,14 @@
                         {{#cartItems}}
                         <div class="cart-product">
                             <div class="cart-image-container">
-                                <amp-img src="{{imgUrl}}" width="1" height="1" layout="responsive" alt="{{mame}}" noloading="">
-                                    <div placeholder="" class="loading"></div>
-                                </amp-img>
+                                <a href="/product-details?productId={{productId}}">
+                                    <amp-img src="{{imgUrl}}" width="1" height="1" layout="responsive" alt="{{mame}}" noloading="">
+                                        <div placeholder="" class="loading"></div>
+                                    </amp-img>
+                                </a>
                             </div>
                             <div class="cart-product-left">
-                                <h6>{{name}}</h6>
+                                <a href="/product-details?productId={{productId}}"><h6>{{name}}</h6></a>
                             </div>
                             <div class="cart-product-right title">
                                 <span>{{size}}</span>
