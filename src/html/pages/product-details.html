@@ -184,14 +184,14 @@
                                 <%#All_Colors.0.Avaliable_Sizes%>
                                 <%#available%>
                                 <%#default%>
-                                <button type="button" style="border: 0;background: none;box-shadow: none;border-radius: 0px;width:30px" option="<%SizeName%>" class="" [class]="(product[product.selectedColor].sizes['<%SizeName%>'] != null)? '' : 'unavailable'" selected><%SizeName%></button>
+                                <button type="button" option="<%SizeName%>" class="" [class]="(product[product.selectedColor].sizes['<%SizeName%>'] != null)? '' : 'unavailable'" selected><%SizeName%></button>
                                 <%/default%>
                                 <%^default%>
-                                <button type="button" style="border: 0;background: none;box-shadow: none;border-radius: 0px;width:30px" option="<%SizeName%>" option="<%SizeName%>" class="" [class]="(product[product.selectedColor].sizes['<%SizeName%>'] != null)? '' : 'unavailable'"><%SizeName%></button>
+                                <button type="button" option="<%SizeName%>" class="" [class]="(product[product.selectedColor].sizes['<%SizeName%>'] != null)? '' : 'unavailable'"><%SizeName%></button>
                                 <%/default%>
                                 <%/available%>
                                 <%^available%>
-                                <button type="button" style="border: 0;background: none;box-shadow: none;border-radius: 0px;width:30px" option="<%SizeName%>" option="<%SizeName%>" class="unavailable" [class]="(product[product.selectedColor].sizes['<%SizeName%>'] != null)? '' : 'unavailable'"><%SizeName%></button>
+                                <button type="button" option="<%SizeName%>" option="<%SizeName%>" class="unavailable" [class]="(product[product.selectedColor].sizes['<%SizeName%>'] != null)? '' : 'unavailable'"><%SizeName%></button>
                                 <%/available%>
                                 <%/All_Colors.0.Avaliable_Sizes%>
                             </amp-selector>
@@ -200,18 +200,17 @@
                     <hr />
                     <div class="product-colors self-start">
                         <div>    
-                            <span class="title">Quantity:</span>
-                            <div>
-                                <button type="button" style="background: none;box-shadow: none;border-radius: 0px;width:30px" [disabled]="product.selectedQuantity == 1" disabled on="tap:AMP.setState({ product: {selectedQuantity : product.selectedQuantity - 1} })">-</button>
-                                <input type="text" class="title" style="text-align:center;width:20px" value="1" name="quantity" width="5" height="1" [value]="product.selectedQuantity" readonly>
+                            <span class="title">Quantity:</span> <span [text]="'(' + product[product.selectedColor].stock + ' Available)'"> (<%All_Colors.0.Stock%> Available)</span>
+                            <div class="buttons-group">
+                                <button type="button" class="button button-white no-transition" [disabled]="product.selectedQuantity == 1" disabled on="tap:AMP.setState({ product: {selectedQuantity : product.selectedQuantity - 1} })">-</button>
+                                <input type="text" class="title" value="1" name="quantity" width="5" height="1" [value]="product.selectedQuantity" readonly>
                                 <%#DefaultQuantityDisabled%>
-                                    <button type="button" style="background: none;box-shadow: none;border-radius: 0px;width:30px" [disabled]="product[product.selectedColor].stock == product.selectedQuantity" disabled on="tap:AMP.setState({ product: {selectedQuantity : (product.selectedQuantity + 1) } })">+</button>
+                                    <button type="button" class="button button-white no-transition" [disabled]="product[product.selectedColor].stock == product.selectedQuantity" disabled on="tap:AMP.setState({ product: {selectedQuantity : (product.selectedQuantity + 1) } })">+</button>
                                 <%/DefaultQuantityDisabled%>
                                 <%^DefaultQuantityDisabled%>
-                                    <button type="button" style="background: none;box-shadow: none;border-radius: 0px;width:30px" [disabled]="product[product.selectedColor].stock == product.selectedQuantity" on="tap:AMP.setState({ product: {selectedQuantity : (product.selectedQuantity + 1) } })">+</button>
+                                    <button type="button" class="button button-white no-transition" [disabled]="product[product.selectedColor].stock == product.selectedQuantity" on="tap:AMP.setState({ product: {selectedQuantity : (product.selectedQuantity + 1) } })">+</button>
                                 <%/DefaultQuantityDisabled%>
                                 <br>
-                                <p [text]="'(' + product[product.selectedColor].stock + ' Available)'"> (<%All_Colors.0.Stock%> Available)</p>
                             </div>
                         </div>
                     </div>

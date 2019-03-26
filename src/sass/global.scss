@@ -266,6 +266,10 @@ button:-moz-focusring {
 		outline: 0;
 		cursor: default;
 	}
+
+	&.no-transition {
+		transition: none;
+	}
 }
 
 .amp-mode-mouse .button:hover, 

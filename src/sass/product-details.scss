@@ -121,11 +121,30 @@
 		font-size: 1rem;
 		padding-right: 1rem;
 		vertical-align: top;
+		line-height: 1.1rem;
 	}
 
 	li {
 		display: inline-block;
 		margin-right: .5rem;
+	}
+
+	.title {
+		padding-right: 0.2rem;
+	}
+
+	.button {
+		width: 30px;
+		padding: 2px 6px 5px;
+	}
+
+	.buttons-group {
+		margin-top: 0.5rem;
+
+		.title {
+			text-align: center;
+			width: 20px;
+		}
 	}
 }
 
