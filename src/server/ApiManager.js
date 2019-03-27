@@ -63,10 +63,10 @@ class ApiManager {
             let parsedProd = new Object();
             parsedProd.productId = originalProd.Main_Id;
             parsedProd.name = originalProd.Product_Title.replace(/ - Women's| - Men's/g,'');
-            parsedProd.description = originalProd.Product_Title; /* Missing field on Campmor API */
-            parsedProd.price = originalProd.Discount_Price; /* Using Discount_Price, since it's the one associated to each product size on the Product API. */
+            parsedProd.description = originalProd.Product_Title;                  // Missing field in Campmor API
+            parsedProd.price = this.normalizePrice(originalProd.Discount_Price);  // Using Discount_Price, since it's the one associated to each product size on the Product API.
             parsedProd.image = originalProd.Photo;
-            parsedProd.category = originalProd.Main_Id; /* Missing field on Campmor API */
+            parsedProd.category = originalProd.Main_Id;                           // Missing field in Campmor API */
 
             parsedCategory.items.push(parsedProd);
             productCount++;
@@ -216,6 +216,20 @@ class ApiManager {
         };
 
         return shoppingCart;
+    }
+
+/*** HELPERS ***/
+
+/**
+ * The price given to us by the API may be a number or a string. It may have one decimal point or two.
+ * Normalize prices by converting each to a number.
+ * Then, for integers, convert that number to a string with no decimal places.
+ * Otherwise, convert it to a string with two decimal places.
+ */
+    normalizePrice(price) {
+        let numPrice = Number(price);
+        let decimalPlaces = Number.isInteger(numPrice) ? 0 : 2;
+        return numPrice.toFixed(decimalPlaces);
     }
 }
 
