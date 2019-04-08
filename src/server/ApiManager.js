@@ -140,6 +140,9 @@ class ApiManager {
                         avaliable_Sizes_Array[j].default = true;
                     }
 
+                    //Create a stock "per color-size", based on the stock "per color" that comes with the API.
+                    avaliable_Sizes_Array[j].Stock = this.generateStockPerProductSize(j, parseInt(all_Colors_Array[i].Stock));
+
                     //The last available size of each color (used to avoid adding a comma when rendering amp-state).
                     lastAvailable = avaliable_Sizes_Array[j];
                 }
@@ -149,9 +152,21 @@ class ApiManager {
         }
     }
 
+    generateStockPerProductSize(sizeIndex, productColorStock) {
+        let stockPerProductSize;
+
+        if(sizeIndex % 2 === 0) {
+            stockPerProductSize = (productColorStock * 3 / 2) + sizeIndex;
+        } else {
+            stockPerProductSize = (productColorStock * 2 / 3) + sizeIndex;
+        }
+
+        return Math.round(stockPerProductSize);
+    }
+
     //If the stock of the default color is "1", don't allow the user to change the quantity on the selector.
     enhanceProductQuantity(productObj) {
-        productObj.DefaultQuantityDisabled = (productObj.All_Colors[0].Stock == 1);
+        productObj.DefaultQuantityDisabled = (productObj.All_Colors[0].Avaliable_Sizes[0].Stock == 1);
     }
 
     createCartItem(productId, categoryId, name, price, color, size, imgUrl, quantity) {
