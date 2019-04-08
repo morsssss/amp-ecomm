@@ -70,10 +70,16 @@
                         <%#Avaliable_Sizes%>
                             <%#available%>
                                 <%#Last%>
-                                    "<%SizeName%>":"<%Discount_Price%>"
+                                    "<%SizeName%>": {
+                                        "discountPrice" : "<%Discount_Price%>",
+                                        "stock" : "<%Stock%>"
+                                    }
                                 <%/Last%>
                                 <%^Last%>
-                                    "<%SizeName%>":"<%Discount_Price%>",
+                                    "<%SizeName%>": {
+                                        "discountPrice" : "<%Discount_Price%>",
+                                        "stock" : "<%Stock%>"
+                                    },
                                 <%/Last%>
                             <%/available%>
                         <%/Avaliable_Sizes%>
@@ -138,7 +144,7 @@
             <div class="parameters-content flex flex-wrap">
                 <div class="product-description self-start">
                     <h1><%Product_Title%></h1>
-                    <div class="title" [text]="'$' + product[product.selectedColor].sizes[product.selectedSize]">$<%DefaultPrice%></div>
+                    <div class="title" [text]="'$' + product[product.selectedColor].sizes[product.selectedSize].discountPrice">$<%DefaultPrice%></div>
                 </div>
                 <div class="product-rating self-start">
                     <h2>Reviews (<%ReviewCount%>)</h2> <%#ReviewFullStars %>
@@ -180,7 +186,7 @@
                     <div class="product-sizes">
                         <div class="select-container">
                             <label for="sizes" class="title">Select a size: </label>
-                            <amp-selector name="size" class="title" layout="container" on="select:AMP.setState({ product: {selectedSize:event.targetOption}})" [selected]="(product[product.selectedColor].sizes[product.selectedSize] != null) ? product.selectedSize : product[product.selectedColor].defaultSize">
+                            <amp-selector name="size" class="title" layout="container" on="select:AMP.setState({ product: {selectedSize:event.targetOption, selectedQuantity:1}})" [selected]="(product[product.selectedColor].sizes[product.selectedSize] != null) ? product.selectedSize : product[product.selectedColor].defaultSize">
                                 <%#All_Colors.0.Avaliable_Sizes%>
                                 <%#available%>
                                 <%#default%>
@@ -200,15 +206,16 @@
                     <hr />
                     <div class="product-colors self-start">
                         <div>    
-                            <span class="title">Quantity:</span> <span [text]="'(' + product[product.selectedColor].stock + ' Available)'"> (<%All_Colors.0.Stock%> Available)</span>
+                            <span class="title">Quantity:</span> 
+                            <span [text]="'(' + product[product.selectedColor].sizes[product.selectedSize].stock + ' Available)'"> (<%All_Colors.0.Avaliable_Sizes.0.Stock%> Available)</span>
                             <div class="buttons-group">
                                 <button type="button" class="button button-white no-transition" [disabled]="product.selectedQuantity == 1" disabled on="tap:AMP.setState({ product: {selectedQuantity : product.selectedQuantity - 1} })">-</button>
                                 <input type="text" class="title" value="1" name="quantity" width="5" height="1" [value]="product.selectedQuantity" readonly>
                                 <%#DefaultQuantityDisabled%>
-                                    <button type="button" class="button button-white no-transition" [disabled]="product[product.selectedColor].stock == product.selectedQuantity" disabled on="tap:AMP.setState({ product: {selectedQuantity : (product.selectedQuantity + 1) } })">+</button>
+                                    <button type="button" class="button button-white no-transition" [disabled]="product[product.selectedColor].sizes[product.selectedSize].stock == product.selectedQuantity" disabled on="tap:AMP.setState({ product: {selectedQuantity : (product.selectedQuantity + 1) } })">+</button>
                                 <%/DefaultQuantityDisabled%>
                                 <%^DefaultQuantityDisabled%>
-                                    <button type="button" class="button button-white no-transition" [disabled]="product[product.selectedColor].stock == product.selectedQuantity" on="tap:AMP.setState({ product: {selectedQuantity : (product.selectedQuantity + 1) } })">+</button>
+                                    <button type="button" class="button button-white no-transition" [disabled]="product[product.selectedColor].sizes[product.selectedSize].stock == product.selectedQuantity" on="tap:AMP.setState({ product: {selectedQuantity : (product.selectedQuantity + 1) } })">+</button>
                                 <%/DefaultQuantityDisabled%>
                                 <br>
                             </div>
@@ -220,7 +227,7 @@
                         <input type="hidden" name="productId" value="<%Main_Id%>">
                         <input type="hidden" name="categoryId" value="<%CategoryId%>">
                         <input type="hidden" name="name" value="<%Product_Title%>">
-                        <input type="hidden" name="price" value="<%DefaultPrice%>" [value]="product[product.selectedColor].sizes[product.selectedSize]">
+                        <input type="hidden" name="price" value="<%DefaultPrice%>" [value]="product[product.selectedColor].sizes[product.selectedSize].discountPrice">
                         <input type="hidden" name="imgUrl" value="<%& All_Colors.0.Photo%>" [value]="product[product.selectedColor].large.image1">
                     </div>
                     <hr class="section-divider" />
