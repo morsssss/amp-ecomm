@@ -5,6 +5,7 @@ class ApiManager {
         this.apiUrlEndpoint = 'https://campmor.ampify.wompmobile.com/campmor';
         this.apiCategoriesEndpoint = this.apiUrlEndpoint + '/fetchCategories';
         this.apiProductEndpoint = this.apiUrlEndpoint + '/fetchProduct';
+        this.MAX_RELATED_PRODUCTS = 11;
 
 
         var apiUrlValues = [
@@ -21,16 +22,37 @@ class ApiManager {
 
     //Example url: https://campmor.ampify.wompmobile.com/campmor/fetchCategories?categoryId=200368507&sortBy=priceLtoH
     getCategoryUrl(categoryId, sort) {
-
-        var apiUrlParams = 'categoryId=' + this.apiUrlMap.get(categoryId) + '&sortBy=' + this.apiUrlMap.get(sort);
+        var apiUrlParams = 'categoryId=' + this.apiUrlMap.get(categoryId) + (sort != undefined ? '&sortBy=' + this.apiUrlMap.get(sort) : '');
         return this.apiCategoriesEndpoint + '?' + apiUrlParams;
+    }
 
+    //Returns all items from the category sent as parameter, with he exception of the one with productId == to the first param.
+    getRelatedProducts(productId, apiCategoryResponse) {
+        let parsedCategory = this.parseCategory(apiCategoryResponse);
+        let relatedCategoryItems = parsedCategory.items;
+
+        //only return up to this.MAX_RELATED_PRODUCTS
+        if(relatedCategoryItems.length > this.MAX_RELATED_PRODUCTS) {
+            relatedCategoryItems.splice(this.MAX_RELATED_PRODUCTS, relatedCategoryItems.length - this.MAX_RELATED_PRODUCTS);
+        }
+
+        //remove the item currently being shown
+        for(var i = 0; i < relatedCategoryItems.length; i++){
+            if(relatedCategoryItems[i].productId === productId) {
+                relatedCategoryItems.splice(i, 1);
+                break;
+            }
+        }
+
+        parsedCategory.items = relatedCategoryItems;
+        return parsedCategory;
     }
 
     parseCategory(apiCategoryResponse) {
 
         let prodCategory = JSON.parse(apiCategoryResponse);
         let prodListing = prodCategory.matchingProducts;
+        let productCount = 0;
 
         var parsedCategory = {
             items: []
@@ -40,15 +62,16 @@ class ApiManager {
             let originalProd = prod.Value;
             let parsedProd = new Object();
             parsedProd.productId = originalProd.Main_Id;
-            parsedProd.name = originalProd.Product_Title;
-            parsedProd.description = originalProd.Product_Title; /* Missing field on Campmor API */
-            parsedProd.price = originalProd.Price;
+            parsedProd.name = originalProd.Product_Title.replace(/ - Women's| - Men's/g,'');
+            parsedProd.description = originalProd.Product_Title;                  // Missing field in Campmor API
+            parsedProd.price = this.normalizePrice(originalProd.Discount_Price);  // Using Discount_Price, since it's the one associated to each product size on the Product API.
             parsedProd.image = originalProd.Photo;
-            parsedProd.category = originalProd.Main_Id; /* Missing field on Campmor API */
+            parsedProd.category = originalProd.Main_Id;                           // Missing field in Campmor API */
 
             parsedCategory.items.push(parsedProd);
+            productCount++;
         }
-
+        parsedCategory.productCount = productCount;
         return parsedCategory;
     }
 
@@ -64,6 +87,7 @@ class ApiManager {
         this.enhanceProductRatings(productObj);
         this.enhanceProductColors(productObj);
         this.enhanceProductSizes(productObj);
+        this.enhanceProductQuantity(productObj);
 
         return productObj;
     }
@@ -125,18 +149,21 @@ class ApiManager {
         }
     }
 
-    createCartItem(productId, name, price, color, size, imgUrl, quantity) {
+    //If the stock of the default color is "1", don't allow the user to change the quantity on the selector.
+    enhanceProductQuantity(productObj) {
+        productObj.DefaultQuantityDisabled = (productObj.All_Colors[0].Stock == 1);
+    }
+
+    createCartItem(productId, categoryId, name, price, color, size, imgUrl, quantity) {
         let cartProduct = new Object();
         cartProduct.productId = productId;
+        cartProduct.categoryId = categoryId;
         cartProduct.name = name;
         cartProduct.price = parseInt(price);
         cartProduct.color = color;
         cartProduct.size = size;
         cartProduct.imgUrl = imgUrl;
-        cartProduct.quantity = quantity;
-
-        //replace
-        cartProduct.quantity = 1;
+        cartProduct.quantity = parseInt(quantity);
 
         return cartProduct;
     }
@@ -158,18 +185,51 @@ class ApiManager {
                 });
 
                 if(foundItem.length > 0) {
-                    foundItem[0].quantity += 1;
+                    foundItem[0].quantity += item.quantity;
                 } else {
                     this.cartItems.push(item);    
                 }
                 
-                this.subtotal = this.subtotal + item.price;
+                this.subtotal = this.subtotal + (item.price * item.quantity);
                 this.total = this.subtotal + this.shipping;
                 this.isEmpty = false;
+            },
+            removeItem: function(productId, color, size) {
+
+                for (var i = 0; i < this.cartItems.length; i++) {
+                    if (this.cartItems[i].productId === productId && this.cartItems[i].color === color && this.cartItems[i].size === size) {
+
+                        let cartItem = this.cartItems[i];
+                        //update totals
+                        this.subtotal = this.subtotal - (cartItem.price * cartItem.quantity);
+                        this.total = this.subtotal + this.shipping;
+
+                        //remove item
+                        this.cartItems.splice(i, 1);
+
+                        if(this.cartItems.length == 0) {
+                            this.isEmpty = true;
+                        }
+                    }
+                }
             }
         };
 
         return shoppingCart;
+    }
+
+/*** HELPERS ***/
+
+/**
+ * The price given to us by the API may be a number or a string. It may have one decimal point or two.
+ * Normalize prices by converting each to a number.
+ * Then, for integers, convert that number to a string with no decimal places.
+ * Otherwise, convert it to a string with two decimal places.
+ */
+    normalizePrice(price) {
+        let numPrice = Number(price);
+        let decimalPlaces = Number.isInteger(numPrice) ? 0 : 2;
+        return numPrice.toFixed(decimalPlaces);
     }
 }
 

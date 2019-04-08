@@ -1,80 +1,68 @@
 <!doctype html>
-<!---
-Copyright 2017 The AMP Start Authors. All Rights Reserved.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS-IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
+%%include('../partials/copyright.html')
 <html ⚡="" lang="en">
-%%include('../partials_new/head.html')
-
+<head>
+    %%include('../partials/head.html', {
+        "pageType": "index"
+    })
+</head>
 <body>
-    %%include('../partials_new/navbar.html')
-    <main id="content" role="main" class="main commerce-landing">
-        <section class="commerce-hero-content-wrapper center overflow-hidden">
-            <a href="/product-listing-women.html" class="text-decoration-none block">
-                <amp-img class="commerce-hero-image" src="../../img/e-commerce/narrow-women.jpg" width="2.22" height="1" layout="responsive" media="(max-width: 52.06rem)" alt="Hero Landing 1" noloading="">
-                    <div placeholder="" class="commerce-loader"></div>
+    %%include('../partials/header.html')
+    %%include('../partials/menu.html')
+    <main id="content" role="main" class="landing">
+        <section class="hero-wrapper">
+            <a href="/product-listing?gender=women&category=shirts" class="block">
+                <amp-img src="../../img/e-commerce/narrow-women.jpg" width="2.22" height="1" layout="responsive" media="(max-width: 52.06rem)" alt="Hero Landing 1" noloading="">
+                    <div placeholder="" class="loading"></div>
                 </amp-img>
-                <amp-img class="commerce-hero-image" src="../../img/e-commerce/wide-women.jpg" width="2.7" height="1" layout="responsive" media="(min-width: 52.07rem)" alt="Hero Landing 1" noloading="">
-                    <div placeholder="" class="commerce-loader"></div>
+                <amp-img src="../../img/e-commerce/wide-women.jpg" width="2.7" height="1" layout="responsive" media="(min-width: 52.07rem)" alt="Hero Landing 1" noloading="">
+                    <div placeholder="" class="loading"></div>
                 </amp-img>
-                <div class="commerce-hero-content commerce-hero-content-theme-primary flex justify-center flex-column md-mx-auto md-p0">
-                    <div class="commerce-hero-align md-mx-auto">
-                        <h2 class="commerce-hero-content-title h4 md-h1 caps md-mb2 md-pl4">Women's Clothing</h2>
-                        <p class="commerce-hero-content-body">When the temperatures plummet, we look for clothing and clothing accessories to protect us from cold and wind chill.</p>
-                        <div class="ampstart-btn ampstart-btn-secondary caps md-ml4">shop</div>
+                <div class="hero-content">
+                    <div class="hero-align">
+                        <h2>Women's Clothing</h2>
+                        <p>When the temperatures plummet, we look for clothing and clothing accessories to protect us from cold and wind chill.</p>
+                        <div class="button button-white caps">shop</div>
                     </div>
                 </div>
             </a>
         </section>
-        <section class="commerce-hero-content-wrapper center overflow-hidden">
-            <a href="/product-listing-men.html" class="text-decoration-none block">
-                <amp-img class="commerce-hero-image" src="../../img/e-commerce/narrow-men.jpg" width="2.22" height="1" layout="responsive" media="(max-width: 52.06rem)" alt="Hero Landing 1" noloading="">
-                    <div placeholder="" class="commerce-loader"></div>
+        <section class="hero-wrapper">
+            <a href="/product-listing?gender=men&category=shirts" class="block">
+                <amp-img src="../../img/e-commerce/narrow-men.jpg" width="2.22" height="1" layout="responsive" media="(max-width: 52.06rem)" alt="Hero Landing 1" noloading="">
+                    <div placeholder="" class="loading"></div>
                 </amp-img>
-                <amp-img class="commerce-hero-image" src="../../img/e-commerce/wide-men.jpg" width="2.7" height="1" layout="responsive" media="(min-width: 52.07rem)" alt="Hero Landing 1" noloading="">
-                    <div placeholder="" class="commerce-loader"></div>
+                <amp-img src="../../img/e-commerce/wide-men.jpg" width="2.7" height="1" layout="responsive" media="(min-width: 52.07rem)" alt="Hero Landing 1" noloading="">
+                    <div placeholder="" class="loading"></div>
                 </amp-img>
-                <div class="commerce-hero-content commerce-hero-content-theme-secondary flex justify-center flex-column md-mx-auto md-p0">
-                    <div class="commerce-hero-align md-mx-auto">
-                        <h2 class="commerce-hero-content-title h4 md-h1 caps md-mb2 md-pl4">Men's Clothing</h2>
-                        <p class="commerce-hero-content-body">With garments from over thirty of the industry’s leading manufacturers, Campmor has hundreds of Men’s jackets and vests from which to choose.</p>
-                        <div class="ampstart-btn ampstart-btn-secondary caps md-ml4">shop</div>
+                <div class="hero-content">
+                    <div class="hero-align">
+                        <h2>Men's Clothing</h2>
+                        <p>With garments from over thirty of the industry’s leading manufacturers, Campmor has hundreds of Men’s jackets and vests from which to choose.</p>
+                        <div class="button button-white caps">shop</div>
                     </div>
                 </div>
             </a>
         </section>
-        <!--
-        <section class="commerce-hero-content-wrapper center overflow-hidden">
-            <a href="/blog-listing.html" class="text-decoration-none block">
-                <amp-img class="commerce-hero-image" src="..&#x2F;..&#x2F;img&#x2F;e-commerce&#x2F;narrow-landing-04.jpg" width="750" height="573" layout="responsive" media="(max-width: 52.06rem)" alt="Hero Landing 1" noloading="">
-                    <div placeholder="" class="commerce-loader"></div>
+        <section class="hero-wrapper">
+            <a href="/blog-listing.html" class="block">
+                <amp-img src="../../img/e-commerce/narrow-landing-04.jpg" width="2.22" height="1" layout="responsive" media="(max-width: 52.06rem)" alt="Hero Landing 1" noloading="">
+                    <div placeholder="" class="loading"></div>
                 </amp-img>
-                <amp-img class="commerce-hero-image" src="..&#x2F;..&#x2F;img&#x2F;e-commerce&#x2F;wide-landing-04.jpg" width="2560" height="800" layout="responsive" media="(min-width: 52.07rem)" alt="Hero Landing 1" noloading="">
-                    <div placeholder="" class="commerce-loader"></div>
+                <amp-img src="../../img/e-commerce/wide-landing-04.jpg" width="2.7" height="1" layout="responsive" media="(min-width: 52.07rem)" alt="Hero Landing 1" noloading="">
+                    <div placeholder="" class="loading"></div>
                 </amp-img>
-                <div class="commerce-hero-content commerce-hero-content-theme-primary flex justify-center flex-column md-mx-auto md-p0">
-                    <div class="commerce-hero-align md-mx-auto">
-                        <h2 class="commerce-hero-content-title h4 md-h1 caps md-mb2 md-pl4">No Sleep &#39;til Brooklyn</h2>
-                        <p class="commerce-hero-content-body">Early mornings, black coffee, carbs. We spend a week on the road with New York&#39;s Five Borough Cycle Club.</p>
-                        <div class="ampstart-btn ampstart-btn-secondary caps md-ml4">read</div>
+                <div class="hero-content">
+                    <div class="hero-align">
+                        <h2>Camping is awesome</h2>
+                        <p>Check out our amazing words which we write about camping and stuff.</p>
+                        <div class="button button-white caps">read</div>
                     </div>
                 </div>
             </a>
         </section>
-        -->
     </main>
-    %%include('../partials_new/footer.html')
+    %%include('../partials/footer.html')
 </body>
 
 </html>
