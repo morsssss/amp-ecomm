@@ -1,26 +1,38 @@
 {{#isEmpty}}
-    <h3>Your Basket is Empty</h3>
+<h3>Your Basket is Empty</h3>
 {{/isEmpty}}
 {{^isEmpty}}
-    <h3>Your Basket</h3>
-        {{#cartItems}}
-        <div class="cart-product">
-            <div class="cart-image-container">
-                <amp-img src="{{imgUrl}}" width="1" height="1" layout="responsive" alt="{{mame}}" noloading="">
-                    <div placeholder="" class="loading"></div>
-                </amp-img>
-            </div>
-            <div class="cart-product-left">
-                <h6>{{name}}</h6>
-            </div>
-            <div class="cart-product-right title">
-                <span>{{size}}</span>
-                <span>${{price}}</span>
-                <span>{{quantity}}</span>
-                <!--
-                <div role="button" class="inline-block commerce-cart-icon" tabindex="0">✕</div>
-                -->
-            </div>
-        </div>
-        {{/cartItems}}
-{{/isEmpty}}    
+<h3>Your Basket</h3>
+{{#cartItems}}
+<div class="cart-product">
+    <div class="cart-image-container">
+        <a href="/product-details?productId={{productId}}">
+            <amp-img src="{{imgUrl}}" width="1" height="1" layout="responsive" alt="{{mame}}" noloading="">
+                <div placeholder="" class="loading"></div>
+            </amp-img>
+        </a>
+    </div>
+    <div class="cart-product-left">
+        <a href="/product-details?productId={{productId}}">
+            <h6>{{name}}</h6>
+        </a>
+    </div>
+    <div class="cart-product-right title">
+        <span>{{size}}</span>
+        <span>${{price}}</span>
+        <span>{{quantity}}</span>
+
+        %%if (context.removeButton) {
+        <button type="button" style="background: none;box-shadow: none;border-radius: 0px;width:30px" 
+            on="tap: AMP.setState({
+                cartItem: {
+                    productId: '{{productId}}',
+                    size: '{{size}}',
+                    color: '{{color}}'
+            }}), form-cart-delete.submit">X</button>
+        }
+
+    </div>
+</div>
+{{/cartItems}}
+{{/isEmpty}}

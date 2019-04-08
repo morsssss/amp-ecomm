@@ -107,7 +107,9 @@
             </div>
             <hr class="xs-hide sm-hide">
             <div class="cart-wrapper">
-                %%include('../partials/cart-items.html')
+                %%include('../partials/cart-items.html', {
+                    "removeButton": false
+                })
                 <div class="checkout-actions center">
                     <a href="checkout-success.html" class="button button-white">Continue</a>
                 </div>
