@@ -112,6 +112,7 @@ class ApiManager {
     enhanceProductColors(productObj) {
         productObj.DefaultColor = productObj.All_Colors[0].ColorName;
         productObj.All_Colors[0].defaultColour = true;
+        productObj.UniqueColor = productObj.All_Colors.length === 1;
     }
 
     enhanceProductSizes(productObj) {

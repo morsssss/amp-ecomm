@@ -106,6 +106,16 @@
         </amp-state>
 
         <section class="details-content flex flex-wrap">
+            <%#UniqueColor%>
+                <%#All_Colors%>
+                <div class="product-carousel">
+                    <amp-img src="<%& Photo%>" width="1280" height="720" alt="product image" layout="responsive">
+                        <div placeholder="" class="loading"></div>
+                    </amp-img>
+                </div>
+                <%/All_Colors%>
+            <%/UniqueColor%>
+            <%^UniqueColor%>
             <div class="product-carousel">
                 <amp-carousel id="main-carousel" width="1280" height="720" layout="responsive" type="slides" [slide]="product.selectedSlide" 
                 on="slideChange: AMP.setState({product: {
@@ -141,6 +151,7 @@
                     </ul>
                 </amp-selector>
             </div>
+            <%/UniqueColor%>
             <div class="parameters-content flex flex-wrap">
                 <div class="product-description self-start">
                     <h1><%Product_Title%></h1>
