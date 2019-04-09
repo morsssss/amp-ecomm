@@ -48,6 +48,22 @@
 	}
 }
 
+.single-product {
+	width: 100%;
+	padding: 1rem 1rem 0;
+
+	@include desktop {
+		width: 50%;
+		padding: 2rem 0 0 5rem;
+	}
+
+	amp-img {
+		img {
+			object-fit: contain;
+		}
+	}
+}
+
 .parameters-content {
 	padding-right: 1rem;
 	padding-left: 1rem;
