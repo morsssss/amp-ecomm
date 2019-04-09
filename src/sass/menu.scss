@@ -7,7 +7,6 @@ amp-sidebar {
 	width: 350px;
 	padding: 0 1.5rem;
 	margin-bottom: 1.5rem;
-	text-align: center;
 	height: 100%;
 
 	@include desktop {
@@ -66,7 +65,7 @@ amp-sidebar {
 }
 
 .menu {
-	margin-bottom: 2rem;
+	margin-bottom: 1rem;
 	text-transform: uppercase;
 
 	a {
@@ -80,7 +79,7 @@ amp-sidebar {
 
 	li {
 		color: #222;
-		margin-top: 1rem;
+		margin-top: .5rem;
 
 		&:active,
 		&:focus,
@@ -90,18 +89,23 @@ amp-sidebar {
 
 		&.logo,
 		&.logo a {
-			margin-bottom: 0;
+			margin: 0;
+			text-align: center;
 		}
 
 		amp-img {
 			display: inline-block;
 			width: 120px;
-			margin-bottom: 2rem;
 		}
 	}
 
 	.label {
 		color: inherit;
+
+		li:not(.logo) {
+			padding: 6px;
+			background: #efefef;
+		}
 	}
 
 	.sub-item {
@@ -111,6 +115,12 @@ amp-sidebar {
 			font-size: .94rem;
 			line-height: .94rem;
 			margin: 0;
+			text-transform: none;
+
+			&::before {
+				content: "›";
+				margin: 2px 4px 0 8px;
+			}
 		}
 	}
 
