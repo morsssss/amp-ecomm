@@ -111,6 +111,11 @@
 	}
 }
 
+.cart-remove-icon {
+	color: #f88;
+	cursor: pointer;
+}
+
 .cart-sum-area {
 	width: 100%;
 	padding: 1.5rem 1rem 2rem;
@@ -166,6 +171,7 @@
 		padding-bottom: 190px;
 	}
 }
+
 footer { 
 	position: fixed;
 	z-index: 1;

@@ -23,13 +23,13 @@
         <span>{{quantity}}</span>
 
         %%if (context.removeButton) {
-        <button type="button" style="background: none;box-shadow: none;border-radius: 0px;width:30px" 
+        <div role="button" class="cart-remove-icon" tabindex="0"
             on="tap: AMP.setState({
                 cartItem: {
                     productId: '{{productId}}',
                     size: '{{size}}',
                     color: '{{color}}'
-            }}), form-cart-delete.submit">X</button>
+            }}), form-cart-delete.submit">✕</button>
         }
 
     </div>
