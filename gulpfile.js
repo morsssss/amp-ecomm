@@ -38,6 +38,14 @@ const paths = {
         src: 'src/img/**/*.{gif,jpg,png,svg}',
         dest: 'dist/img'
     },
+    favicon: {
+        src: 'src/favicon/*',
+        dest: 'dist/'
+    },
+    rootConfig: {
+        src: 'src/rootConfigFiles/*',
+        dest: 'dist/'
+    },
     server: {
         src: 'src/server/**/*',
         dest: 'dist/server'
@@ -71,6 +79,23 @@ gulp.task('images', function buildImages() {
     return gulp.src(paths.images.src)
         .pipe(gulp.dest(paths.images.dest));
 });
+
+/**
+ * Copies the favicon to the distribution.
+ */
+gulp.task('favicon', function buildImages() {
+    return gulp.src(paths.favicon.src)
+        .pipe(gulp.dest(paths.favicon.dest));
+});
+
+/**
+ * Copies the root config files to the distribution.
+ */
+gulp.task('rootConfig', function buildImages() {
+    return gulp.src(paths.rootConfig.src)
+        .pipe(gulp.dest(paths.rootConfig.dest));
+});
+
 
 /**
  * Copies the server and helper classes to the distribution.
@@ -120,7 +145,7 @@ gulp.task('clean', function clean() {
 /**
  * Builds the output from sources.
  */
-gulp.task('build', gulp.series('images', 'html', 'server', 'validate'));
+gulp.task('build', gulp.series('images', 'favicon', 'rootConfig', 'html', 'server', 'validate'));
 
 /**
  * First rebuilds the output then triggers a reload of the browser.
@@ -162,10 +187,12 @@ gulp.task('nodemon', function (cb) {
 
 /**
  * Sets up live-reloading: Changes to HTML or CSS trigger a rebuild, changes to
- * images and server only result in images, server and helper classes being copied again to dist.
+ * images, favicon, root config files and server only result in images, favicon, root config files, server and helper classes being copied again to dist.
  */
 gulp.task('watch', function watch(done) {
     gulp.watch(paths.images.src, gulp.series('images'));
+    gulp.watch(paths.favicon.src, gulp.series('favicon'));
+    gulp.watch(paths.rootConfig.src, gulp.series('rootConfig'));
     gulp.watch(paths.server.src, gulp.series('server'));
     gulp.watch('src/html/**/*.html', gulp.series('rebuild'));
     gulp.watch(paths.css.src, gulp.series('rebuild'));
