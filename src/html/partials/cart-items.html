@@ -1,5 +1,8 @@
 {{#isEmpty}}
 <h3>Your Basket is Empty</h3>
+<div class="cart-continue">
+    <a href="/" class="button button-white">Continue Shopping</a>
+</div>
 {{/isEmpty}}
 {{^isEmpty}}
 <h3>Your Basket</h3>
@@ -29,7 +32,9 @@
                     productId: '{{productId}}',
                     size: '{{size}}',
                     color: '{{color}}'
-            }}), form-cart-delete.submit">✕</button>
+            }}), form-cart-delete.submit">
+            ✕
+        </div>
         }
 
     </div>

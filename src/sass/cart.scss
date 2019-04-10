@@ -164,11 +164,23 @@
 
 .cart-actions {
 	text-align: center;
-	padding-bottom: 70px;
+	padding-bottom: 4.5rem;
+
+	a:first-child {
+		margin-right: 2rem;
+	}
 
 	@include desktop {
 		text-align: left;	
 		padding-bottom: 190px;
+	}
+}
+
+.cart-continue {
+	margin: 6rem 1rem;
+
+	@include desktop {
+		margin-left: 2rem;
 	}
 }
 
