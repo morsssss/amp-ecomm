@@ -46,10 +46,11 @@ app.get('/product-listing', function(req, res) {
     let resProductsCategory = 'shirts';
     let resShirtSelected = true;
     let resShortSelected = false;
-    // read parameters
+
     let productsGender = req.query.gender || resProductsGender;
     let productsCategory = req.query.category || resProductsCategory;
     let listingUrl = apiManager.getCategoryUrl(productsGender + '-' + productsCategory);
+
     if (!listingUrl.match('categoryId=undefined')) {
         resProductsCategory = productsCategory;
         resProductsGender = productsGender;
@@ -66,11 +67,17 @@ app.get('/product-listing', function(req, res) {
         productsCategory: resProductsCategory,
         productsGender: resProductsGender
     };
+
     if (resShirtSelected) {
         responseObj.shirtSelected = true;
     } else if (resShortSelected) {
         responseObj.shortSelected = true;
     }
+
+    if (resProductsGender == 'women') {
+        responseObj.womenSelected = true;
+    }
+
     res.render('product-listing', responseObj);
 });
 

@@ -34,6 +34,10 @@
 
 	.select-wrapper {
 		margin: 0 4px;
+
+		@include desktop {
+			margin: 0 4px 0 12px;	
+		}
 	}
 }
 
