@@ -19,7 +19,7 @@
             }
             </script>
         </amp-state>
-        <amp-img class="banner xs-hide sm-hide" src="img/<%productsGender%>-extra-wide.jpg" width="3.5" height="1" layout="responsive" alt="Product listing" noloading="">
+        <amp-img class="banner xs-hide sm-hide" src="img/<%productsGender%>-extra-wide.jpg" [src]="'img/'+products.gender+'-extra-wide.jpg'" width="3.5" height="1" layout="responsive" alt="Product listing" noloading="">
             <div placeholder="" class="loading"></div>
         </amp-img>
         <section class="listing-content">
@@ -41,7 +41,7 @@
 
             <div class="listing-container">
                 <div class="listing-header">
-                    <h1><%productsGender%>'s Clothing</h1>
+                    <h1 [text]="products.gender+'’s Clothing'"><%productsGender%>’s Clothing</h1>
                     <div class="listing-filters">
                         <div class="select-wrapper md-hide lg-hide">
                             <div class="title">
