@@ -34,10 +34,6 @@ footer {
 		}
 	}
 
-	.icon {
-		fill: #6a6a6a
-	}
-
 	.amp-mode-mouse & a:hover {
 		text-decoration: underline
 	}
@@ -78,25 +74,6 @@ footer {
 			li:first-child a {
 				padding-left: 0;
 			}
-		}
-
-		h2 {
-			padding-bottom: 0;
-		}
-	}
-}
-
-.social-icons {
-	display: inline-block;
-	margin: 0;
-	padding-bottom: 0;
-
-	li {
-		display: inline-block;
-
-		a {
-			display: inline-block;
-			padding: .5rem;
 		}
 	}
 }
