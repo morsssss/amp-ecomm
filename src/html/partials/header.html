@@ -8,12 +8,19 @@
       <amp-img src="img/logo.png" width="120" height="37" layout="fixed" alt=""></amp-img>
     </a>
     <div class="cart-icon-container">
-        <div>
-        </div>
         <a href="/shopping-cart">
-          <div>
-            <amp-img src="img/campmor_backpack.png" width="35" height="27"></amp-img>
-        </div>
+            <div>
+                <amp-img src="img/campmor_backpack.png" width="35" height="27"></amp-img>
+
+                %%if (context.pageType == 'index') {
+                <amp-list id="cart-count" src="/api/cart-count" height="17" width="17" layout="fixed">
+                    <template type="amp-mustache">
+                        <span>{{.}}</span>
+                    </template>
+                </amp-list>
+                }
+                
+            </div>
         </a>
     </div>
 </header>

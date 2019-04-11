@@ -206,24 +206,23 @@ app.get('/api/product', function(req, res) {
     });
 });
 
+// Wrap the shopping cart into an 'items' array, so it can be consumed with amp-list.
 app.get('/api/cart-items', function(req, res) {
+    let cart = getCartFromSession(req);
 
-    let shoppingCart = req.session.shoppingCart;
-
-    //cookie exists, but cart is empty
-    if (shoppingCart) {
-        shoppingCart = serializer.deserialize(shoppingCart);
-    } else {
-        shoppingCart = apiManager.createCart();
-        req.session.shoppingCart = serializer.serialize(shoppingCart);
-    }
-
-    //wrap the shopping cart into an 'items' array, so it can be consumed with amp-list.
-    let shoppingCartResponse = { items: [] };
-    shoppingCartResponse.items.push(shoppingCart);
+    let response = { items: [cart] };
 
     enableCors(req, res);
-    res.send(shoppingCartResponse);
+    res.send(response);
+});
+
+app.get('/api/cart-count', function(req, res) {
+    let cart = getCartFromSession(req);
+
+    let response = { items: [cart.cartItems.length] };
+
+    enableCors(req, res);
+    res.send(response);
 });
 
 app.post('/api/delete-cart-item', function(req, res) {
@@ -272,6 +271,20 @@ app.get('/api/related-products', function(req, res) {
         }
     });
 });
+
+// If the session contains a cart, then deserialize it and return that!
+// Otherwise, create a new cart and add that to the session.
+function getCartFromSession(req) {
+    let sessionCart = req.session.shoppingCart;
+
+    if (sessionCart) {
+        return serializer.deserialize(sessionCart);
+    } else {
+        let newCart = apiManager.createCart();
+        req.session.shoppingCart = serializer.serialize(newCart);
+        return cart;
+    }
+}
 
 function updateShoppingCartOnSession(req, productId, categoryId, name, price, color, size, imgUrl, quantity) {
     let cartProduct = apiManager.createCartItem(productId, categoryId, name, price, color, size, imgUrl, quantity);

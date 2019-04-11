@@ -7,7 +7,9 @@
     })
 </head>
 <body>
-    %%include('../partials/header.html')
+    %%include('../partials/header.html', {
+        "pageType": "index"  
+    })
     %%include('../partials/menu.html')
     <main id="content" role="main" class="landing">
         <section class="hero-wrapper">

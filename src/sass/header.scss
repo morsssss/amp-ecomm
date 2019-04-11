@@ -66,6 +66,18 @@
   }
 }
 
+#cart-count {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #f88;
+  color: #fff;
+  font: 700 .7rem Open Sans Condensed,sans-serif;
+  animation: c .5s forwards;  
+}
+
 .menu-open-button {
   position: absolute;
   top: 0;
